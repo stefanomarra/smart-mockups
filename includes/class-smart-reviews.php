@@ -184,8 +184,11 @@ class Smart_Reviews {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		// Ovverride Single Tempate
+		// Override Single Tempate
 		$this->loader->add_action( 'single_template', $plugin_public, 'single_template' );
+
+		$this->loader->add_action( 'wp_ajax_save_feedback', $plugin_public, 'save_feedback_ajax' );
+        $this->loader->add_action( 'wp_ajax_nopriv_save_feedback', $plugin_public, 'save_feedback_ajax' );
 
 	}
 

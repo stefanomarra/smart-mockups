@@ -12,7 +12,10 @@ p {
   margin: 0; }
 
 ul {
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
+  ul li {
+    list-style: none; }
 
 /**
  * Smart Reviews
@@ -35,9 +38,9 @@ body {
       top: 0;
       left: 0;
       z-index: 100; }
-      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback {
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback {
         position: absolute; }
-        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .dot {
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot {
           position: relative;
           box-sizing: border-box;
           cursor: pointer;
@@ -48,19 +51,28 @@ body {
           border-radius: 20px;
           background-color: #FF6160;
           border: 4px solid #FFF;
-          box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4); }
-        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content {
+          box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4);
+          transition: transform 0.15s ease-in; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot span {
+            display: block;
+            text-align: center;
+            line-height: 32px;
+            font-size: 18px;
+            color: #FFF; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot:hover {
+            transform: scale(1.2, 1.2); }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content {
           position: absolute;
           display: none;
           top: -22.22222px;
           left: 33.33333px;
-          width: 280px;
+          width: 320px;
           border-radius: 6px;
           min-height: 20px;
           padding-top: 30px;
           background-color: #FFF;
           box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4); }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content:after {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content:after {
             content: "";
             position: absolute;
             top: 13px;
@@ -73,32 +85,93 @@ body {
             border-bottom-color: transparent;
             border-left-color: transparent;
             box-sizing: border-box; }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content:after {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content:after {
             top: 15px;
             border-right-color: rgba(0, 0, 0, 0.1);
             z-index: 10; }
-        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.open, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li {
+            padding: 10px 15px;
+            border-bottom: 1px solid #EFEFEF; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-avatar {
+              float: left;
+              width: 50px; }
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-avatar img {
+                max-width: 100%;
+                border-radius: 50%; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content {
+              position: relative;
+              overflow: hidden;
+              padding-left: 10px;
+              font-size: 13px; }
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content .sr-comment-text {
+                display: block;
+                margin-top: 5px;
+                color: #666666; }
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content .sr-comment-time {
+                display: none;
+                position: absolute;
+                top: 0;
+                right: 0;
+                font-size: 12px;
+                font-weight: 100;
+                color: #CECECE; }
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content .sr-user-display {
+                position: relative;
+                text-transform: uppercase;
+                padding: 2px 5px;
+                font-size: 10px;
+                background-color: #3F98E6;
+                color: #FFF; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:after {
+              content: "";
+              display: block;
+              clear: both; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:first-child {
+              margin-top: 10px;
+              border-top: 1px solid #EFEFEF; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:last-of-type {
+              margin-bottom: 10px; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:hover .sr-comment-time {
+              display: block; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.open, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.hover {
           z-index: 200; }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.open .feedback-content, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover .feedback-content {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.open .sr-feedback-content, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.hover .sr-feedback-content {
             display: block; }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.open .dot, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover .dot {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.open .sr-dot, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.hover .sr-dot {
             z-index: 300; }
-        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover {
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.hover {
           z-index: 400; }
-        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content {
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content {
           left: auto;
           right: 56px; }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content:after {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content:after {
             right: -20px;
             left: auto;
             border-right-color: transparent;
             border-left-color: #FFF; }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content:after {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content:after {
             border-left-color: rgba(0, 0, 0, 0.1); }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .feedback-status {
+          position: absolute;
+          top: 0;
+          left: 15px;
+          font-size: 10px;
+          color: #FFF; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .feedback-status > div {
+            display: none;
+            padding: 2px 5px; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .feedback-status .feedback-draft {
+            background-color: #FF6160; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-draft {
+          display: block; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-close {
+          display: none; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.empty .feedback-close {
+          display: none; }
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action {
       position: absolute;
-      top: 0;
-      right: 5px; }
+      top: 1px;
+      right: 8px; }
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action button {
         cursor: pointer;
         outline: none;
@@ -118,7 +191,7 @@ body {
         width: 100%;
         font-size: 13px;
         border-radius: 2px;
-        padding: 5px 8px;
+        padding: 8px 10px;
         line-height: 1.5;
         background-color: #F5F5F5; }
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit {
@@ -130,9 +203,10 @@ body {
         cursor: pointer;
         text-transform: uppercase;
         width: 100%;
-        padding: 10px;
+        padding: 15px 10px;
         border-radius: 0 0 6px 6px;
         font-size: 13px;
+        font-weight: 600;
         background: #34CE4A;
         color: #FFF; }
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit.active {

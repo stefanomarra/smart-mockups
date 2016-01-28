@@ -101,6 +101,71 @@ class Smart_Reviews_Public {
 	}
 
 	/**
+	 * This function saves a new feedback from the public-facing side of the site
+	 *
+	 * @since 1.0.0
+	 */
+	public function save_feedback_ajax() {
+		$feedback = array(
+			'post_id' 		=> strip_tags( trim( $_POST['post_id'] ) ),
+			'time'			=> current_time( get_option( 'date_format' ) ),
+			'x'				=> $_POST['x'],
+			'y'				=> $_POST['y'],
+			'feedback_id'  	=> $_POST['feedback_id'],
+			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . $_POST['comment'] . '</span></div></li>',
+			'status' 		=> ''
+		);
+
+		if ( ! $feedback['feedback_id'] ) {
+			$feedback['feedback_id'] = $this->generate_feedback_id();
+			$feedback['status'] = 'new_feedback_saved';
+		} else {
+			$feedback['status'] = 'feedback_updated';
+		}
+
+		echo json_encode( $feedback );
+		die();
+	}
+
+	/**
+	 * This function handles user display name
+	 *
+	 * @since 1.0.0
+	 * @return string The user display name
+	 */
+	public function get_user_display_name() {
+		$current_user = wp_get_current_user();
+
+		if ( $current_user->ID == 0 )
+			return 'Guest';
+		else
+			return $current_user->display_name;
+	}
+
+	/**
+	 * This function handles user avatar
+	 *
+	 * @since 1.0.0
+	 * @return string URL of user avatar image
+	 */
+	public function get_user_avatar() {
+		$current_user = wp_get_current_user();
+
+		return get_avatar_url( $current_user->ID, array('size' => 50) );
+	}
+
+	/**
+	 * This function generated a feedback id based on actual timestamp
+	 *
+	 * @since 1.0.0
+	 */
+	public function generate_feedback_id() {
+		$ts = time();
+
+		return md5( $ts );
+	}
+
+	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    1.0.0

@@ -12,12 +12,37 @@
 
 $post_ID = get_the_ID();
 
-$post_data = array();
-$post_data['mockup_image_id'] = get_post_meta( $post_ID, 'mockup_image_id', true );
-$post_data['mockup_image_url'] = '';
+$mockup_data = array(
+	'feedbacks' => array(
+			'983247' => array(
+					'feedback_id' => '983247',
+					'x'           => 60,
+					'y'           => 80,
+					'feedback'    => 'Feedback message',
+					'comments'    => array()
+				),
+			'986348' => array(
+					'feedback_id' => '986348',
+					'x'           => 439,
+					'y'           => 380,
+					'feedback'    => 'Feedback message',
+					'comments'    => array()
+				)
+		)
+);
 
-if ( $post_data['mockup_image_id'] )
-	$post_data['mockup_image_url'] = wp_get_attachment_url( $post_data['mockup_image_id'] );
+
+
+
+$mockup_data['mockup_image_id'] = get_post_meta( $post_ID, 'mockup_image_id', true );
+$mockup_data['mockup_image_url'] = '';
+
+if ( $mockup_data['mockup_image_id'] )
+	$mockup_data['mockup_image_url'] = wp_get_attachment_url( $mockup_data['mockup_image_id'] );
+
+
+
+
 
 ?>
 
@@ -39,7 +64,7 @@ if ( $post_data['mockup_image_id'] )
 
 
         <script type="text/javascript">
-            var ajaxurl = '<?php echo admin_url( "admin-ajax.php" );?>';
+            var ajax_url = '<?php echo admin_url( "admin-ajax.php" );?>';
             var post_id = <?php echo $post_ID; ?>;
         </script>
 
@@ -55,22 +80,32 @@ if ( $post_data['mockup_image_id'] )
     <body>
     	<div id="sr-mockup-viewport">
     		<main class="sr-mockup-wrapper">
-    			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $post_data['mockup_image_url']; ?>"></div>
+    			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $mockup_data['mockup_image_url']; ?>"></div>
     			<div class="sr-mockup-dots"></div>
     			<div class="sr-mockup-review"></div>
     		</main>
-    		<div id="dot_template" class="dot-feedback empty new template">
-    			<div class="dot"><span></span></div>
-    			<div class="feedback-content">
+
+    		<div id="sr-feedback-loader">
+    			<?php foreach ( $mockup_data['feedbacks'] as $id => $feedback ) : ?>
+    				<div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>" data-feedback="<?php echo $feedback['feedback']; ?>"></div>
+    			<?php endforeach; ?>
+    		</div>
+
+    		<div id="sr-feedback-template" class="sr-feedback empty new template">
+    			<div class="sr-dot"><span></span></div>
+    			<div class="sr-feedback-content">
+    				<div class="feedback-status">
+    					<div class="feedback-draft">DRAFT</div>
+    				</div>
     				<div class="feedback-action">
     					<button class="feedback-delete"><i class="fa fa-trash-o"></i></button>
     					<button class="feedback-close"><i class="fa fa-close"></i></button>
     				</div>
     				<div class="feedback-comments">
     					<ul class="feedback-comment-list"></ul>
-    					<form class="feedback-comment-form" action="#">
+    					<form class="feedback-comment-form">
     						<p class="feedback-field-wrapper">
-    							<textarea placeholder="Write a comment..." class="feedback-field-comment" name="feedback_field_comment"></textarea>
+    							<textarea placeholder="Write a comment..." class="feedback-field-comment" name="feedback"></textarea>
     						</p>
     						<p class="feedback-field-wrapper-submit">
     							<input type="submit" class="feedback-field-submit" value="Post this Comment">
@@ -79,6 +114,7 @@ if ( $post_data['mockup_image_id'] )
     				</div>
     			</div>
     		</div>
+
     	</div>
     </body>
 </html>

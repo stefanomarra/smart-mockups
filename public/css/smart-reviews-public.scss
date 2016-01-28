@@ -16,6 +16,11 @@ p {
 
 ul {
 	margin: 0;
+	padding: 0;
+
+	li {
+		list-style: none;
+	}
 }
 
 $viewport_bg_color: #6B7A90;
@@ -53,10 +58,10 @@ body {
 			left: 0;
 			z-index: 100;
 
-			.dot-feedback {
+			.sr-feedback {
 				position: absolute;
 
-				.dot {
+				.sr-dot {
 					position: relative;
 					box-sizing: border-box;
 					cursor: pointer;
@@ -70,15 +75,31 @@ body {
 					background-color: $dot_bg_color;
 					border: 4px solid #FFF;
 					box-shadow: 0 4px 10px -1px rgba(0,0,0,.4);
+
+					transition: transform 0.15s ease-in;
+
+					span {
+						display: block;
+						text-align: center;
+
+						line-height: $dot_height - 8;
+						font-size: 18px;
+
+						color: #FFF;
+					}
+
+					&:hover {
+						transform: scale(1.2, 1.2);
+					}
 				}
 
-				.feedback-content {
+				.sr-feedback-content {
 					position: absolute;
 					display: none;
 
 					top: - $dot_height / 1.8;
 					left: $dot_width / 1.2;
-					width: 280px;
+					width: 320px;
 					border-radius: 6px;
 					min-height: 20px;
 					padding-top: 30px;
@@ -109,17 +130,100 @@ body {
 						border-right-color: rgba(0, 0, 0, 0.1);
 						z-index: 10;
 					}
+
+					.feedback-comments {
+
+						ul.feedback-comment-list {
+
+							li {
+								padding: 10px 15px;
+
+								border-bottom: 1px solid #EFEFEF;
+
+								.sr-avatar {
+									float: left;
+
+									width: 50px;
+
+									img {
+										max-width: 100%;
+										border-radius: 50%;
+									}
+								}
+
+								.sr-comment-content {
+									position: relative;
+									overflow: hidden;
+
+									padding-left: 10px;
+									font-size: 13px;
+
+									.sr-comment-text {
+										display: block;
+
+										margin-top: 5px;
+
+										color: #666666;
+									}
+
+									.sr-comment-time {
+										display: none;
+										position: absolute;
+
+										top: 0;
+										right: 0;
+										font-size: 12px;
+										font-weight: 100;
+
+										color: #CECECE;
+									}
+
+									.sr-user-display {
+										position: relative;
+										text-transform: uppercase;
+
+										padding: 2px 5px;
+										font-size: 10px;
+
+										background-color: #3F98E6;
+										color: #FFF;
+									}
+								}
+
+								&:after {
+									content: "";
+									display: block;
+									clear: both;
+								}
+
+								&:first-child {
+									margin-top: 10px;
+									border-top: 1px solid #EFEFEF;
+								}
+
+								&:last-of-type {
+									margin-bottom: 10px;
+								}
+
+								&:hover {
+									.sr-comment-time {
+										display: block;
+									}
+								}
+							}
+						}
+					}
 				}
 
 				&.open,
 				&.hover {
 					z-index: 200;
 
-					.feedback-content {
+					.sr-feedback-content {
 						display: block;
 					}
 
-					.dot {
+					.sr-dot {
 						z-index: 300;
 					}
 				}
@@ -130,7 +234,7 @@ body {
 
 				&.invert-horizontal {
 
-					.feedback-content {
+					.sr-feedback-content {
 						left: auto;
 						right: $dot_width * 1.4;
 
@@ -148,14 +252,51 @@ body {
 						}
 					}
 				}
+
+				.feedback-status {
+					position: absolute;
+
+					top: 0;
+					left: 15px;
+					font-size: 10px;
+
+					color: #FFF;
+
+					>div {
+						display: none;
+						padding: 2px 5px;
+					}
+
+					.feedback-draft {
+						background-color: #FF6160;
+					}
+				}
+
+				&.draft {
+
+					.feedback-draft {
+						display: block;
+					}
+
+					.feedback-close {
+						display: none;
+					}
+				}
+
+				&.empty {
+
+					.feedback-close {
+						display: none;
+					}
+				}
 			}
 		}
 
 		.feedback-action {
 			position: absolute;
 
-			top: 0;
-			right: 5px;
+			top: 1px;
+			right: 8px;
 
 			button {
 				cursor: pointer;
@@ -187,7 +328,7 @@ body {
 					width: 100%;
 					font-size: 13px;
 					border-radius: 2px;
-					padding: 5px 8px;
+					padding: 8px 10px;
 					line-height: 1.5;
 
 					background-color: #F5F5F5;
@@ -205,9 +346,10 @@ body {
 					text-transform: uppercase;
 
 					width: 100%;
-					padding: 10px;
+					padding: 15px 10px;
 					border-radius: 0 0 6px 6px;
 					font-size: 13px;
+					font-weight: 600;
 
 					background: #34CE4A;
 					color: #FFF;
@@ -219,6 +361,7 @@ body {
 				}
 			}
 		}
+
 	}
 
 	.template {
