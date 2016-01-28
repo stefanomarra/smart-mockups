@@ -1,23 +1,15 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
  * @link              http://www.stefanomarra.com
  * @since             1.0.0
  * @package           Smart_Reviews
  *
- * @wordpress-plugin
  * Plugin Name:       Smart Reviews
  * Plugin URI:        http://www.stefanomarra.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Get instant reviews, comments and feedbacks from your clients.
  * Version:           1.0.0
- * Author:            Stefano
+ * Author:            Stefano Marra
  * Author URI:        http://www.stefanomarra.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -25,10 +17,14 @@
  * Domain Path:       /languages
  */
 
-// If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
 	die;
 }
+
+
+define( 'SMART_REVIEWS_DOMAIN'	, 'smart-reviews' );
+define( 'SMART_REVIEWS_DIR'		, plugin_dir_path( __FILE__ ) );
+define( 'SMART_REVIEWS_URL'		, plugin_dir_url( __FILE__ ) );
 
 /**
  * The code that runs during plugin activation.

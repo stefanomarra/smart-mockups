@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Smart Reviews ===
 Contributors: (this should be a list of wordpress.org userid's)
 Donate link: http://www.stefanomarra.com
 Tags: comments, spam

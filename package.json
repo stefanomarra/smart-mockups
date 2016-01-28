@@ -1,0 +1,24 @@
+{
+  "name": "smart-reviews",
+  "version": "1.0.0",
+  "description": "Get instant reviews, comments and feedbacks from your clients.",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-load-plugins": "^1.2.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.0",
+    "gulp-filter": "^3.0.1",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-minify-css": "^1.2.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-sass": "^2.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stefano Marra",
+  "license": "ISC"
+}

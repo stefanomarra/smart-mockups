@@ -73,7 +73,7 @@ class Smart_Reviews_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/smart-reviews-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-reviews-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -97,6 +97,21 @@ class Smart_Reviews_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smart-reviews-public.js', array( 'jquery' ), $this->version, false );
+
+	}
+
+	/**
+	 * Register the JavaScript for the public-facing side of the site.
+	 *
+	 * @since    1.0.0
+	 */
+	public function single_template( $single ) {
+		global $post;
+
+		if ( $post->post_type == 'smartreview' ) {
+			return plugin_dir_path( __FILE__ ) . 'templates/smart-reviews-public-display.php';
+		}
+        return $single;
 
 	}
 

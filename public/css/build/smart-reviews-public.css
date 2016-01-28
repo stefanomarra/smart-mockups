@@ -1,0 +1,141 @@
+/**
+ * Reset
+ */
+body {
+  margin: 0; }
+
+button {
+  border: none;
+  background: transparent; }
+
+p {
+  margin: 0; }
+
+ul {
+  margin: 0; }
+
+/**
+ * Smart Reviews
+ */
+body {
+  background-color: #6B7A90;
+  font-family: Roboto;
+  font-size: 14px; }
+
+#sr-mockup-viewport {
+  padding: 80px 0;
+  text-align: center; }
+  #sr-mockup-viewport main.sr-mockup-wrapper {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    box-shadow: 0 10px 100px rgba(0, 0, 0, 0.4); }
+    #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 100; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback {
+        position: absolute; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .dot {
+          position: relative;
+          box-sizing: border-box;
+          cursor: pointer;
+          width: 40px;
+          height: 40px;
+          margin-top: -20px;
+          margin-left: -20px;
+          border-radius: 20px;
+          background-color: #FF6160;
+          border: 4px solid #FFF;
+          box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4); }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content {
+          position: absolute;
+          display: none;
+          top: -22.22222px;
+          left: 33.33333px;
+          width: 280px;
+          border-radius: 6px;
+          min-height: 20px;
+          padding-top: 30px;
+          background-color: #FFF;
+          box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4); }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content:after {
+            content: "";
+            position: absolute;
+            top: 13px;
+            left: -20px;
+            width: 20px;
+            height: 20px;
+            z-index: 20;
+            border: 10px solid #FFF;
+            border-top-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            box-sizing: border-box; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback .feedback-content:after {
+            top: 15px;
+            border-right-color: rgba(0, 0, 0, 0.1);
+            z-index: 10; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.open, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover {
+          z-index: 200; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.open .feedback-content, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover .feedback-content {
+            display: block; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.open .dot, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover .dot {
+            z-index: 300; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.hover {
+          z-index: 400; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content {
+          left: auto;
+          right: 56px; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content:after {
+            right: -20px;
+            left: auto;
+            border-right-color: transparent;
+            border-left-color: #FFF; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .dot-feedback.invert-horizontal .feedback-content:after {
+            border-left-color: rgba(0, 0, 0, 0.1); }
+    #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action {
+      position: absolute;
+      top: 0;
+      right: 5px; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action button {
+        cursor: pointer;
+        outline: none;
+        font-size: 16px;
+        padding: 5px;
+        opacity: 0.2; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action button:hover {
+          opacity: 0.8; }
+    #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper {
+      padding: 0 15px;
+      margin-bottom: 10px; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-comment {
+        border: none;
+        outline: none;
+        resize: none;
+        box-sizing: border-box;
+        width: 100%;
+        font-size: 13px;
+        border-radius: 2px;
+        padding: 5px 8px;
+        line-height: 1.5;
+        background-color: #F5F5F5; }
+    #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit {
+      display: none; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit .feedback-field-submit {
+        border: none;
+        outline: none;
+        display: block;
+        cursor: pointer;
+        text-transform: uppercase;
+        width: 100%;
+        padding: 10px;
+        border-radius: 0 0 6px 6px;
+        font-size: 13px;
+        background: #34CE4A;
+        color: #FFF; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit.active {
+        display: block; }
+  #sr-mockup-viewport .template {
+    display: none; }

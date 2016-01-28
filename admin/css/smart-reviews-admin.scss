@@ -1,0 +1,32 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+ .smart-reviews-meta-box-wrapper {
+
+ 	// Useful classes
+ 	.hide {
+ 		display: none;
+ 	}
+
+ 	.mockup-image {
+ 		img {
+ 			max-width: 100%;
+ 		}
+ 	}
+
+ 	.mockup-add-image {
+		width: 180px;
+		height: 180px;
+		border: 3px dashed #CCC;
+		background-color: #EEE;
+		padding: 70px 0;
+		box-sizing: border-box;
+
+		input {
+			display: block;
+			margin: 0 auto;
+		}
+ 	}
+ }
