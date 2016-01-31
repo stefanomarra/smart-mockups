@@ -60,6 +60,8 @@ body {
 
 			.sr-feedback {
 				position: absolute;
+				width: 1px;
+				height: 1px;
 
 				.sr-dot {
 					position: relative;
@@ -99,7 +101,7 @@ body {
 
 					top: - $dot_height / 1.8;
 					left: $dot_width / 1.2;
-					width: 320px;
+					width: 360px;
 					border-radius: 6px;
 					min-height: 20px;
 					padding-top: 30px;
@@ -197,8 +199,8 @@ body {
 								}
 
 								&:first-child {
-									margin-top: 10px;
-									border-top: 1px solid #EFEFEF;
+									// margin-top: 10px;
+									// border-top: 1px solid #EFEFEF;
 								}
 
 								&:last-of-type {
@@ -236,7 +238,7 @@ body {
 
 					.sr-feedback-content {
 						left: auto;
-						right: $dot_width * 1.4;
+						right: $dot_width / 1.2;
 
 						&:before,
 						&:after {
@@ -289,6 +291,12 @@ body {
 						display: none;
 					}
 				}
+
+				&.ui-draggable-dragging {
+					.sr-feedback-content {
+						display: none;
+					}
+				}
 			}
 		}
 
@@ -296,7 +304,7 @@ body {
 			position: absolute;
 
 			top: 1px;
-			right: 8px;
+			right: 10px;
 
 			button {
 				cursor: pointer;
@@ -364,7 +372,8 @@ body {
 
 	}
 
-	.template {
+	.template,
+	#sr-feedback-loader {
 		display: none;
 	}
 }

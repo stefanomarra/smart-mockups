@@ -48,6 +48,8 @@
 				var dot = that.addFeedback(feedback);
 
 				dot.removeClass('empty').removeClass('new');
+
+				dot.find( that.settings.el_feedback_comment_list_wrapper ).append( $( this ).find( '.comments' ).html() );
 			});
 		},
 		_bindElements: function() {
@@ -92,6 +94,7 @@
 				e.preventDefault();
 
 				$( this ).parents( that.settings.el_feedback_wrapper ).addClass('hover');
+				that.updateFeedbackOrientation( $( this ).parents( that.settings.el_feedback_wrapper ) );
 			}).on('mouseout', that.settings.el_feedback_dot, function(e) {
 				e.preventDefault();
 
@@ -131,6 +134,9 @@
 			// Activate Comment Submit
 			$( 'body' ).on('keyup change', that.settings.el_feedback_comment_textarea, function(e) {
 				e.preventDefault();
+
+				if ( e.keyCode == 27 )
+					return false;
 
 				var $submit_wrapper = $( this ).parents( that.settings.el_feedback_comment_form ).find( that.settings.el_feedback_wrapper_submit );
 				var $feedback_wrapper = $( this ).parents( that.settings.el_feedback_wrapper );
@@ -177,6 +183,7 @@
 				if (e.keyCode == 27) {
 					var dot = $( that.settings.el_feedback_wrapper + '.open' );
 
+					console.log( dot );
 					if ( that.isEmptyFeedback( dot ) )
 						that.deleteFeedback( dot );
 
@@ -184,15 +191,44 @@
 				}
 			});
 
+
+			$( 'body' ).on('mouseover', that.settings.el_feedback_dot, function(e) {
+				e.preventDefault();
+
+				$( '.ui-draggable' ).draggable('destroy');
+
+				if ( that.hasEmptyFeedback() )
+					return false;
+
+				if ( that.hasDraftFeedback() )
+					return false;
+
+				$( this ).parents( that.settings.el_feedback_wrapper ).not('.empty').draggable({
+					containment: that.settings.el_mockup_wrapper,
+					start: function( e, ui ) {},
+					stop: function( e, ui ) {
+						$(this).attr( 'data-y', ui.position.top );
+						$(this).attr( 'data-x', ui.position.left );
+						that.updateFeedbackPosition( $(this) );
+						that.openFeedback( $(this) );
+					}
+				});
+			});
+
+			// Prevent unwanted selection caused by the draggable
+			$( 'body' ).on('mousedown', that.settings.el_mockup_wrapper, function(e) {
+				e.preventDefault();
+			});
+
 		},
 		hasEmptyFeedback: function() {
-			return $( this.settings.el_feedback_wrapper + '.empty' ).length;
+			return $( this.settings.el_feedback_wrapper + '.empty:not(.template)' ).length;
 		},
 		isEmptyFeedback: function(dot) {
 			return dot.hasClass('empty');
 		},
 		hasDraftFeedback: function() {
-			return $( this.settings.el_feedback_wrapper + '.draft' ).length;
+			return $( this.settings.el_feedback_wrapper + '.draft:not(.template)' ).length;
 		},
 		isDraftFeedback: function(dot) {
 			return dot.hasClass('draft');
@@ -290,8 +326,6 @@
 			});
 
 			request.done(function( data ) {
-				console.log( data );
-
 				switch ( data.status ) {
 					case 'new_feedback_saved':
 						dot.attr( 'id', data.feedback_id );
@@ -307,6 +341,9 @@
 				dot_textarea.val('');
 				autosize.update( dot_textarea );
 			});
+		},
+		updateFeedbackPosition: function(dot) {
+			console.log('Update Feedback Position');
 		},
 		addFeedbackComment: function(feedback_id, feedback_comment) {
 			$( '#' + feedback_id ).find( this.settings.el_feedback_comment_list_wrapper ).append( feedback_comment );

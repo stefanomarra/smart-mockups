@@ -51,7 +51,6 @@ class Smart_Reviews_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -95,39 +94,6 @@ class Smart_Reviews_Admin {
 		wp_enqueue_media();
 		wp_enqueue_script( $this->plugin_name . '-admin', plugin_dir_url( __FILE__ ) . 'js/smart-reviews-admin.js', array( 'jquery' ), $this->version, false );
 
-	}
-
-	/**
-	 * Register plugin custom post type
-	 *
-	 * @since 	1.0.0
-	 */
-	public function define_post_types() {
-
-		$post_types = Smart_Reviews_Vars::post_types();
-
-		foreach($post_types as $post_type => $type_opt) {
-			register_post_type($post_type, array(
-				'labels' 	=> array(
-								'name'          => $type_opt['labels']['name'],
-								'singular_name' => $type_opt['labels']['singular_name'],
-								'all_items' 	=> $type_opt['labels']['all_items'],
-								'new_item'      => $type_opt['labels']['new_item'],
-								'add_new'       => $type_opt['labels']['add_new'],
-								'add_new_item'  => $type_opt['labels']['add_new_item'],
-								'edit_item'     => $type_opt['labels']['edit_item'],
-								'view_item'     => $type_opt['labels']['view_item'],
-								'search_items'  => $type_opt['labels']['search_items'],
-							),
-				'rewrite'     => $type_opt['rewrite'],
-				'public'      => $type_opt['public'],
-				'has_archive' => $type_opt['has_archive'],
-				'menu_icon'   => $type_opt['menu_icon'],
-				'supports' 	  => $type_opt['supports']
-			));
-		}
-
-		flush_rewrite_rules();
 	}
 
 	/**
@@ -207,7 +173,7 @@ class Smart_Reviews_Admin {
 			return $post_id;
 		}
 
-		$post_types = Smart_Reviews_Vars::post_types();
+		$post_types = Smart_Reviews_Setup::post_types();
 
 		// Check if post type is one of the plugin's
 		if ( !in_array( get_post_type(), array_keys( $post_types ) ) )

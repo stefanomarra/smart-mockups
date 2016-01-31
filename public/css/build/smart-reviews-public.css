@@ -39,7 +39,9 @@ body {
       left: 0;
       z-index: 100; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback {
-        position: absolute; }
+        position: absolute;
+        width: 1px;
+        height: 1px; }
         #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot {
           position: relative;
           box-sizing: border-box;
@@ -66,7 +68,7 @@ body {
           display: none;
           top: -22.22222px;
           left: 33.33333px;
-          width: 320px;
+          width: 360px;
           border-radius: 6px;
           min-height: 20px;
           padding-top: 30px;
@@ -126,9 +128,6 @@ body {
               content: "";
               display: block;
               clear: both; }
-            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:first-child {
-              margin-top: 10px;
-              border-top: 1px solid #EFEFEF; }
             #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:last-of-type {
               margin-bottom: 10px; }
             #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:hover .sr-comment-time {
@@ -143,7 +142,7 @@ body {
           z-index: 400; }
         #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content {
           left: auto;
-          right: 56px; }
+          right: 33.33333px; }
           #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.invert-horizontal .sr-feedback-content:after {
             right: -20px;
             left: auto;
@@ -168,10 +167,12 @@ body {
           display: none; }
         #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.empty .feedback-close {
           display: none; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.ui-draggable-dragging .sr-feedback-content {
+          display: none; }
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action {
       position: absolute;
       top: 1px;
-      right: 8px; }
+      right: 10px; }
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action button {
         cursor: pointer;
         outline: none;
@@ -211,5 +212,6 @@ body {
         color: #FFF; }
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit.active {
         display: block; }
-  #sr-mockup-viewport .template {
+  #sr-mockup-viewport .template,
+  #sr-mockup-viewport #sr-feedback-loader {
     display: none; }

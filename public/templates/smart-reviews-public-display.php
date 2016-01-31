@@ -10,7 +10,7 @@
  */
 
 
-$post_ID = get_the_ID();
+$post_id = get_the_ID();
 
 $mockup_data = array(
 	'feedbacks' => array(
@@ -18,23 +18,30 @@ $mockup_data = array(
 					'feedback_id' => '983247',
 					'x'           => 60,
 					'y'           => 80,
-					'feedback'    => 'Feedback message',
+					'time'    	  => '',
 					'comments'    => array()
 				),
 			'986348' => array(
 					'feedback_id' => '986348',
 					'x'           => 439,
 					'y'           => 380,
-					'feedback'    => 'Feedback message',
+					'time'    	  => '',
 					'comments'    => array()
 				)
 		)
 );
 
+$mockup_data = array(
+	'feedbacks' => get_post_meta( $post_id, '_feedbacks', true )
+);
+
+// echo '<pre>';
+// var_dump( get_post_meta( $post_id, '_feedbacks', true ) );die();
 
 
 
-$mockup_data['mockup_image_id'] = get_post_meta( $post_ID, 'mockup_image_id', true );
+
+$mockup_data['mockup_image_id'] = get_post_meta( $post_id, 'mockup_image_id', true );
 $mockup_data['mockup_image_url'] = '';
 
 if ( $mockup_data['mockup_image_id'] )
@@ -65,7 +72,7 @@ if ( $mockup_data['mockup_image_id'] )
 
         <script type="text/javascript">
             var ajax_url = '<?php echo admin_url( "admin-ajax.php" );?>';
-            var post_id = <?php echo $post_ID; ?>;
+            var post_id = <?php echo $post_id; ?>;
         </script>
 
         <!-- JavaScripts -->
@@ -87,7 +94,7 @@ if ( $mockup_data['mockup_image_id'] )
 
     		<div id="sr-feedback-loader">
     			<?php foreach ( $mockup_data['feedbacks'] as $id => $feedback ) : ?>
-    				<div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>" data-feedback="<?php echo $feedback['feedback']; ?>"></div>
+    				<div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>" data-feedback="<?php echo $feedback['feedback']; ?>"><div class="comments"><?php echo join('', $feedback['comments']); ?></div></div>
     			<?php endforeach; ?>
     		</div>
 

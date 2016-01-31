@@ -73,6 +73,7 @@ class Smart_Reviews {
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->plugin_setup();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 
@@ -100,7 +101,7 @@ class Smart_Reviews {
 		 * The class responsible for defining all the plugin variables like post types
 		 * and metas
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-reviews-vars.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-reviews-setup.php';
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
@@ -147,6 +148,23 @@ class Smart_Reviews {
 	}
 
 	/**
+	 * Setup the plugin and add-ons
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function plugin_setup() {
+		$plugin_setup = new Smart_Reviews_Setup( $this->get_plugin_name(), $this->get_version() );
+
+		// Register Post Type
+		$this->loader->add_action( 'init', $plugin_setup, 'register_post_types' );
+
+		// Register Settings Page
+		$this->loader->add_action( 'admin_init', $plugin_setup, 'register_plugin_options' );
+		$this->loader->add_action( 'admin_menu', $plugin_setup, 'register_plugin_settings_page' );
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -160,9 +178,6 @@ class Smart_Reviews {
 		// Enqueue Scripts and Styles
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
-		// Register Post Type
-		$this->loader->add_action( 'init', $plugin_admin, 'define_post_types' );
 
 		// Register Metaboxes and related
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'define_meta_boxes' );
@@ -186,6 +201,9 @@ class Smart_Reviews {
 
 		// Override Single Tempate
 		$this->loader->add_action( 'single_template', $plugin_public, 'single_template' );
+
+		// Override Custom Post Type Slug
+		$this->loader->add_action( 'init', $plugin_public, 'override_slug' );
 
 		$this->loader->add_action( 'wp_ajax_save_feedback', $plugin_public, 'save_feedback_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_save_feedback', $plugin_public, 'save_feedback_ajax' );
