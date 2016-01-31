@@ -113,7 +113,7 @@ class Smart_Reviews_Public {
 			'x'				=> $_POST['x'],
 			'y'				=> $_POST['y'],
 			'feedback_id'  	=> $_POST['feedback_id'],
-			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . $_POST['comment'] . '</span></div></li>'
+			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . $_POST['comment'] . '</span></div></li>'
 		);
 
 		if ( ! $feedback['feedback_id'] ) {
@@ -216,6 +216,32 @@ class Smart_Reviews_Public {
 
 		return get_avatar_url( $current_user->ID, array('size' => 50) );
 	}
+
+	/**
+	 * Get random generated user color from cookie or generate one and save cookie
+	 *
+	 * @since 1.0.0
+	 * @return string URL of user avatar image
+	 */
+	public function get_user_color() {
+		$current_user = wp_get_current_user();
+
+		if ( isset( $_COOKIE['sr_usr_col'] ) ) {
+			$rgb = $_COOKIE['sr_usr_col'];
+		}
+		else {
+			$rand_str = md5( time() . rand( 0, 999 ) );
+			$rgb = '#';
+			$rgb .= substr( $rand_str, 0, 2 );
+			$rgb .= substr( $rand_str, 2, 2 );
+			$rgb .= substr( $rand_str, 4, 2 );
+			setcookie('sr_usr_col', $rgb, time() + 3600 * 24 * 365);
+		}
+
+		return $rgb;
+	}
+
+
 
 	/**
 	 * This function generated a feedback id based on actual timestamp
