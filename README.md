@@ -20,11 +20,11 @@ Features of the plugin include:
 
 ## Frequently Asked Questions ##
 
-# How do I get started? #
+### How do I get started? ###
 
 Once the plugin is installed and activated, go to `Smart Reviews > Add News` to add a mockup. Give it a name, add the mockup design and tweak with the settings. Click 'Publish' and you're done. Share the mockup with your clients or friends and getting feedbacks.
 
-# How do I get support? #
+### How do I get support? ###
 
 You can use the plugin forum or contact me at `stefano.marra1987[at]gmail.com`
 
