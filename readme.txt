@@ -2,6 +2,7 @@
 Author URI: https://www.stefanomarra.com
 Plugin URI: https://github.com/stefanomarra/smart-reviews
 Contributors: stefanomarra
+Donate link: https://www.paypal.me/stefanomarra
 Tags: feedback, feedbacks, review, reviews, mockup, mockups, design, organize, workflow, red pen, client, clients, approval, approve, wireframe, wireframes, stefano, marra, stefano marra
 Requires at least: 3.0.1
 Tested up to: 3.4
@@ -53,3 +54,5 @@ You can use the plugin forum or contact me at `stefano.marra1987[at]gmail.com`
 = 1.0 =
 
 * Initial release
+
+== Upgrade Notice ==
