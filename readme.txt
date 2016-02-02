@@ -56,3 +56,7 @@ You can use the plugin forum or contact me at `stefano.marra1987[at]gmail.com`
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.0 =
+
+* Initial release
