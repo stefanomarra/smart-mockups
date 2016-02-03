@@ -110,58 +110,7 @@ else {
     			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $sr_data['mockup_url']; ?>"></div>
     			<div class="sr-mockup-dots"></div>
 	    		<div class="sr-mockup-discussion">
-
-                    <ul class="discussion-comment-list">
-                        <li>
-                            <div class="sr-avatar">
-                                <img src="http://2.gravatar.com/avatar/ebbb98d2f2a991f9cd190c6b45629d2f?s=50&amp;d=mm&amp;r=g">
-                            </div>
-                            <div class="sr-comment-content">
-                                <span class="sr-user-display" style="background-color: #da3f89">admin</span> <span class="sr-comment-time">February 2, 2016</span> <span class="sr-comment-text">Percentage Positiong test on a real design mockup! It works like a charm!!!</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sr-avatar">
-                                <img src="http://2.gravatar.com/avatar/ebbb98d2f2a991f9cd190c6b45629d2f?s=50&amp;d=mm&amp;r=g">
-                            </div>
-                            <div class="sr-comment-content">
-                                <span class="sr-user-display" style="background-color: #da3f89">admin</span> <span class="sr-comment-time">February 2, 2016</span> <span class="sr-comment-text">Percentage Positiong test on a real design mockup! It works like a charm!!!</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sr-avatar">
-                                <img src="http://2.gravatar.com/avatar/ebbb98d2f2a991f9cd190c6b45629d2f?s=50&amp;d=mm&amp;r=g">
-                            </div>
-                            <div class="sr-comment-content">
-                                <span class="sr-user-display" style="background-color: #da3f89">admin</span> <span class="sr-comment-time">February 2, 2016</span> <span class="sr-comment-text">Percentage Positiong test on a real design mockup! It works like a charm!!!</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sr-avatar">
-                                <img src="http://2.gravatar.com/avatar/ebbb98d2f2a991f9cd190c6b45629d2f?s=50&amp;d=mm&amp;r=g">
-                            </div>
-                            <div class="sr-comment-content">
-                                <span class="sr-user-display" style="background-color: #da3f89">admin</span> <span class="sr-comment-time">February 2, 2016</span> <span class="sr-comment-text">Percentage Positiong test on a real design mockup! It works like a charm!!!</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sr-avatar">
-                                <img src="http://2.gravatar.com/avatar/ebbb98d2f2a991f9cd190c6b45629d2f?s=50&amp;d=mm&amp;r=g">
-                            </div>
-                            <div class="sr-comment-content">
-                                <span class="sr-user-display" style="background-color: #da3f89">admin</span> <span class="sr-comment-time">February 2, 2016</span> <span class="sr-comment-text">Percentage Positiong test on a real design mockup! It works like a charm!!!</span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="sr-avatar">
-                                <img src="http://2.gravatar.com/avatar/ebbb98d2f2a991f9cd190c6b45629d2f?s=50&amp;d=mm&amp;r=g">
-                            </div>
-                            <div class="sr-comment-content">
-                                <span class="sr-user-display" style="background-color: #da3f89">admin</span> <span class="sr-comment-time">February 2, 2016</span> <span class="sr-comment-text">Percentage Positiong test on a real design mockup! It works like a charm!!!</span>
-                            </div>
-                        </li>
-                    </ul>
-
+                    <ul class="discussion-comment-list"></ul>
                 </div>
     		</main>
 
