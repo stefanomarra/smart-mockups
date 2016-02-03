@@ -29,6 +29,14 @@ $sr_data = array(
 if ( $sr_data['mockup_id'] )
 	$sr_data['mockup_url'] = wp_get_attachment_url( $sr_data['mockup_id'] );
 
+if ( ! is_array( $sr_data['discussion'] ) ) {
+    $sr_data['discussion'] = array('comments' => '');
+}
+else {
+    $sr_data['discussion']['comments'] = join('', $sr_data['discussion']['comments']);
+}
+
+
 if ( ! $sr_data['settings']['feedbacks_enabled'] ) {
 	$sr_data['viewport_classes'][] = 'feedbacks-disabled';
 }
@@ -49,6 +57,8 @@ if ( ! $sr_data['settings']['approval_enabled'] ) {
 else {
 	$sr_data['viewport_classes'][] = 'approval-enabled';
 }
+
+
 
 ?>
 
@@ -88,6 +98,7 @@ else {
 
         <?php do_action( 'smartreviews_single_after_scripts' ); ?>
 
+        <?php //wp_head(); ?>
     </head>
     <body>
 
@@ -110,7 +121,16 @@ else {
     			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $sr_data['mockup_url']; ?>"></div>
     			<div class="sr-mockup-dots"></div>
 	    		<div class="sr-mockup-discussion">
-                    <ul class="discussion-comment-list"></ul>
+                    <h3 class="discussion-title">Mockup Discussion</h3>
+                    <ul class="discussion-comment-list"><?php echo $sr_data['discussion']['comments']; ?></ul>
+                    <form class="discussion-comment-form">
+                        <p class="discussion-field-wrapper">
+                            <textarea placeholder="Write a comment..." class="discussion-field-comment" name="discussion"></textarea>
+                        </p>
+                        <p class="discussion-field-wrapper-submit">
+                            <input type="submit" class="discussion-field-submit" value="Post this Comment">
+                        </p>
+                    </form>
                 </div>
     		</main>
 
@@ -123,11 +143,11 @@ else {
     		</footer>
 
     		<?php /* Pre Load Feedbacks */ ?>
-    		<div id="sr-feedback-loader">
-    			<?php foreach ( $sr_data['feedbacks'] as $id => $feedback ) : ?>
-    				<div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>"><div class="comments"><?php echo join('', $feedback['comments']); ?></div></div>
-    			<?php endforeach; ?>
-    		</div>
+            <div id="sr-feedback-loader">
+                <?php foreach ( $sr_data['feedbacks'] as $id => $feedback ) : ?>
+                    <div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>"><div class="comments"><?php echo join('', $feedback['comments']); ?></div></div>
+                <?php endforeach; ?>
+            </div>
 
     		<?php /* Feedback Template */ ?>
     		<div id="sr-feedback-template" class="sr-feedback empty new template">
@@ -163,9 +183,9 @@ else {
                     <input class="sr-approval-signature-submit" type="submit" name="submit" value="Approve" />
                     <a class="sr-modal-close" href="#close-modal" rel="modal:close">Cancel</a>
                 </form>
-
             </div>
 
     	</div>
+        <?php //wp_footer(); ?>
     </body>
 </html>

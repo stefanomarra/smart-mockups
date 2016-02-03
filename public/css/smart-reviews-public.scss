@@ -96,6 +96,7 @@ body {
 					display: block;
 					text-decoration: none;
 					text-transform: uppercase;
+					font-family: Roboto;
 
 					font-size: 18px;
 					padding: 15px 20px;
@@ -135,6 +136,7 @@ body {
 	.sr-mockup-discussion {
 		position: absolute;
 		overflow: hidden;
+		font-family: Roboto;
 
 		top: 4%;
 		right: 0;
@@ -145,11 +147,29 @@ body {
 		z-index: -30;
 		transition: all 0.3s;
 		border-radius: 0 6px 6px 0;
+		padding-top: 15px;
 
 		box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
 		background-color: #FFF;
 
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 18px;
+			height: 100%;
+			background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+		}
+
+		.discussion-title {
+			margin-top: 0;
+			padding: 0 15px;
+		}
+
 		ul.discussion-comment-list {
+			overflow: scroll;
+			max-height: 480px;
 
 			li {
 				padding: 10px 15px;
@@ -212,11 +232,6 @@ body {
 					clear: both;
 				}
 
-				&:first-child {
-					// margin-top: 10px;
-					// border-top: 1px solid #EFEFEF;
-				}
-
 				&:last-of-type {
 					margin-bottom: 10px;
 				}
@@ -237,7 +252,7 @@ body {
 		}
 
 		.sr-mockup-discussion {
-			box-shadow: 10px 0 40px -10px rgba(0,0,0,.4), inset 10px 0 40px -10px rgba(0, 0, 0, 0.4);
+			box-shadow: 10px 0 40px -10px rgba(0,0,0,.4);
 			right: -$discussion_panel_width;
 		}
 
@@ -265,6 +280,8 @@ body {
 	}
 
 	footer#sr-footer {
+		font-family: Roboto;
+
 		margin-top: 60px;
 		font-weight: 100;
 		letter-spacing: 0.5px;
@@ -276,6 +293,7 @@ body {
 		position: relative;
 		display: inline-block;
 		text-align: left;
+		font-family: Roboto;
 
 		margin-left: 20px;
 		margin-right: 20px;
@@ -290,7 +308,7 @@ body {
 			img#sr-mockup-image-src {
 				display: block;
 
-				max-width: 100%;
+				width: 100%;
 			}
 		}
 
@@ -528,6 +546,12 @@ body {
 					}
 				}
 
+				&.draft.saved {
+					.feedback-close {
+						display: initial;
+					}
+				}
+
 				&.empty {
 
 					.feedback-close {
@@ -564,12 +588,16 @@ body {
 			}
 		}
 
+		.discussion-comment-form,
 		.feedback-comment-form {
 
+			.discussion-field-wrapper,
 			.feedback-field-wrapper {
 				padding: 0 15px;
+				margin-top: 10px;
 				margin-bottom: 10px;
 
+				.discussion-field-comment,
 				.feedback-field-comment {
 					font-family: Roboto;
 					border: none;
@@ -588,9 +616,11 @@ body {
 				}
 			}
 
+			.discussion-field-wrapper-submit,
 			.feedback-field-wrapper-submit {
 				display: none;
 
+				.discussion-field-submit,
 				.feedback-field-submit {
 				    border: none;
 				    outline: none;
@@ -606,7 +636,10 @@ body {
 
 					background: #34CE4A;
 					color: #FFF;
+				}
 
+				.discussion-field-submit {
+					border-radius: 0 0 6px 0;
 				}
 
 				&.active {
@@ -645,6 +678,7 @@ body {
 
 #sr-modal-approval {
 	display: none;
+	font-family: Roboto;
 
 	&.current {
 		display: inline-block;
@@ -689,6 +723,7 @@ body {
 			margin-bottom: 20px;
 			border-bottom: 2px solid #666;
 
+			background-color: #FFF;
 		}
 
 		input[type="submit"] {
