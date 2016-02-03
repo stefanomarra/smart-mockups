@@ -169,7 +169,7 @@ body {
       cursor: cell; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-image img#sr-mockup-image-src {
         display: block;
-        max-width: 100%; }
+        width: 100%; }
     #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback {
       position: absolute;
       width: 1px;
