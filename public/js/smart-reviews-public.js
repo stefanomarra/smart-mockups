@@ -24,6 +24,11 @@
 			el_feedback_loader_wrapper			: '#sr-feedback-loader',
 			el_feedback_preload					: '.sr-feedback-preload',
 			el_feedback_comment_list_wrapper 	: '.feedback-comment-list',
+			el_discussion_comment_textarea		: '.discussion-field-comment',
+			el_discussion_comment_form			: '.discussion-comment-form',
+			el_discussion_wrapper_submit		: '.discussion-field-wrapper-submit',
+			el_discussion_comment_submit		: '.discussion-field-submit',
+			el_discussion_comment_list_wrapper 	: '.discussion-comment-list',
 			el_button_toggle_feedbacks			: '.sr-toggle-feedbacks',
 			el_button_toggle_discussion 		: '.sr-toggle-discussion-panel'
 		},
@@ -129,10 +134,12 @@
 			$( 'body' ).on('click', that.settings.el_feedback_action_close, function(e) {
 				e.preventDefault();
 
-				if ( that.hasDraftFeedback() )
+				var feedback = $( this ).parents( that.settings.el_feedback_wrapper );
+
+				if ( that.hasDraftFeedback() && !that.isSavedFeedback( feedback ) )
 					return false;
 
-				that.closeFeedback( $( this ).parents( that.settings.el_feedback_wrapper ) );
+				that.closeFeedback( feedback );
 			});
 
 			// Delete Feedback
@@ -150,7 +157,7 @@
 
 			});
 
-			// Activate Comment Submit
+			// Activate Feedback Comment Submit
 			$( 'body' ).on('keyup change', that.settings.el_feedback_comment_textarea, function(e) {
 				e.preventDefault();
 
@@ -177,7 +184,34 @@
 				}
 			});
 
-			// Submit CTRL + Enter
+			// Activate Discussion Comment Submit
+			$( 'body' ).on('keyup change', that.settings.el_discussion_comment_textarea, function(e) {
+				e.preventDefault();
+
+				if ( e.keyCode == 27 )
+					return false;
+
+				var $submit_wrapper = $( this ).parents( that.settings.el_discussion_comment_form ).find( that.settings.el_discussion_wrapper_submit );
+				var $discussion_wrapper = $( this ).parents( that.settings.el_mockup_discussion );
+
+				$discussion_wrapper.removeClass('draft empty');
+
+				// If something is written mark the feedback as "draft"
+				if ( $( this ).val() != '' ) {
+					$discussion_wrapper.addClass('draft');
+					$submit_wrapper.addClass('active');
+				}
+
+				// If nothing is written mark the feedback as "empty"
+				else {
+					if ( ! $discussion_wrapper.hasClass('saved') )
+						$discussion_wrapper.addClass('empty');
+
+					$submit_wrapper.removeClass('active');
+				}
+			});
+
+			// Submit Feedback CTRL + Enter
 			$( 'body' ).on( 'keydown', that.settings.el_feedback_comment_textarea, function (e) {
 				if ( e.metaKey && (e.keyCode == 13 || e.keyCode == 10) ) {
 
@@ -187,13 +221,28 @@
 				}
 			});
 
-			// Submit Click
+			// Submit Feedback Click
 			$( 'body' ).on( 'click', that.settings.el_feedback_comment_submit, function(e) {
 				e.preventDefault();
 
 				var dot = $( this ).parents( that.settings.el_feedback_wrapper );
 
 				that.saveFeedback( dot );
+			});
+
+			// Submit Discussion CTRL + Enter
+			$( 'body' ).on( 'keydown', that.settings.el_discussion_comment_textarea, function (e) {
+				if ( e.metaKey && (e.keyCode == 13 || e.keyCode == 10) ) {
+
+					that.saveDiscussionComment();
+				}
+			});
+
+			// Submit Discussion Click
+			$( 'body' ).on( 'click', that.settings.el_discussion_comment_submit, function(e) {
+				e.preventDefault();
+
+				that.saveDiscussionComment();
 			});
 
 			// Esc Key
@@ -256,11 +305,18 @@
 			$( 'body' ).on( 'click', that.settings.el_button_toggle_discussion, function(e) {
 				e.preventDefault();
 
-				// Workaround
-				if ( $( that.settings.el_mockup_viewport ).hasClass('show-discussion') )
+				// Open Discussion Panel
+				if ( !$( that.settings.el_mockup_viewport ).hasClass('show-discussion') ) {
+					setTimeout(function() {
+						$( that.settings.el_mockup_discussion ).css({ 'z-index': '30'});
+						autosize( $( that.settings.el_discussion_comment_textarea ) );
+						$( that.settings.el_discussion_comment_textarea ).focus();
+					}, 400);
+				}
+				// Close Discussion Panel
+				else {
 					$( that.settings.el_mockup_discussion ).removeAttr('style');
-				else
-					setTimeout(function() { $( that.settings.el_mockup_discussion ).css({ 'z-index': '30', 'overflow': 'scroll'}); }, 400);
+				}
 
 				setTimeout(function() {
 					$( that.settings.el_mockup_viewport ).toggleClass('show-discussion').toggleClass('discussion-hidden');
@@ -279,6 +335,12 @@
 		},
 		isDraftFeedback: function(dot) {
 			return dot.hasClass('draft');
+		},
+		isSavedFeedback: function(dot) {
+			return dot.hasClass('saved');
+		},
+		hasSavedFeedback: function() {
+			return $( this.settings.el_feedback_wrapper + '.saved:not(.template)' ).length;
 		},
 		addFeedback: function(feedback) {
 			var that = this;
@@ -327,11 +389,14 @@
 		closeFeedback: function(dot) {
 			var that = this;
 
+			dot.removeClass('draft');
+
 			// Remove dot if marked as "empty"
 			if ( dot.hasClass('empty') )
 				that.deleteFeedback(dot);
 			else
 				dot.removeClass('open');
+
 		},
 		deleteFeedback: function(dot) {
 			dot.remove();
@@ -448,6 +513,45 @@
 		},
 		addFeedbackComment: function(feedback_id, feedback_comment) {
 			$( '#' + feedback_id ).find( this.settings.el_feedback_comment_list_wrapper ).append( feedback_comment );
+		},
+		saveDiscussionComment: function() {
+			var that = this;
+
+			if ( ! that.settings.discussion_enabled )
+				return false;
+
+			if ( $( that.settings.el_discussion_comment_textarea ).val() == '' )
+				return false;
+
+			var request = $.ajax({
+				url: ajax_url,
+				method: 'POST',
+				data: {
+					action 		: 'save_discussion_comment',
+					post_id		: post_id,
+					comment 	: $( that.settings.el_discussion_comment_textarea ).val()
+				},
+				dataType: 'json'
+			});
+
+			request.done(function( data ) {
+				switch ( data.status ) {
+					case 'new_discussion_comment_saved':
+					default:
+						that.addDiscussionComment(data.comment);
+						$( that.settings.el_mockup_discussion ).removeClass( 'draft' );
+						break;
+				}
+
+				var textarea = $( that.settings.el_discussion_comment_textarea );
+				textarea.val('');
+				autosize.update( textarea );
+			});
+
+			console.log( 'Discussion Comment Save' );
+		},
+		addDiscussionComment: function(discussion_comment) {
+			$( this.settings.el_discussion_comment_list_wrapper ).append( discussion_comment );
 		},
 		updateFeedbackOrientation: function(dot) {
 			var that = this;
