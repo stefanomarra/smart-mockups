@@ -29,7 +29,7 @@ Features of the plugin include:
 == Installation ==
 
 1. Download Smart Reviews
-2. Unzip the folder into the /wp-content/plugins/ directory, or install the plugin from Plugins > Add New in your WordPress admin
+2. Unzip the folder into the /wp-content/plugins/ directory, or install the plugin from Plugins > Add New Mockup in your WordPress admin
 3. Activate the plugin through the 'Plugins' screen in WordPress
 
 == Frequently Asked Questions ==
