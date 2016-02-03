@@ -224,6 +224,7 @@
 
 				$( this ).parents( that.settings.el_feedback_wrapper ).not('.empty').draggable({
 					containment: that.settings.el_mockup_wrapper,
+					handle: that.settings.el_feedback_dot,
 					start: function( e, ui ) {},
 					stop: function( e, ui ) {
 						var X = that._getXPercentagePosition( ui.position.left ) + '%';
@@ -237,7 +238,7 @@
 			});
 
 			// Prevent unwanted selection caused by the draggable
-			$( 'body' ).on('mousedown', that.settings.el_mockup_wrapper, function(e) {
+			$( 'body' ).on('mousedown', that.settings.el_mockup_image_wrapper, function(e) {
 				e.preventDefault();
 			});
 
