@@ -120,7 +120,7 @@ class Smart_Reviews_Admin {
 	 */
 	public function render_meta_box_mockup() {
 		echo '<div class="' . $this->plugin_name . '-meta-box-wrapper">';
-		$this->render_meta_field_mockup_image();
+		$this->render_meta_fields();
 		echo '</div>';
 	}
 
@@ -129,7 +129,7 @@ class Smart_Reviews_Admin {
 	 *
 	 * @since 	1.0.0
 	 */
-	public function render_meta_field_mockup_image() {
+	public function render_meta_fields() {
 
 		// Get post mockup image
 		$mockuo_url = '';
@@ -150,6 +150,50 @@ class Smart_Reviews_Admin {
 		$html .= '	</div>';
 
 		$html .= '</div>';
+
+
+
+		// Meta Fields
+		$value = get_post_meta( get_the_ID(), 'feedbacks_enabled', true );
+
+		$html .= '<div class="row">';
+
+		$html .= '	<label>';
+		$html .= '		<input type="checkbox" name="feedbacks_enabled" id="feedbacks_enabled" value="1" ' . ($value?'checked':'') . ' />';
+		$html .= '		Enable Feedbacks';
+		$html .= '	</label>';
+
+		$html .= '</div>';
+
+
+
+		// Meta Fields
+		$value = get_post_meta( get_the_ID(), 'discussion_enabled', true );
+
+		$html .= '<div class="row">';
+
+		$html .= '	<label>';
+		$html .= '		<input type="checkbox" name="discussion_enabled" id="discussion_enabled" value="1" ' . ($value?'checked':'') . ' />';
+		$html .= '		Enable Discussion';
+		$html .= '	</label>';
+
+		$html .= '</div>';
+
+
+
+		// Meta Fields
+		$value = get_post_meta( get_the_ID(), 'approval_enabled', true );
+
+		$html .= '<div class="row">';
+
+		$html .= '	<label>';
+		$html .= '		<input type="checkbox" name="approval_enabled" id="approval_enabled" value="1" ' . ($value?'checked':'') . ' />';
+		$html .= '		Enable Approval (with Digital Signature)';
+		$html .= '	</label>';
+
+		$html .= '</div>';
+
+
 
 		echo $html;
 	}
@@ -190,6 +234,9 @@ class Smart_Reviews_Admin {
 
 				if ( $new && $new != $old ) {
 					update_post_meta( $post_id, $id, $new );
+				}
+				else if ( '' == $new && $old || ! isset( $_POST[$id] ) ) {
+					delete_post_meta( $post_id, $id, $old );
 				}
 			}
 		}

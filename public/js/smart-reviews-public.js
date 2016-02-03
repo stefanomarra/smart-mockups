@@ -3,8 +3,12 @@
 
 	var SmartReviews = {
 		defaults: {
+			el_mockup_viewport					: '#sr-mockup-viewport',
 			el_mockup_wrapper					: '.sr-mockup-wrapper',
+			el_mockup_discussion 				: '.sr-mockup-discussion',
+			el_mockup_image_wrapper 			: '.sr-mockup-image',
 			el_mockup_dots						: '.sr-mockup-dots',
+			el_mockup_header					: '#sr-header',
 			el_feedback_wrapper 				: '.sr-feedback',
 			el_feedback_dot						: '.sr-dot',
 			el_feedback_content					: '.sr-feedback-content',
@@ -19,7 +23,9 @@
 			el_feedback_template				: '#sr-feedback-template',
 			el_feedback_loader_wrapper			: '#sr-feedback-loader',
 			el_feedback_preload					: '.sr-feedback-preload',
-			el_feedback_comment_list_wrapper 	: '.feedback-comment-list'
+			el_feedback_comment_list_wrapper 	: '.feedback-comment-list',
+			el_button_toggle_feedbacks			: '.sr-toggle-feedbacks',
+			el_button_toggle_discussion 		: '.sr-toggle-discussion-panel'
 		},
 		settings: {},
 		state: {
@@ -34,20 +40,31 @@
 			this._loadFeedbacks();
 			this._bindElements();
 		},
+		_getXPercentagePosition: function(x) {
+			var that = this;
+			var wrapperWidth = $( that.settings.el_mockup_wrapper ).width();
+
+			return ( 100 / wrapperWidth ) * x;
+		},
+		_getYPercentagePosition: function(y) {
+			var that = this;
+			var wrapperHeight = $( that.settings.el_mockup_wrapper ).height();
+
+			return ( 100 / wrapperHeight ) * y;
+		},
 		_loadFeedbacks: function() {
 			 var that = this;
 
 			$(that.settings.el_feedback_preload).each(function() {
 				var feedback = {
-					x 			: parseInt( $(this).attr('data-x') ),
-					y 			: parseInt( $(this).attr('data-y') ),
-					feedback 	: $(this).attr('data-feedback'),
+					x 			: $(this).attr('data-x'),
+					y 			: $(this).attr('data-y'),
 					feedback_id : $(this).attr('data-id')
 				};
 
 				var dot = that.addFeedback(feedback);
 
-				dot.removeClass('empty').removeClass('new');
+				dot.removeClass('empty').removeClass('new').addClass('saved');
 
 				dot.find( that.settings.el_feedback_comment_list_wrapper ).append( $( this ).find( '.comments' ).html() );
 			});
@@ -56,8 +73,11 @@
 			var that = this;
 
 			// Add Feedback
-			$( 'body' ).on('click', this.settings.el_mockup_wrapper, function(e) {
+			$( 'body' ).on('click', this.settings.el_mockup_image_wrapper, function(e) {
 				e.preventDefault();
+
+				if ( ! that.settings.feedbacks_enabled )
+					return false;
 
 				if ( that.hasDraftFeedback() )
 					return false;
@@ -69,9 +89,8 @@
 				var Y = e.pageY - wrapperOffset.top;
 
 				var feedback = {
-					x 			: X,
-					y 			: Y,
-					feedback 	: null,
+					x 			: that._getXPercentagePosition(X) + '%',
+					y 			: that._getYPercentagePosition(Y) + '%',
 					feedback_id : null
 				};
 
@@ -143,9 +162,6 @@
 
 				$feedback_wrapper.removeClass('draft empty');
 
-				if ( $feedback_wrapper.hasClass( 'saved' ) )
-					return false;
-
 				// If something is written mark the feedback as "draft"
 				if ( $( this ).val() != '' ) {
 					$feedback_wrapper.addClass('draft');
@@ -154,7 +170,9 @@
 
 				// If nothing is written mark the feedback as "empty"
 				else {
-					$feedback_wrapper.addClass('empty');
+					if ( ! $feedback_wrapper.hasClass('saved') )
+						$feedback_wrapper.addClass('empty');
+
 					$submit_wrapper.removeClass('active');
 				}
 			});
@@ -179,11 +197,10 @@
 			});
 
 			// Esc Key
-			$( document ).on('keyup', function(e) {
+			$( document ).on('keydown', function(e) {
 				if (e.keyCode == 27) {
-					var dot = $( that.settings.el_feedback_wrapper + '.open' );
+					var dot = $( that.settings.el_feedback_wrapper + '.open:not(.saved)' );
 
-					console.log( dot );
 					if ( that.isEmptyFeedback( dot ) )
 						that.deleteFeedback( dot );
 
@@ -191,9 +208,11 @@
 				}
 			});
 
-
 			$( 'body' ).on('mouseover', that.settings.el_feedback_dot, function(e) {
 				e.preventDefault();
+
+				if ( ! that.settings.feedbacks_enabled )
+					return false;
 
 				$( '.ui-draggable' ).draggable('destroy');
 
@@ -207,8 +226,10 @@
 					containment: that.settings.el_mockup_wrapper,
 					start: function( e, ui ) {},
 					stop: function( e, ui ) {
-						$(this).attr( 'data-y', ui.position.top );
-						$(this).attr( 'data-x', ui.position.left );
+						var X = that._getXPercentagePosition( ui.position.left ) + '%';
+						var Y = that._getYPercentagePosition( ui.position.top ) + '%';
+						$(this).css('left', X).attr( 'data-y', Y );
+						$(this).css('top', Y).attr( 'data-x', X );
 						that.updateFeedbackPosition( $(this) );
 						that.openFeedback( $(this) );
 					}
@@ -218,6 +239,31 @@
 			// Prevent unwanted selection caused by the draggable
 			$( 'body' ).on('mousedown', that.settings.el_mockup_wrapper, function(e) {
 				e.preventDefault();
+			});
+
+			$( 'body' ).on( 'click', that.settings.el_mockup_header + ' li > a', function(e) {
+				$(this).parent().toggleClass('active');
+			});
+
+			// Toggle Feedback Button
+			$( 'body' ).on( 'click', that.settings.el_button_toggle_feedbacks, function(e) {
+				e.preventDefault();
+				$( that.settings.el_mockup_viewport ).toggleClass('hide-feedbacks');
+			});
+
+			// Toggle Discussion Button
+			$( 'body' ).on( 'click', that.settings.el_button_toggle_discussion, function(e) {
+				e.preventDefault();
+
+				// Workaround
+				if ( $( that.settings.el_mockup_viewport ).hasClass('show-discussion') )
+					$( that.settings.el_mockup_discussion ).removeAttr('style');
+				else
+					setTimeout(function() { $( that.settings.el_mockup_discussion ).css({ 'z-index': '30', 'overflow': 'scroll'}); }, 400);
+
+				setTimeout(function() {
+					$( that.settings.el_mockup_viewport ).toggleClass('show-discussion').toggleClass('discussion-hidden');
+				}, 100);
 			});
 
 		},
@@ -252,9 +298,6 @@
 
 			if ( feedback.feedback_id )
 				dot.attr('id', feedback.feedback_id);
-
-			if ( feedback.feedback )
-				dot.find( that.settings.el_feedback_comment_textarea ).val( feedback.feedback );
 
 			// Increase and set dot count
 			dot.find( that.settings.el_feedback_dot + ' span' ).html( ++that.state.dots );
@@ -292,6 +335,30 @@
 		deleteFeedback: function(dot) {
 			dot.remove();
 			this.state.dots--;
+
+			if ( typeof dot.attr('id') === 'undefined' )
+				return false;
+
+			var feedback_id = dot.attr('id');
+
+			var request = $.ajax({
+				url: ajax_url,
+				method: 'POST',
+				data: {
+					action 		: 'delete_feedback',
+					post_id		: post_id,
+					feedback_id : feedback_id
+				},
+				dataType: 'json'
+			});
+
+			request.done(function( data ) {
+				switch ( data.status ) {
+					case 'feedback_deleted':
+					default:
+						break;
+				}
+			});
 		},
 		removeEmptyFeedbacks: function() {
 			var that = this;
@@ -302,6 +369,9 @@
 		},
 		saveFeedback: function(dot) {
 			var that = this;
+
+			if ( ! that.settings.feedbacks_enabled )
+				return false;
 
 			if ( dot.find( that.settings.el_feedback_comment_textarea ).val() == '' )
 				return false;
@@ -343,7 +413,37 @@
 			});
 		},
 		updateFeedbackPosition: function(dot) {
-			console.log('Update Feedback Position');
+			var that = this;
+
+			if ( ! that.settings.feedbacks_enabled )
+				return false;
+
+			if ( typeof dot.attr('id') === 'undefined' )
+				return false;
+
+			var feedback_id = dot.attr('id');
+
+			var request = $.ajax({
+				url: ajax_url,
+				method: 'POST',
+				data: {
+					action 		: 'update_feedback_position',
+					post_id		: post_id,
+					x 			: dot.attr('data-x'),
+					y 			: dot.attr('data-y'),
+					feedback_id : feedback_id
+				},
+				dataType: 'json'
+			});
+
+			request.done(function( data ) {
+				switch ( data.status ) {
+					case 'feedback_position_updated':
+					default:
+						dot.addClass( 'saved' ).removeClass( 'draft' );
+						break;
+				}
+			});
 		},
 		addFeedbackComment: function(feedback_id, feedback_comment) {
 			$( '#' + feedback_id ).find( this.settings.el_feedback_comment_list_wrapper ).append( feedback_comment );
@@ -364,7 +464,7 @@
 	};
 
 	$(document).ready(function() {
-		SmartReviews.init();
+		SmartReviews.init( window.mockup_options );
 	});
 
 })( jQuery );

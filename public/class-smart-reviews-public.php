@@ -113,7 +113,8 @@ class Smart_Reviews_Public {
 			'x'				=> $_POST['x'],
 			'y'				=> $_POST['y'],
 			'feedback_id'  	=> $_POST['feedback_id'],
-			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . $_POST['comment'] . '</span></div></li>'
+			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . stripslashes( $_POST['comment'] ) . '</span></div></li>',
+			'action'		=> 'save_feedback'
 		);
 
 		if ( ! $feedback['feedback_id'] ) {
@@ -121,6 +122,44 @@ class Smart_Reviews_Public {
 		}
 
 		$feedback['status'] = $this->save_feedback( $feedback );
+
+		echo json_encode( $feedback );
+		die();
+	}
+
+	/**
+	 * This function updates an existing feedback position
+	 *
+	 * @since 1.0.0
+	 */
+	public function update_feedback_position_ajax() {
+		$feedback = array(
+			'post_id' 		=> strip_tags( trim( $_POST['post_id'] ) ),
+			'x'				=> $_POST['x'],
+			'y'				=> $_POST['y'],
+			'feedback_id'  	=> $_POST['feedback_id'],
+			'action'		=> 'update_feedback_position'
+		);
+
+		$feedback['status'] = $this->save_feedback( $feedback );
+
+		echo json_encode( $feedback );
+		die();
+	}
+
+	/**
+	 * This function deletes an existing feedback
+	 *
+	 * @since 1.0.0
+	 */
+	public function delete_feedback_ajax() {
+		$feedback = array(
+			'post_id' 		=> strip_tags( trim( $_POST['post_id'] ) ),
+			'feedback_id'  	=> $_POST['feedback_id'],
+			'action'		=> 'delete_feedback'
+		);
+
+		$feedback['status'] = $this->delete_feedback( $feedback );
 
 		echo json_encode( $feedback );
 		die();
@@ -137,6 +176,10 @@ class Smart_Reviews_Public {
 
 		// Post has no feedbacks
 		if ( !get_post_meta( $feedback['post_id'], '_feedbacks', true ) ) {
+
+			// If action is update_feedback_position and mockup has no feedbacks
+			if ( $feedback['action'] == 'update_feedback_position')
+				return 'no_feedbacks';
 
 			$feedbacks[ $feedback['feedback_id'] ] = array(
 				'feedback_id' 	=> $feedback['feedback_id'],
@@ -159,7 +202,10 @@ class Smart_Reviews_Public {
 
 				// Add new comment
 				$comments = $feedbacks[ $feedback['feedback_id'] ]['comments'];
-				$comments[] = $feedback['comment'];
+
+				// If action is not update_feedback_position add comment
+				if ( $feedback['action'] != 'update_feedback_position')
+					$comments[] = $feedback['comment'];
 
 				$feedbacks[ $feedback['feedback_id'] ] = array(
 					'feedback_id' 	=> $feedback['feedback_id'],
@@ -170,7 +216,10 @@ class Smart_Reviews_Public {
 				);
 				update_post_meta( $feedback['post_id'], '_feedbacks', $feedbacks );
 
-				return 'feedback_updated';
+				if ( $feedback['action'] == 'update_feedback_position')
+					return 'feedback_position_updated';
+				else
+					return 'feedback_updated';
 			}
 
 			// If feedback doesn't exists add this feedback
@@ -185,6 +234,41 @@ class Smart_Reviews_Public {
 				update_post_meta( $feedback['post_id'], '_feedbacks', $feedbacks );
 
 				return 'new_feedback_saved';
+			}
+
+		}
+	}
+
+	/**
+	 * This function deletes a feedback
+	 *
+	 * @since 1.0.0
+	 */
+	public function delete_feedback($feedback) {
+
+		$feedbacks = array();
+
+		// Post has no feedbacks
+		if ( !get_post_meta( $feedback['post_id'], '_feedbacks', true ) ) {
+			return 'no_feedbacks';
+		}
+
+		// Post has feedbacks
+		else {
+			$feedbacks = get_post_meta( $feedback['post_id'], '_feedbacks', true );
+
+			// If the feedback id exists in this post, delete it
+			if ( isset( $feedbacks[ $feedback['feedback_id'] ] ) ) {
+
+				unset( $feedbacks[ $feedback['feedback_id'] ] );
+				update_post_meta( $feedback['post_id'], '_feedbacks', $feedbacks );
+
+				return 'feedback_deleted';
+			}
+
+			// If feedback doesn't
+			else {
+				return 'feedback_not_found';
 			}
 
 		}
@@ -241,8 +325,6 @@ class Smart_Reviews_Public {
 		return $rgb;
 	}
 
-
-
 	/**
 	 * This function generated a feedback id based on actual timestamp
 	 *
@@ -255,17 +337,44 @@ class Smart_Reviews_Public {
 	}
 
 	/**
-	 * Register the JavaScript for the public-facing side of the site.
+	 * Register a custom password form
+	 *
+	 * @since 1.0.0
+	 */
+	public function password_form() {
+		global $post;
+
+		$label = 'pwbox-'.( empty( $post->ID ) ? rand() : $post->ID );
+
+		$html  = '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" method="post">';
+		$html .= '	<label for="' . $label . '">' . __( "Password:" ) . ' </label>';
+		$html .= '	<input name="post_password" id="' . $label . '" type="password" size="20" maxlength="20" placeholder="Password" autofocus />';
+		$html .= '	<input type="submit" name="Submit" value="' . esc_attr__( "Submit" ) . '" />';
+		$html .= '</form>';
+
+		return $html;
+	}
+
+	/**
+	 * Register the function that overrides the single template layout
 	 *
 	 * @since    1.0.0
 	 */
 	public function single_template( $single ) {
 		global $post;
 
-		if ( $post->post_type == 'smartreview' ) {
+		if ( $post->post_type != 'smartreview' )
+        	return $single;
+
+        // If the mockup is password protected, show the password form
+        if ( post_password_required() ) {
+        	add_filter( 'the_password_form', array($this, 'password_form') );
+        	return plugin_dir_path( __FILE__ ) . 'templates/smart-reviews-password-display.php';
+        }
+        else {
 			return plugin_dir_path( __FILE__ ) . 'templates/smart-reviews-public-display.php';
-		}
-        return $single;
+        }
+
 	}
 
 	/**

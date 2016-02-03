@@ -38,7 +38,9 @@ class Smart_Reviews_Setup {
 				'supports' 	  => array( 'title' ),
 				'post_meta'	=> array(
 						'mockup_image_id',
-						'_feedbacks'
+						'feedbacks_enabled',
+						'discussion_enabled',
+						'approval_enabled'
 					)
 			)
 		);
@@ -139,17 +141,17 @@ class Smart_Reviews_Setup {
 	 *
 	 * @since 1.0.0
 	 */
-    public function settings_tabs($tab = 'general') {
+    public function settings_tabs($curr = 'general') {
     	echo '<div class="wrap">';
     	echo '<h1>Settings</h1>';
         echo '<h2 class="nav-tab-wrapper">';
         foreach( $this->tabs as $tab => $name ){
-            $class = ( $tab == $current ) ? ' nav-tab-active' : '';
-            echo '<a class="nav-tab' . $class . '" href="edit.php?post_type=smartreview&page=smartreview_settings&tab=' . $tab . '">' . $name . '</a>';
+            $class = ( $tab == $curr ) ? ' nav-tab-active' : '';
+            echo '<a class="nav-tab' . $class . '" href="edit.php?post_type=smartreview&page=smartreviews_settings&tab=' . $tab . '">' . $name . '</a>';
         }
         echo '</h2>';
 
-    	switch ( $tab ) {
+    	switch ( $curr ) {
     		case 'general':
     		default:
     			include( SMART_REVIEWS_DIR . 'admin/templates/settings-general.php');
@@ -164,6 +166,7 @@ class Smart_Reviews_Setup {
 	 */
     public function register_plugin_options() {
     	register_setting( 'smartreviews_settings', 'smartreviews_slug', array(&$this, 'sanitize_slug') );
+    	register_setting( 'smartreviews_settings', 'smartreviews_credits', 'intval' );
     }
 
     /**
