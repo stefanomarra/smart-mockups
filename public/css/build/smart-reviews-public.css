@@ -61,6 +61,7 @@ body {
         display: block;
         text-decoration: none;
         text-transform: uppercase;
+        font-family: Roboto;
         font-size: 18px;
         padding: 15px 20px;
         opacity: 0.4;
@@ -81,6 +82,7 @@ body {
   #sr-mockup-viewport .sr-mockup-discussion {
     position: absolute;
     overflow: hidden;
+    font-family: Roboto;
     top: 4%;
     right: 0;
     max-height: 92%;
@@ -149,6 +151,7 @@ body {
     #sr-mockup-viewport.show-discussion .invert-horizontal .sr-feedback-content:after {
       border-right-color: rgba(0, 0, 0, 0.1) !important; }
   #sr-mockup-viewport footer#sr-footer {
+    font-family: Roboto;
     margin-top: 60px;
     font-weight: 100;
     letter-spacing: 0.5px;
@@ -157,6 +160,7 @@ body {
     position: relative;
     display: inline-block;
     text-align: left;
+    font-family: Roboto;
     margin-left: 20px;
     margin-right: 20px;
     transition: all 0.3s;
@@ -354,7 +358,8 @@ body {
     border-bottom: none !important; }
 
 #sr-modal-approval {
-  display: none; }
+  display: none;
+  font-family: Roboto; }
   #sr-modal-approval.current {
     display: inline-block; }
   #sr-modal-approval .sr-approval-title {
@@ -381,7 +386,8 @@ body {
   #sr-modal-approval .sr-approval-signature-form input {
     width: 80%;
     margin-bottom: 20px;
-    border-bottom: 2px solid #666; }
+    border-bottom: 2px solid #666;
+    background-color: #FFF; }
   #sr-modal-approval .sr-approval-signature-form input[type="submit"] {
     display: inline-block;
     cursor: pointer;

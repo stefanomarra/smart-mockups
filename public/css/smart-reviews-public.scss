@@ -96,6 +96,7 @@ body {
 					display: block;
 					text-decoration: none;
 					text-transform: uppercase;
+					font-family: Roboto;
 
 					font-size: 18px;
 					padding: 15px 20px;
@@ -135,6 +136,7 @@ body {
 	.sr-mockup-discussion {
 		position: absolute;
 		overflow: hidden;
+		font-family: Roboto;
 
 		top: 4%;
 		right: 0;
@@ -212,11 +214,6 @@ body {
 					clear: both;
 				}
 
-				&:first-child {
-					// margin-top: 10px;
-					// border-top: 1px solid #EFEFEF;
-				}
-
 				&:last-of-type {
 					margin-bottom: 10px;
 				}
@@ -265,6 +262,8 @@ body {
 	}
 
 	footer#sr-footer {
+		font-family: Roboto;
+
 		margin-top: 60px;
 		font-weight: 100;
 		letter-spacing: 0.5px;
@@ -276,6 +275,7 @@ body {
 		position: relative;
 		display: inline-block;
 		text-align: left;
+		font-family: Roboto;
 
 		margin-left: 20px;
 		margin-right: 20px;
@@ -645,6 +645,7 @@ body {
 
 #sr-modal-approval {
 	display: none;
+	font-family: Roboto;
 
 	&.current {
 		display: inline-block;
@@ -689,6 +690,7 @@ body {
 			margin-bottom: 20px;
 			border-bottom: 2px solid #666;
 
+			background-color: #FFF;
 		}
 
 		input[type="submit"] {

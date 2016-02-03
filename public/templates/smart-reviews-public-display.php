@@ -88,6 +88,7 @@ else {
 
         <?php do_action( 'smartreviews_single_after_scripts' ); ?>
 
+        <?php //wp_head(); ?>
     </head>
     <body>
 
@@ -167,5 +168,6 @@ else {
             </div>
 
     	</div>
+        <?php //wp_footer(); ?>
     </body>
 </html>
