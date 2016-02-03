@@ -91,53 +91,68 @@ body {
     z-index: -30;
     transition: all 0.3s;
     border-radius: 0 6px 6px 0;
+    padding-top: 15px;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
     background-color: #FFF; }
-    #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li {
-      padding: 10px 15px;
-      border-bottom: 1px solid #EFEFEF; }
-      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-avatar {
-        float: left;
-        width: 50px; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-avatar img {
-          max-width: 100%;
-          border-radius: 50%; }
-      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content {
-        position: relative;
-        overflow: hidden;
-        padding-left: 10px;
-        font-size: 13px; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-comment-text {
-          display: block;
-          margin-top: 5px;
-          color: #666666; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-comment-time {
-          display: none;
-          position: absolute;
-          top: 0;
-          right: 0;
-          font-size: 12px;
-          font-weight: 100;
-          color: #CECECE; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-user-display {
+    #sr-mockup-viewport .sr-mockup-discussion:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 18px;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent); }
+    #sr-mockup-viewport .sr-mockup-discussion .discussion-title {
+      margin-top: 0;
+      padding: 0 15px; }
+    #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list {
+      overflow: scroll;
+      max-height: 480px; }
+      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li {
+        padding: 10px 15px;
+        border-bottom: 1px solid #EFEFEF; }
+        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-avatar {
+          float: left;
+          width: 50px; }
+          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-avatar img {
+            max-width: 100%;
+            border-radius: 50%; }
+        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content {
           position: relative;
-          text-transform: uppercase;
-          padding: 2px 5px;
-          font-size: 10px;
-          background-color: #3F98E6;
-          color: #FFF; }
-      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:after {
-        content: "";
-        display: block;
-        clear: both; }
-      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:last-of-type {
-        margin-bottom: 10px; }
-      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:hover .sr-comment-time {
-        display: block; }
+          overflow: hidden;
+          padding-left: 10px;
+          font-size: 13px; }
+          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-comment-text {
+            display: block;
+            margin-top: 5px;
+            color: #666666; }
+          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-comment-time {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 12px;
+            font-weight: 100;
+            color: #CECECE; }
+          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-user-display {
+            position: relative;
+            text-transform: uppercase;
+            padding: 2px 5px;
+            font-size: 10px;
+            background-color: #3F98E6;
+            color: #FFF; }
+        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:after {
+          content: "";
+          display: block;
+          clear: both; }
+        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:last-of-type {
+          margin-bottom: 10px; }
+        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:hover .sr-comment-time {
+          display: block; }
   #sr-mockup-viewport.show-discussion .sr-mockup-wrapper {
     margin-right: 360px; }
   #sr-mockup-viewport.show-discussion .sr-mockup-discussion {
-    box-shadow: 10px 0 40px -10px rgba(0, 0, 0, 0.4), inset 10px 0 40px -10px rgba(0, 0, 0, 0.4);
+    box-shadow: 10px 0 40px -10px rgba(0, 0, 0, 0.4);
     right: -360px; }
   #sr-mockup-viewport.show-discussion .invert-horizontal .sr-feedback-content {
     top: -22.22222px !important;
@@ -297,6 +312,8 @@ body {
         display: block; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-close {
         display: none; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft.saved .feedback-close {
+        display: initial; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.empty .feedback-close {
         display: none; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.ui-draggable-dragging .sr-feedback-content {
@@ -313,9 +330,20 @@ body {
         opacity: 0.2; }
         #sr-mockup-viewport main.sr-mockup-wrapper .feedback-action button:hover {
           opacity: 0.8; }
+    #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper,
+    #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper,
+    #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper,
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper {
       padding: 0 15px;
+      margin-top: 10px;
       margin-bottom: 10px; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .discussion-field-comment,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .feedback-field-comment,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .discussion-field-comment,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-comment,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .discussion-field-comment,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-comment,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .discussion-field-comment,
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-comment {
         font-family: Roboto;
         border: none;
@@ -329,8 +357,18 @@ body {
         line-height: 1.5;
         letter-spacing: 0.4px;
         background-color: #ECECEC; }
+    #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit,
+    #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit,
+    #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit,
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit {
       display: none; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit .discussion-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit .feedback-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit .discussion-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit .feedback-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit .discussion-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit .feedback-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit .discussion-field-submit,
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit .feedback-field-submit {
         border: none;
         outline: none;
@@ -344,6 +382,14 @@ body {
         font-weight: 600;
         background: #34CE4A;
         color: #FFF; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit .discussion-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit .discussion-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit .discussion-field-submit,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit .discussion-field-submit {
+        border-radius: 0 0 6px 0; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit.active,
+      #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit.active,
+      #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit.active,
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper-submit.active {
         display: block; }
   #sr-mockup-viewport .template,

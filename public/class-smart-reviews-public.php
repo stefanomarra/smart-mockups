@@ -101,6 +101,53 @@ class Smart_Reviews_Public {
 	}
 
 	/**
+	 * Save a new discussion comment
+	 * from the public-facing side of the site
+	 *
+	 * @since 1.0.0
+	 */
+	public function save_discussion_comment_ajax() {
+		$comment = array(
+			'post_id' 		=> strip_tags( trim( $_POST['post_id'] ) ),
+			'time'			=> current_time( get_option( 'date_format' ) ),
+			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . stripslashes( $_POST['comment'] ) . '</span></div></li>',
+			'action'		=> 'save_discussion_comment'
+		);
+
+		$comment['status'] = $this->save_discussion_comment( $comment );
+
+		echo json_encode( $comment );
+		die();
+	}
+
+	/**
+	 * This function stores a discussion as post_meta
+	 *
+	 * @since 1.0.0
+	 */
+	public function save_discussion_comment($comment) {
+
+		// Get post discussion
+		$discussion = get_post_meta( $comment['post_id'], '_discussion', true );
+
+		// If not an array, initialize an empty array
+		if ( !is_array( $discussion ) ) {
+			$discussion = array(
+				'time'     => $comment['time'],
+				'comments' => array()
+			);
+		}
+
+		// add new comment
+		$discussion['comments'][] = $comment['comment'];
+
+		// Update post discussion
+		update_post_meta( $comment['post_id'], '_discussion', $discussion );
+
+		return 'new_discussion_comment_saved';
+	}
+
+	/**
 	 * This function handles ajax requests that saves a new feedback
 	 * from the public-facing side of the site
 	 *
