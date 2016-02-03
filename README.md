@@ -22,7 +22,7 @@ Features of the plugin include:
 
 ### How do I get started? ###
 
-Once the plugin is installed and activated, go to `Smart Reviews > Add News` to add a mockup. Give it a name, add the mockup design and tweak with the settings. Click 'Publish' and you're done. Share the mockup with your clients or friends and getting feedbacks.
+Once the plugin is installed and activated, go to `Smart Reviews > Add News` to add a mockup. Give it a name, add the mockup design and tweak with the settings. Click 'Publish' and you're done. Share the mockup with your clients or friends and start getting instant feedbacks.
 
 ### How do I get support? ###
 
