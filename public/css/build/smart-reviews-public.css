@@ -83,9 +83,9 @@ body {
     position: absolute;
     overflow: hidden;
     font-family: Roboto;
-    top: 4%;
+    top: 30px;
     right: 0;
-    max-height: 92%;
+    max-height: 90%;
     width: 340px;
     margin-right: 20px;
     z-index: -30;
@@ -188,7 +188,8 @@ body {
     #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback {
       position: absolute;
       width: 1px;
-      height: 1px; }
+      height: 1px;
+      z-index: 50; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot {
         position: relative;
         box-sizing: border-box;

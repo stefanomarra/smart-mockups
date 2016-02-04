@@ -138,10 +138,10 @@ body {
 		overflow: hidden;
 		font-family: Roboto;
 
-		top: 4%;
+		top: 30px;
 		right: 0;
 		// bottom: 30px;
-		max-height: 92%;
+		max-height: 90%;
 		width: $discussion_panel_width - 20px;
 		margin-right: 20px;
 		z-index: -30;
@@ -302,6 +302,16 @@ body {
 
 		box-shadow: 0 10px 100px rgba(0, 0, 0, 0.4);
 
+		// .sr-dot {
+		// 	transform: scale(0.8,0.8);
+		// }
+
+		// &:hover {
+		// 	.sr-dot {
+		// 		transform: scale(1,1);
+		// 	}
+		// }
+
 		.sr-mockup-image {
 			cursor: cell;
 
@@ -321,8 +331,10 @@ body {
 
 			.sr-feedback {
 				position: absolute;
+
 				width: 1px;
 				height: 1px;
+				z-index: 50;
 
 				.sr-dot {
 					position: relative;
