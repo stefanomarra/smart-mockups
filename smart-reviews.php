@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 define( 'SMART_REVIEWS_DOMAIN'			, 'smart-reviews' );
 define( 'SMART_REVIEWS_DIR'				, plugin_dir_path( __FILE__ ) );
 define( 'SMART_REVIEWS_URL'				, plugin_dir_url( __FILE__ ) );
-define( 'SMART_REVIEWS_POSTTYPE'		, 'smartreview' );
+define( 'SMART_REVIEWS_POSTTYPE'		, 'sr_mockup' );
 
 
 /**
