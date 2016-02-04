@@ -547,8 +547,6 @@
 				textarea.val('');
 				autosize.update( textarea );
 			});
-
-			console.log( 'Discussion Comment Save' );
 		},
 		addDiscussionComment: function(discussion_comment) {
 			$( this.settings.el_discussion_comment_list_wrapper ).append( discussion_comment );
