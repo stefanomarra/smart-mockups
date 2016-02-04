@@ -132,7 +132,7 @@ class Smart_Reviews_Admin {
 	public function render_meta_fields() {
 
 		// Get post mockup image
-		$mockuo_url = '';
+		$mockup_url = '';
 		$mockup_id = get_post_meta( get_the_ID(), 'mockup_image_id', true );
 		if ( $mockup_id )
 			$mockup_url = wp_get_attachment_url( $mockup_id );
