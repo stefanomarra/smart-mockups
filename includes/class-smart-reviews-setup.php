@@ -19,13 +19,13 @@ class Smart_Reviews_Setup {
 	public static function post_types() {
 
 		return array(
-			'smartreview' => array(
+			SMART_REVIEWS_POSTTYPE => array(
 				'labels' 	=> array(
 						'name'          => __( 'Smart Reviews', SMART_REVIEWS_DOMAIN ),
 						'singular_name' => __( 'Mockup', SMART_REVIEWS_DOMAIN ),
 						'all_items' 	=> __( 'All Mockups', SMART_REVIEWS_DOMAIN ),
 						'new_item'      => __( 'Add New Mockup', SMART_REVIEWS_DOMAIN ),
-						'add_new'       => __( 'Add New', SMART_REVIEWS_DOMAIN ),
+						'add_new'       => __( 'Add New Mockup', SMART_REVIEWS_DOMAIN ),
 						'add_new_item'  => __( 'Add New Mockup', SMART_REVIEWS_DOMAIN ),
 						'edit_item'     => __( 'Edit Mockup', SMART_REVIEWS_DOMAIN ),
 						'view_item'     => __( 'View Mockup', SMART_REVIEWS_DOMAIN ),
@@ -123,7 +123,7 @@ class Smart_Reviews_Setup {
 	 * @since 1.0.0
 	 */
 	public function register_plugin_settings_page() {
-        add_submenu_page( 'edit.php?post_type=smartreview', 'Settings', 'Settings', 'manage_options', 'smartreviews_settings', array(&$this, 'settings_page' ));
+        add_submenu_page( 'edit.php?post_type=' . SMART_REVIEWS_POSTTYPE, 'Settings', 'Settings', 'manage_options', 'smartreviews_settings', array(&$this, 'settings_page' ));
     }
 
     /**
@@ -147,7 +147,7 @@ class Smart_Reviews_Setup {
         echo '<h2 class="nav-tab-wrapper">';
         foreach( $this->tabs as $tab => $name ){
             $class = ( $tab == $curr ) ? ' nav-tab-active' : '';
-            echo '<a class="nav-tab' . $class . '" href="edit.php?post_type=smartreview&page=smartreviews_settings&tab=' . $tab . '">' . $name . '</a>';
+            echo '<a class="nav-tab' . $class . '" href="edit.php?post_type=' . SMART_REVIEWS_POSTTYPE . '&page=smartreviews_settings&tab=' . $tab . '">' . $name . '</a>';
         }
         echo '</h2>';
 
@@ -177,7 +177,7 @@ class Smart_Reviews_Setup {
     public function sanitize_slug( $new_slug ) {
     	if ( empty( $new_slug ) ) {
     		$post_types = self::post_types();
-    		$new_slug = $post_types['smartreview']['rewrite']['slug'];
+    		$new_slug = $post_types[SMART_REVIEWS_POSTTYPE]['rewrite']['slug'];
     	}
     	else {
     		$new_slug = sanitize_title_with_dashes($new_slug);

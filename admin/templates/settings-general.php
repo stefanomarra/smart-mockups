@@ -3,7 +3,7 @@
     	$post_types = Smart_Reviews_Setup::post_types();
 
 		$settings = array(
-			'slug' 		=> get_option('smartreviews_slug', $post_types['smartreview']['rewrite']['slug']),
+			'slug' 		=> get_option('smartreviews_slug', $post_types[SMART_REVIEWS_POSTTYPE]['rewrite']['slug']),
 			'credits' 	=> get_option('smartreviews_credits', 1)
 		);
 

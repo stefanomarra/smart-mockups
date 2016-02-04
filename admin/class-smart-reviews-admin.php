@@ -106,7 +106,7 @@ class Smart_Reviews_Admin {
 		$id = $this->plugin_name . '-meta-box-mockup';
 		$title = 'Mockup';
 		$callback = array( $this, 'render_meta_box_mockup' );
-		$post_type = 'smartreview';
+		$post_type = SMART_REVIEWS_POSTTYPE;
 		$context = 'normal';
 		$priority = 'high';
 		$callback_args = array();

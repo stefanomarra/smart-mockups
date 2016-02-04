@@ -410,8 +410,10 @@ class Smart_Reviews_Public {
 	public function single_template( $single ) {
 		global $post;
 
-		if ( $post->post_type != 'smartreview' )
+		if ( $post->post_type != SMART_REVIEWS_POSTTYPE )
         	return $single;
+
+        add_filter('show_admin_bar', '__return_false');
 
         // If the mockup is password protected, show the password form
         if ( post_password_required() ) {
@@ -431,7 +433,7 @@ class Smart_Reviews_Public {
 	 */
 	public function override_slug() {
 		$post_types = Smart_Reviews_Setup::post_types();
-		$default_slug = $post_types['smartreview']['rewrite']['slug'];
+		$default_slug = $post_types[SMART_REVIEWS_POSTTYPE]['rewrite']['slug'];
 
         $slug = get_option('smartreviews_slug', $default_slug);
 
