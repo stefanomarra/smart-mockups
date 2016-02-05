@@ -6,8 +6,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/admin
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/admin
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/admin
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews_Admin {
+class Smart_Mockups_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -62,15 +62,15 @@ class Smart_Reviews_Admin {
 
 		/**
 		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Reviews_Loader as all of the hooks are defined
+		 * defined in Smart_Mockups_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Smart_Reviews_Loader will then create the relationship
+		 * The Smart_Mockups_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-reviews-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-mockups-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -83,16 +83,16 @@ class Smart_Reviews_Admin {
 
 		/**
 		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Reviews_Loader as all of the hooks are defined
+		 * defined in Smart_Mockups_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Smart_Reviews_Loader will then create the relationship
+		 * The Smart_Mockups_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
 		wp_enqueue_media();
-		wp_enqueue_script( $this->plugin_name . '-admin', plugin_dir_url( __FILE__ ) . 'js/smart-reviews-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '-admin', plugin_dir_url( __FILE__ ) . 'js/smart-mockups-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -106,7 +106,7 @@ class Smart_Reviews_Admin {
 		$id = $this->plugin_name . '-meta-box-mockup';
 		$title = 'Mockup';
 		$callback = array( $this, 'render_meta_box_mockup' );
-		$post_type = 'smartreview';
+		$post_type = SMART_MOCKUPS_POSTTYPE;
 		$context = 'normal';
 		$priority = 'high';
 		$callback_args = array();
@@ -132,7 +132,7 @@ class Smart_Reviews_Admin {
 	public function render_meta_fields() {
 
 		// Get post mockup image
-		$mockuo_url = '';
+		$mockup_url = '';
 		$mockup_id = get_post_meta( get_the_ID(), 'mockup_image_id', true );
 		if ( $mockup_id )
 			$mockup_url = wp_get_attachment_url( $mockup_id );
@@ -217,7 +217,7 @@ class Smart_Reviews_Admin {
 			return $post_id;
 		}
 
-		$post_types = Smart_Reviews_Setup::post_types();
+		$post_types = Smart_Mockups_Setup::post_types();
 
 		// Check if post type is one of the plugin's
 		if ( !in_array( get_post_type(), array_keys( $post_types ) ) )

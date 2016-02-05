@@ -22,7 +22,7 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
+ * @package    Smart_Mockups
  */
 
 // If uninstall not called from WordPress, then exit.

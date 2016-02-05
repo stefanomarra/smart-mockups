@@ -8,8 +8,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/admin/partials
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/admin/partials
  */
 ?>
 

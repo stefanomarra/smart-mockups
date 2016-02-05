@@ -6,8 +6,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews_Loader {
+class Smart_Mockups_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

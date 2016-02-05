@@ -31,7 +31,7 @@ $discussion_panel_width: 360px;
 $discussion_panel_width_tablet: 260px;
 
 /**
- * Smart Reviews
+ * Smart Mockups
  */
 body {
     background-color: $viewport_bg_color;
@@ -138,10 +138,10 @@ body {
 		overflow: hidden;
 		font-family: Roboto;
 
-		top: 4%;
+		top: 30px;
 		right: 0;
 		// bottom: 30px;
-		max-height: 92%;
+		max-height: 90%;
 		width: $discussion_panel_width - 20px;
 		margin-right: 20px;
 		z-index: -30;
@@ -169,7 +169,11 @@ body {
 
 		ul.discussion-comment-list {
 			overflow: scroll;
+
 			max-height: 480px;
+    		box-shadow: inset 0 0 10px -5px rgba(0, 0, 0, 0.6);
+
+			background-color: #F9F9F9;
 
 			li {
 				padding: 10px 15px;
@@ -233,7 +237,7 @@ body {
 				}
 
 				&:last-of-type {
-					margin-bottom: 10px;
+					border-bottom: none
 				}
 
 				&:hover {
@@ -302,6 +306,16 @@ body {
 
 		box-shadow: 0 10px 100px rgba(0, 0, 0, 0.4);
 
+		// .sr-dot {
+		// 	transform: scale(0.8,0.8);
+		// }
+
+		// &:hover {
+		// 	.sr-dot {
+		// 		transform: scale(1,1);
+		// 	}
+		// }
+
 		.sr-mockup-image {
 			cursor: cell;
 
@@ -321,8 +335,10 @@ body {
 
 			.sr-feedback {
 				position: absolute;
+
 				width: 1px;
 				height: 1px;
+				z-index: 50;
 
 				.sr-dot {
 					position: relative;
@@ -612,7 +628,12 @@ body {
 					line-height: 1.5;
 					letter-spacing: 0.4px;
 
-					background-color: #ECECEC;
+					border: 2px dashed #E0E0E0;
+					background-color: #F5F5F5;
+
+					&:focus {
+						border-color: transparent;
+					}
 				}
 			}
 

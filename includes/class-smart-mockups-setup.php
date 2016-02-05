@@ -5,11 +5,11 @@
  *
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews_Setup {
+class Smart_Mockups_Setup {
 
 	/**
 	 * Plugin custom post types
@@ -19,19 +19,19 @@ class Smart_Reviews_Setup {
 	public static function post_types() {
 
 		return array(
-			'smartreview' => array(
+			SMART_MOCKUPS_POSTTYPE => array(
 				'labels' 	=> array(
-						'name'          => __( 'Smart Reviews', SMART_REVIEWS_DOMAIN ),
-						'singular_name' => __( 'Mockup', SMART_REVIEWS_DOMAIN ),
-						'all_items' 	=> __( 'All Mockups', SMART_REVIEWS_DOMAIN ),
-						'new_item'      => __( 'Add New Mockup', SMART_REVIEWS_DOMAIN ),
-						'add_new'       => __( 'Add New', SMART_REVIEWS_DOMAIN ),
-						'add_new_item'  => __( 'Add New Mockup', SMART_REVIEWS_DOMAIN ),
-						'edit_item'     => __( 'Edit Mockup', SMART_REVIEWS_DOMAIN ),
-						'view_item'     => __( 'View Mockup', SMART_REVIEWS_DOMAIN ),
-						'search_items'  => __( 'Search Mockups', SMART_REVIEWS_DOMAIN ),
+						'name'          => __( 'Smart Mockups', SMART_MOCKUPS_DOMAIN ),
+						'singular_name' => __( 'Mockup', SMART_MOCKUPS_DOMAIN ),
+						'all_items' 	=> __( 'All Mockups', SMART_MOCKUPS_DOMAIN ),
+						'new_item'      => __( 'New Mockup', SMART_MOCKUPS_DOMAIN ),
+						'add_new'       => __( 'Add New', SMART_MOCKUPS_DOMAIN ),
+						'add_new_item'  => __( 'Add New Mockup', SMART_MOCKUPS_DOMAIN ),
+						'edit_item'     => __( 'Edit Mockup', SMART_MOCKUPS_DOMAIN ),
+						'view_item'     => __( 'View Mockup', SMART_MOCKUPS_DOMAIN ),
+						'search_items'  => __( 'Search Mockups', SMART_MOCKUPS_DOMAIN ),
 					),
-				'rewrite'     => array( 'slug' => 'smart-reviews' ),
+				'rewrite'     => array( 'slug' => 'smart-mockups' ),
 				'public'      => true,
 				'has_archive' => false,
 				'menu_icon'   => 'dashicons-exerpt-view',
@@ -91,7 +91,7 @@ class Smart_Reviews_Setup {
 	 */
 	public function register_post_types() {
 
-		$post_types = Smart_Reviews_Setup::post_types();
+		$post_types = Smart_Mockups_Setup::post_types();
 
 		foreach($post_types as $post_type => $type_opt) {
 			register_post_type($post_type, array(
@@ -123,7 +123,7 @@ class Smart_Reviews_Setup {
 	 * @since 1.0.0
 	 */
 	public function register_plugin_settings_page() {
-        add_submenu_page( 'edit.php?post_type=smartreview', 'Settings', 'Settings', 'manage_options', 'smartreviews_settings', array(&$this, 'settings_page' ));
+        add_submenu_page( 'edit.php?post_type=' . SMART_MOCKUPS_POSTTYPE, 'Settings', 'Settings', 'manage_options', 'smartmockups_settings', array(&$this, 'settings_page' ));
     }
 
     /**
@@ -147,7 +147,7 @@ class Smart_Reviews_Setup {
         echo '<h2 class="nav-tab-wrapper">';
         foreach( $this->tabs as $tab => $name ){
             $class = ( $tab == $curr ) ? ' nav-tab-active' : '';
-            echo '<a class="nav-tab' . $class . '" href="edit.php?post_type=smartreview&page=smartreviews_settings&tab=' . $tab . '">' . $name . '</a>';
+            echo '<a class="nav-tab' . $class . '" href="edit.php?post_type=' . SMART_MOCKUPS_POSTTYPE . '&page=smartmockups_settings&tab=' . $tab . '">' . $name . '</a>';
         }
         echo '</h2>';
 
@@ -165,8 +165,8 @@ class Smart_Reviews_Setup {
 	 * @since 1.0.0
 	 */
     public function register_plugin_options() {
-    	register_setting( 'smartreviews_settings', 'smartreviews_slug', array(&$this, 'sanitize_slug') );
-    	register_setting( 'smartreviews_settings', 'smartreviews_credits', 'intval' );
+    	register_setting( 'smartmockups_settings', 'smartmockups_slug', array(&$this, 'sanitize_slug') );
+    	register_setting( 'smartmockups_settings', 'smartmockups_credits', 'intval' );
     }
 
     /**
@@ -177,7 +177,7 @@ class Smart_Reviews_Setup {
     public function sanitize_slug( $new_slug ) {
     	if ( empty( $new_slug ) ) {
     		$post_types = self::post_types();
-    		$new_slug = $post_types['smartreview']['rewrite']['slug'];
+    		$new_slug = $post_types[SMART_MOCKUPS_POSTTYPE]['rewrite']['slug'];
     	}
     	else {
     		$new_slug = sanitize_title_with_dashes($new_slug);

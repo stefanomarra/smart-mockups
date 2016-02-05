@@ -6,8 +6,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews_Deactivator {
+class Smart_Mockups_Deactivator {
 
 	/**
 	 * Short Description. (use period)

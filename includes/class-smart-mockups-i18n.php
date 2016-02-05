@@ -9,8 +9,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews_i18n {
+class Smart_Mockups_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Smart_Reviews_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'smart-reviews',
+			SMART_MOCKUPS_DOMAIN,
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

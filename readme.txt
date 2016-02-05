@@ -1,6 +1,6 @@
-=== Smart Reviews ===
+=== Smart Mockups ===
 Author URI: https://www.stefanomarra.com
-Plugin URI: https://github.com/stefanomarra/smart-reviews
+Plugin URI: https://github.com/stefanomarra/smart-mockups
 Contributors: stefanomarra
 Donate link: https://www.paypal.me/stefanomarra
 Tags: feedback, feedbacks, review, reviews, mockup, mockups, design, organize, workflow, red pen, client, clients, approval, approve, wireframe, wireframes, stefano, marra, stefano marra
@@ -14,7 +14,7 @@ Get instant point & click feedbacks on your mockups through Wordpress
 
 == Description ==
 
-Smart Reviews is the perfect solution for sharing your mockup works and get instant point & click feedbacks from you colleagues and clients.
+Smart Mockups is the perfect solution for sharing your mockup works and get instant point & click feedbacks from you colleagues and clients.
 
 Features of the plugin include:
 
@@ -24,11 +24,11 @@ Features of the plugin include:
 * Password protected mockups
 * Customizable slug
 
-**Follow this plugin on [GitHub](https://github.com/stefanomarra/smart-reviews)**
+**Follow this plugin on [GitHub](https://github.com/stefanomarra/smart-mockups)**
 
 == Installation ==
 
-1. Download Smart Reviews
+1. Download Smart Mockups
 2. Unzip the folder into the /wp-content/plugins/ directory, or install the plugin from Plugins > Add New Mockup in your WordPress admin
 3. Activate the plugin through the 'Plugins' screen in WordPress
 
@@ -36,7 +36,7 @@ Features of the plugin include:
 
 = How do I get started? =
 
-Once the plugin is installed and activated, go to `Smart Reviews > Add New Mockup` to add a mockup. Give it a name, upload the mockup image and tweak with the settings. Click 'Publish' and you're done. Share the mockup with your colleagues and clients and getting feedbacks.
+Once the plugin is installed and activated, go to `Smart Mockups > Add New Mockup` to add a mockup. Give it a name, upload the mockup image and tweak with the settings. Click 'Publish' and you're done. Share the mockup with your colleagues and clients and getting feedbacks.
 
 = How do I get support? =
 

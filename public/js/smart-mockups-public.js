@@ -1,7 +1,7 @@
 (function( $ ) {
 	'use strict';
 
-	var SmartReviews = {
+	var SmartMockups = {
 		defaults: {
 			el_mockup_viewport					: '#sr-mockup-viewport',
 			el_mockup_wrapper					: '.sr-mockup-wrapper',
@@ -547,8 +547,6 @@
 				textarea.val('');
 				autosize.update( textarea );
 			});
-
-			console.log( 'Discussion Comment Save' );
 		},
 		addDiscussionComment: function(discussion_comment) {
 			$( this.settings.el_discussion_comment_list_wrapper ).append( discussion_comment );
@@ -569,7 +567,7 @@
 	};
 
 	$(document).ready(function() {
-		SmartReviews.init( window.mockup_options );
+		SmartMockups.init( window.mockup_options );
 	});
 
 })( jQuery );

@@ -18,7 +18,7 @@ ul {
     list-style: none; }
 
 /**
- * Smart Reviews
+ * Smart Mockups
  */
 body {
   background-color: #6B7A90;
@@ -83,9 +83,9 @@ body {
     position: absolute;
     overflow: hidden;
     font-family: Roboto;
-    top: 4%;
+    top: 30px;
     right: 0;
-    max-height: 92%;
+    max-height: 90%;
     width: 340px;
     margin-right: 20px;
     z-index: -30;
@@ -107,7 +107,9 @@ body {
       padding: 0 15px; }
     #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list {
       overflow: scroll;
-      max-height: 480px; }
+      max-height: 480px;
+      box-shadow: inset 0 0 10px -5px rgba(0, 0, 0, 0.6);
+      background-color: #F9F9F9; }
       #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li {
         padding: 10px 15px;
         border-bottom: 1px solid #EFEFEF; }
@@ -146,7 +148,7 @@ body {
           display: block;
           clear: both; }
         #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:last-of-type {
-          margin-bottom: 10px; }
+          border-bottom: none; }
         #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:hover .sr-comment-time {
           display: block; }
   #sr-mockup-viewport.show-discussion .sr-mockup-wrapper {
@@ -188,7 +190,8 @@ body {
     #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback {
       position: absolute;
       width: 1px;
-      height: 1px; }
+      height: 1px;
+      z-index: 50; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot {
         position: relative;
         box-sizing: border-box;
@@ -356,7 +359,17 @@ body {
         padding: 8px 10px;
         line-height: 1.5;
         letter-spacing: 0.4px;
-        background-color: #ECECEC; }
+        border: 2px dashed #E0E0E0;
+        background-color: #F5F5F5; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .feedback-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-comment:focus {
+          border-color: transparent; }
     #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit,
     #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit,
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit,

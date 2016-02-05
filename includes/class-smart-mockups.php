@@ -9,8 +9,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/includes
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews {
+class Smart_Mockups {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Smart_Reviews {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Smart_Reviews_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Smart_Mockups_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -68,7 +68,7 @@ class Smart_Reviews {
 	 */
 	public function __construct() {
 
-		$this->plugin_name = 'smart-reviews';
+		$this->plugin_name = 'smart-mockups';
 		$this->version = '1.0.0';
 
 		$this->load_dependencies();
@@ -84,10 +84,10 @@ class Smart_Reviews {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Smart_Reviews_Loader. Orchestrates the hooks of the plugin.
-	 * - Smart_Reviews_i18n. Defines internationalization functionality.
-	 * - Smart_Reviews_Admin. Defines all hooks for the admin area.
-	 * - Smart_Reviews_Public. Defines all hooks for the public side of the site.
+	 * - Smart_Mockups_Loader. Orchestrates the hooks of the plugin.
+	 * - Smart_Mockups_i18n. Defines internationalization functionality.
+	 * - Smart_Mockups_Admin. Defines all hooks for the admin area.
+	 * - Smart_Mockups_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -101,39 +101,39 @@ class Smart_Reviews {
 		 * The class responsible for defining all the plugin variables like post types
 		 * and metas
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-reviews-setup.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-setup.php';
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-reviews-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-reviews-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-smart-reviews-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-smart-mockups-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-smart-reviews-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-smart-mockups-public.php';
 
-		$this->loader = new Smart_Reviews_Loader();
+		$this->loader = new Smart_Mockups_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Smart_Reviews_i18n class in order to set the domain and to register the hook
+	 * Uses the Smart_Mockups_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -141,7 +141,7 @@ class Smart_Reviews {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Smart_Reviews_i18n();
+		$plugin_i18n = new Smart_Mockups_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -154,7 +154,7 @@ class Smart_Reviews {
 	 * @access   private
 	 */
 	private function plugin_setup() {
-		$plugin_setup = new Smart_Reviews_Setup( $this->get_plugin_name(), $this->get_version() );
+		$plugin_setup = new Smart_Mockups_Setup( $this->get_plugin_name(), $this->get_version() );
 
 		// Register Post Type
 		$this->loader->add_action( 'init', $plugin_setup, 'register_post_types' );
@@ -173,7 +173,7 @@ class Smart_Reviews {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Smart_Reviews_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Smart_Mockups_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		// Enqueue Scripts and Styles
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
@@ -193,7 +193,7 @@ class Smart_Reviews {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Smart_Reviews_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Smart_Mockups_Public( $this->get_plugin_name(), $this->get_version() );
 
 		// Enqueue Scripts and Styles
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
@@ -244,7 +244,7 @@ class Smart_Reviews {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Smart_Reviews_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Smart_Mockups_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
