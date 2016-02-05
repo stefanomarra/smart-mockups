@@ -42,8 +42,16 @@
 			this.setup();
 		},
 		setup: function() {
-			this._loadFeedbacks();
-			this._bindElements();
+			var that = this;
+
+			// On image load
+			$( that.settings.el_mockup_image_wrapper + ' img' ).one('load', function() {
+				$( that.settings.el_mockup_viewport ).addClass( 'loaded' );
+				that._loadFeedbacks();
+				that._bindElements();
+			}).each(function() {
+				if(this.complete) $(this).load();
+			});
 		},
 		_getXPercentagePosition: function(x) {
 			var that = this;
@@ -75,10 +83,13 @@
 				dot.find( that.settings.el_feedback_comment_list_wrapper ).append( $( this ).find( '.comments' ).html() );
 
 			}).promise().done(function() {
-				// var i = 0;
+
+				// For each preloaded feedback, add class .loaded and remove class .preloaded
 				$( that.settings.el_feedback_wrapper + '.preloaded' ).each(function(i, el) {
-					setTimeout(function() { $(el).addClass('loaded'); }, (100*i) );
-					// i++;
+					setTimeout(function() {
+						$( el ).addClass('loaded');
+						setTimeout( function() { $( el ).removeClass( 'preloaded' ); }, ((100*(i+1))+100) );
+					}, (100*(i+1)) );
 				});
 			});
 		},
