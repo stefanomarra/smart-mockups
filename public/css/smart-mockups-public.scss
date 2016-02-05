@@ -283,6 +283,16 @@ body {
 		}
 	}
 
+	.sr-mockup-discussion {
+		display: none;
+	}
+
+	&.loaded {
+		.sr-mockup-discussion {
+			display: block;
+		}
+	}
+
 	footer#sr-footer {
 		font-family: Roboto;
 
