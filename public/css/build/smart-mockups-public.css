@@ -192,6 +192,11 @@ body {
       width: 1px;
       height: 1px;
       z-index: 50; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.preloaded {
+        transform: scale(0, 0);
+        transition: all 0.2s ease-in-out; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.preloaded.loaded {
+          transform: scale(1, 1); }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot {
         position: relative;
         box-sizing: border-box;
