@@ -27,7 +27,7 @@
                 </th>
                 <td>
                     <input id="smartmockups_credits" name="smartmockups_credits" type="checkbox" value="1" <?php echo ( $settings['credits'] )?'checked':''; ?> />
-                    <label for="smartmockups_credits">Check this box to help Smart Reviews by showing a credits message in your site's footer</label>
+                    <label for="smartmockups_credits">Check this box to help Smart Mockups by showing a credits message in your site's footer</label>
                 </td>
             </tr>
         </tbody>

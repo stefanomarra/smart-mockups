@@ -154,7 +154,7 @@ class Smart_Mockups_Setup {
     	switch ( $curr ) {
     		case 'general':
     		default:
-    			include( SMART_REVIEWS_DIR . 'admin/templates/settings-general.php');
+    			include( SMART_MOCKUPS_DIR . 'admin/templates/settings-general.php');
     			break;
     	}
     }
