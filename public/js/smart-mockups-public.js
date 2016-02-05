@@ -60,11 +60,12 @@
 		_loadFeedbacks: function() {
 			 var that = this;
 
-			$(that.settings.el_feedback_preload).each(function() {
+			$( that.settings.el_feedback_preload ).each(function() {
 				var feedback = {
 					x 			: $(this).attr('data-x'),
 					y 			: $(this).attr('data-y'),
-					feedback_id : $(this).attr('data-id')
+					feedback_id : $(this).attr('data-id'),
+					class 		: 'preloaded'
 				};
 
 				var dot = that.addFeedback(feedback);
@@ -72,6 +73,13 @@
 				dot.removeClass('empty').removeClass('new').addClass('saved');
 
 				dot.find( that.settings.el_feedback_comment_list_wrapper ).append( $( this ).find( '.comments' ).html() );
+
+			}).promise().done(function() {
+				// var i = 0;
+				$( that.settings.el_feedback_wrapper + '.preloaded' ).each(function(i, el) {
+					setTimeout(function() { $(el).addClass('loaded'); }, (100*i) );
+					// i++;
+				});
 			});
 		},
 		_bindElements: function() {
@@ -345,9 +353,15 @@
 		addFeedback: function(feedback) {
 			var that = this;
 
+			var classes = '';
+			// Check if there are classes to add
+			if ( typeof feedback.class !== 'undefined' )
+				classes = feedback.class;
+
 			var dot = $(that.settings.el_feedback_template).clone()
 							.removeAttr('id')
 							.removeClass('template')
+							.addClass(classes)
 							.css({
 								left: feedback.x,
 								top: feedback.y
