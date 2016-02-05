@@ -101,6 +101,50 @@ class Smart_Mockups_Public {
 	}
 
 	/**
+	 * Save approval signature
+	 * from the public-facing side of the site
+	 *
+	 * @since 1.0.0
+	 */
+	public function save_approval_signature_ajax() {
+		$approval = array(
+				'post_id' 		=> strip_tags( trim( $_POST['post_id'] ) ),
+				'time'			=> current_time( get_option( 'date_format' ) ),
+				'signature'  	=> sanitize_text_field( $_POST['signature'] )
+			);
+
+		$approval['status'] = $this->save_approval_signature( $approval );
+
+		echo json_encode( $approval );
+		die();
+	}
+
+	/**
+	 * This function stores a mockup approval as post_meta
+	 *
+	 * @since 1.0.0
+	 */
+	public function save_approval_signature($approval) {
+
+		$result_approval = get_post_meta( $approval['post_id'], '_approval', true );
+
+		if ( ! $result_approval ) {
+
+			$result_approval = array(
+					'time'      => $approval['time'],
+					'signature' => $approval['signature']
+				);
+
+			update_post_meta( $approval['post_id'], '_approval', $result_approval );
+
+			return 'approval_saved';
+		}
+
+		return 'approval_exists';
+	}
+
+
+	/**
 	 * Save a new discussion comment
 	 * from the public-facing side of the site
 	 *
