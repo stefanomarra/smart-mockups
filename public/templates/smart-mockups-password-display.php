@@ -5,8 +5,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/public/templates
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/public/templates
  */
 
 ?>
@@ -25,9 +25,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ) ?>../css/min/smart-reviews-public.css">
+        <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ) ?>../css/min/smart-mockups-public.css">
 
-        <?php do_action( 'smartreviews_single_after_scripts' ); ?>
+        <?php do_action( 'smartmockups_single_after_scripts' ); ?>
 
     </head>
     <body>

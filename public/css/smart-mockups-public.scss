@@ -31,7 +31,7 @@ $discussion_panel_width: 360px;
 $discussion_panel_width_tablet: 260px;
 
 /**
- * Smart Reviews
+ * Smart Mockups
  */
 body {
     background-color: $viewport_bg_color;
@@ -628,7 +628,12 @@ body {
 					line-height: 1.5;
 					letter-spacing: 0.4px;
 
-					background-color: #ECECEC;
+					border: 2px dashed #E0E0E0;
+					background-color: #F5F5F5;
+
+					&:focus {
+						border-color: transparent;
+					}
 				}
 			}
 

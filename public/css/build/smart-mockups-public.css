@@ -18,7 +18,7 @@ ul {
     list-style: none; }
 
 /**
- * Smart Reviews
+ * Smart Mockups
  */
 body {
   background-color: #6B7A90;
@@ -359,7 +359,17 @@ body {
         padding: 8px 10px;
         line-height: 1.5;
         letter-spacing: 0.4px;
-        background-color: #ECECEC; }
+        border: 2px dashed #E0E0E0;
+        background-color: #F5F5F5; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .feedback-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .discussion-field-comment:focus,
+        #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-comment:focus {
+          border-color: transparent; }
     #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit,
     #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit,
     #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper-submit,

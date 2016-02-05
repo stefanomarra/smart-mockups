@@ -6,8 +6,8 @@
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/public
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Smart_Reviews
- * @subpackage Smart_Reviews/public
+ * @package    Smart_Mockups
+ * @subpackage Smart_Mockups/public
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
-class Smart_Reviews_Public {
+class Smart_Mockups_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Smart_Reviews_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Reviews_Loader as all of the hooks are defined
+		 * defined in Smart_Mockups_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Smart_Reviews_Loader will then create the relationship
+		 * The Smart_Mockups_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-reviews-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-mockups-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Smart_Reviews_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Reviews_Loader as all of the hooks are defined
+		 * defined in Smart_Mockups_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Smart_Reviews_Loader will then create the relationship
+		 * The Smart_Mockups_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smart-reviews-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smart-mockups-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -410,7 +410,7 @@ class Smart_Reviews_Public {
 	public function single_template( $single ) {
 		global $post;
 
-		if ( $post->post_type != SMART_REVIEWS_POSTTYPE )
+		if ( $post->post_type != SMART_MOCKUPS_POSTTYPE )
         	return $single;
 
         add_filter('show_admin_bar', '__return_false');
@@ -418,10 +418,10 @@ class Smart_Reviews_Public {
         // If the mockup is password protected, show the password form
         if ( post_password_required() ) {
         	add_filter( 'the_password_form', array($this, 'password_form') );
-        	return plugin_dir_path( __FILE__ ) . 'templates/smart-reviews-password-display.php';
+        	return plugin_dir_path( __FILE__ ) . 'templates/smart-mockups-password-display.php';
         }
         else {
-			return plugin_dir_path( __FILE__ ) . 'templates/smart-reviews-public-display.php';
+			return plugin_dir_path( __FILE__ ) . 'templates/smart-mockups-public-display.php';
         }
 
 	}
@@ -432,10 +432,10 @@ class Smart_Reviews_Public {
 	 * @since    1.0.0
 	 */
 	public function override_slug() {
-		$post_types = Smart_Reviews_Setup::post_types();
-		$default_slug = $post_types[SMART_REVIEWS_POSTTYPE]['rewrite']['slug'];
+		$post_types = Smart_Mockups_Setup::post_types();
+		$default_slug = $post_types[SMART_MOCKUPS_POSTTYPE]['rewrite']['slug'];
 
-        $slug = get_option('smartreviews_slug', $default_slug);
+        $slug = get_option('smartmockups_slug', $default_slug);
 
         if ( ( $current_rules = get_option('rewrite_rules') ) ) {
 	        foreach ( $current_rules as $key => $val ) {
