@@ -182,6 +182,9 @@ class Smart_Mockups {
 		// Register Metaboxes and related
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'define_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post_meta');
+
+		// Hooks
+		$this->loader->add_action( 'smartmockups_before_render_meta_fields', $plugin_admin, 'display_approval_status' );
 	}
 
 	/**
@@ -205,18 +208,25 @@ class Smart_Mockups {
 		// Override Custom Post Type Slug
 		$this->loader->add_action( 'init', $plugin_public, 'override_slug' );
 
-		// Ajax
+		// Ajax Save/Update Feedback/Comments
 		$this->loader->add_action( 'wp_ajax_save_feedback', $plugin_public, 'save_feedback_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_save_feedback', $plugin_public, 'save_feedback_ajax' );
 
+        // Ajax Update Feedback Position
         $this->loader->add_action( 'wp_ajax_update_feedback_position', $plugin_public, 'update_feedback_position_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_update_feedback_position', $plugin_public, 'update_feedback_position_ajax' );
 
+        // Ajax Delete Feedback
         $this->loader->add_action( 'wp_ajax_delete_feedback', $plugin_public, 'delete_feedback_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_delete_feedback', $plugin_public, 'delete_feedback_ajax' );
 
+        // Ajax Save Discussion Comment
         $this->loader->add_action( 'wp_ajax_save_discussion_comment', $plugin_public, 'save_discussion_comment_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_save_discussion_comment', $plugin_public, 'save_discussion_comment_ajax' );
+
+        // Ajax Save Approval Signature Signature
+        $this->loader->add_action( 'wp_ajax_smart_mockups_save_approval', $plugin_public, 'save_approval_signature_ajax' );
+        $this->loader->add_action( 'wp_ajax_nopriv_smart_mockups_save_approval', $plugin_public, 'save_approval_signature_ajax' );
 
 	}
 

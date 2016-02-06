@@ -5,28 +5,53 @@
 
  .smart-mockups-meta-box-wrapper {
 
- 	// Useful classes
  	.hide {
  		display: none;
  	}
 
- 	.mockup-image {
- 		img {
- 			max-width: 100%;
- 		}
- 	}
+ 	.field_desc {
+		font-weight: 300;
+		font-size: 13px;
+		line-height: 140%;
+	}
 
- 	.mockup-add-image {
+ 	.field-add-media {
+		box-sizing: border-box;
+
 		width: 180px;
-		height: 180px;
+		padding: 30px 0;
+		margin-top: 10px;
+
 		border: 3px dashed #CCC;
 		background-color: #EEE;
-		padding: 70px 0;
-		box-sizing: border-box;
+
 
 		input {
 			display: block;
 			margin: 0 auto;
 		}
+ 	}
+
+ 	.field-media-preview {
+		width: 50%;
+
+ 		img {
+ 			max-width: 100%;
+ 		}
+ 	}
+
+ 	.mockup-status {
+		display: inline-block;
+ 		text-transform: uppercase;
+
+ 		padding: 10px;
+ 		font-size: 18px;
+
+ 		background-color: #EEE;
+
+ 		&.approved {
+ 			color: #FFF;
+	 		background-color: #34B947;
+	 	}
  	}
  }
