@@ -25,3 +25,13 @@
   width: 50%; }
   .smart-mockups-meta-box-wrapper .field-media-preview img {
     max-width: 100%; }
+
+.smart-mockups-meta-box-wrapper .mockup-status {
+  display: inline-block;
+  text-transform: uppercase;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #EEE; }
+  .smart-mockups-meta-box-wrapper .mockup-status.approved {
+    color: #FFF;
+    background-color: #34B947; }
