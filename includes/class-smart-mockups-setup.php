@@ -71,6 +71,14 @@ class Smart_Mockups_Setup {
 								'class'       => '',
 								'placeholder' => '',
 								'description' => ''
+							),
+						'help_text_content' 	=> array(
+								'type'        => 'textarea',
+								'name'        => __('Help Text', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'placeholder' => '',
+								'description' => '',
+								'require' 	  => 'help_text_enabled'
 							)
 					)
 			)
@@ -89,6 +97,9 @@ class Smart_Mockups_Setup {
 				break;
 			case 'checkbox':
 				self::render_form_field_checkbox( $id, $attr );
+				break;
+			case 'textarea':
+				self::render_form_field_textarea( $id, $attr );
 				break;
 			case 'text':
 			default:
@@ -109,8 +120,10 @@ class Smart_Mockups_Setup {
 		if ( $value )
 			$url = wp_get_attachment_url( $value );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
@@ -143,8 +156,10 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '	</th>';
@@ -169,8 +184,10 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
@@ -179,6 +196,42 @@ class Smart_Mockups_Setup {
 		$html .= '	<td>';
 		$html .= '		<label>';
 		$html .= '			<input type="text" name="' . $id . '" class="' . $attr['class'] . '" id="' . $id . '" value="' . $value . '" /> ';
+		$html .= '		</label>';
+
+		$html .= '	</td>';
+		$html .= '</tr>';
+
+		echo $html;
+	}
+
+	/**
+	 * Render form field textarea (wp_editor)
+	 *
+	 * @since 1.0.0
+	 */
+	public static function render_form_field_textarea( $id, $attr ) {
+
+		$value = get_post_meta( get_the_ID(), $id, true );
+
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
+		$html = '';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
+		$html .= '	<th>';
+		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
+		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
+		$html .= '	</th>';
+
+		$html .= '	<td>';
+		$html .= '		<label>';
+
+		ob_start();
+		wp_editor($value, $id, array(
+				'editor_class' => $attr['class'],
+				'editor_height' => 200
+			));
+		$html .= ob_get_clean();
+
 		$html .= '		</label>';
 
 		$html .= '	</td>';
