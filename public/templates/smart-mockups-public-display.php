@@ -25,7 +25,8 @@ $mockup_data = array(
 	'viewport_classes' => array(),
 	'feedbacks'        => get_post_meta( $post_id, '_feedbacks', true ),
 	'discussion'       => get_post_meta( $post_id, '_discussion', true ),
-    'approval'         => get_post_meta( $post_id, '_approval', true)
+    'approval'         => get_post_meta( $post_id, '_approval', true),
+    'help_text'         => get_post_meta( $post_id, 'help_text_content', true)
 );
 
 if ( $mockup_data['mockup_id'] )
@@ -118,7 +119,7 @@ else {
     				<ul class="sr-navbar sr-navbar-right">
     					<li class="active"><a class="sr-toggle-feedbacks" href="#"><i class="fa fa-eye-slash"></i></a></li>
     					<?php if ( $mockup_data['settings']['discussion_enabled'] ) : ?><li><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
-                        <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li><a class="sr-mockup-help-text" href="#"><i class="fa fa-question"></i></a></li><?php endif; ?>
+                        <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li><a class="sr-mockup-help-text" href="#sr-modal-help-text" rel="modal:open"><i class="fa fa-question"></i></a></li><?php endif; ?>
     					<?php if ( $mockup_data['settings']['approval_enabled'] ) : ?><li><a class="sr-mockup-approval" href="#sr-modal-approval" rel="modal:open"><i class="fa fa-check"></i> Approve</a></li><?php endif; ?>
                         <?php if ( is_array( $mockup_data['approval'] ) ) : ?><li><span class="sr-mockup-approved">Mockup Approved <small>by <?php echo $mockup_data['approval']['signature']; ?></small></span></li><?php endif; ?>
     				</ul>
@@ -184,7 +185,7 @@ else {
     		</div>
 
             <?php /* Approval Modal */ ?>
-            <div id="sr-modal-approval">
+            <div id="sr-modal-approval" class="sm-modal">
                 <h3 class="sr-approval-title">Approve this mockup</h3>
                 <p class="sr-approval-description">By entering the digital signature below, you approve the underneath mockup.</p>
                 <form class="sr-approval-signature-form">
@@ -193,6 +194,14 @@ else {
                     <a class="sr-modal-close" href="#close-modal" rel="modal:close">Cancel</a>
                 </form>
             </div>
+
+            <?php /* Help Text Modal */ ?>
+            <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?>
+                <div id="sr-modal-help-text" class="sm-modal">
+                    <div class="sr-modal-content"><?php echo $mockup_data['help_text']; ?></div>
+                    <a class="sr-modal-close" href="#close-modal" rel="modal:close">Close</a>
+                </div>
+            <?php endif; ?>
 
     	</div>
         <?php //wp_footer(); ?>

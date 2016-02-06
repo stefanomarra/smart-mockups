@@ -11,12 +11,6 @@ button {
 p {
   margin: 0; }
 
-ul {
-  margin: 0;
-  padding: 0; }
-  ul li {
-    list-style: none; }
-
 /**
  * Smart Mockups
  */
@@ -39,6 +33,11 @@ body {
     width: 100%;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
     background-color: #FFF; }
+    #sr-mockup-viewport header#sr-header ul {
+      margin: 0;
+      padding: 0; }
+      #sr-mockup-viewport header#sr-header ul li {
+        list-style: none; }
     #sr-mockup-viewport header#sr-header .sr-nav .sr-navbar {
       float: left; }
       #sr-mockup-viewport header#sr-header .sr-nav .sr-navbar:before {
@@ -437,24 +436,19 @@ body {
   #sr-mockup-viewport.feedbacks-disabled .feedback-comment-list :last-of-type {
     border-bottom: none !important; }
 
-#sr-modal-approval {
+.sm-modal {
   display: none;
   font-family: Roboto; }
-  #sr-modal-approval.current {
-    display: inline-block; }
-  #sr-modal-approval .sr-approval-title {
-    margin-bottom: 20px; }
-  #sr-modal-approval .sr-approval-description {
-    margin-bottom: 20px; }
-  #sr-modal-approval .sr-approval-signature-form input,
-  #sr-modal-approval .sr-approval-signature-form .sr-modal-close {
+  .sm-modal .sr-modal-content {
+    margin-bottom: 15px; }
+  .sm-modal .sr-modal-close {
     display: block;
     border: none;
     box-sizing: border-box;
     outline: none;
     font-size: 16px;
     padding: 10px 0; }
-  #sr-modal-approval .sr-approval-signature-form .sr-modal-close {
+  .sm-modal .sr-modal-close {
     position: relative;
     display: inline-block;
     text-decoration: none;
@@ -463,23 +457,42 @@ body {
     line-height: 18px;
     color: #9C9C9C;
     background-color: #DDD; }
-  #sr-modal-approval .sr-approval-signature-form input {
-    width: 80%;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #666;
-    background-color: #FFF; }
-  #sr-modal-approval .sr-approval-signature-form input[type="submit"] {
-    display: inline-block;
-    cursor: pointer;
-    border-bottom: none;
-    width: auto;
-    opacity: 0.8;
-    margin-bottom: 0;
-    padding: 10px 15px;
-    color: #FFF;
-    background-color: #34CE4A; }
-    #sr-modal-approval .sr-approval-signature-form input[type="submit"]:hover {
-      opacity: 1; }
+
+#sr-modal-approval.current {
+  display: inline-block; }
+
+#sr-modal-approval .sr-approval-title {
+  margin-bottom: 20px; }
+
+#sr-modal-approval .sr-approval-description {
+  margin-bottom: 20px; }
+
+#sr-modal-approval .sr-approval-signature-form input {
+  display: block;
+  border: none;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 16px;
+  padding: 10px 0; }
+
+#sr-modal-approval .sr-approval-signature-form input {
+  width: 80%;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #666;
+  background-color: #FFF; }
+
+#sr-modal-approval .sr-approval-signature-form input[type="submit"] {
+  display: inline-block;
+  cursor: pointer;
+  border-bottom: none;
+  width: auto;
+  opacity: 0.8;
+  margin-bottom: 0;
+  padding: 10px 15px;
+  color: #FFF;
+  background-color: #34CE4A; }
+  #sr-modal-approval .sr-approval-signature-form input[type="submit"]:hover {
+    opacity: 1; }
 
 #sr-password-form-wrapper {
   display: block;

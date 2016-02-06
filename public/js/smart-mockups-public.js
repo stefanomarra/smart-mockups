@@ -610,8 +610,9 @@
 			request.done(function( data ) {
 				switch ( data.status ) {
 					case 'approval_saved':
+						location.reload();
+						break;
 					default:
-						console.log( data.status );
 						break;
 				}
 			});
