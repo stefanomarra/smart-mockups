@@ -77,7 +77,8 @@ class Smart_Mockups_Setup {
 								'name'        => __('Help Text', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
 								'placeholder' => '',
-								'description' => ''
+								'description' => '',
+								'require' 	  => 'help_text_enabled'
 							)
 					)
 			)
@@ -119,8 +120,10 @@ class Smart_Mockups_Setup {
 		if ( $value )
 			$url = wp_get_attachment_url( $value );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
@@ -153,8 +156,10 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '	</th>';
@@ -179,8 +184,10 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
@@ -206,8 +213,10 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
 		$html = '';
-		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
 		$html .= '	<th>';
 		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
 		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
