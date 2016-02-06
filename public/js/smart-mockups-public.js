@@ -54,6 +54,8 @@
 			}).each(function() {
 				if(this.complete) $(this).load();
 			});
+
+			$('[data-tip]').tipr({mode: 'bottom'});
 		},
 		_getXPercentagePosition: function(x) {
 			var that = this;
@@ -610,8 +612,9 @@
 			request.done(function( data ) {
 				switch ( data.status ) {
 					case 'approval_saved':
+						location.reload();
+						break;
 					default:
-						console.log( data.status );
 						break;
 				}
 			});
