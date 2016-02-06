@@ -54,6 +54,8 @@
 			}).each(function() {
 				if(this.complete) $(this).load();
 			});
+
+			$('[data-tip]').tipr({mode: 'bottom'});
 		},
 		_getXPercentagePosition: function(x) {
 			var that = this;

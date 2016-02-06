@@ -604,6 +604,73 @@ body {
   -ms-border-radius: 8px;
   border-radius: 8px; }
 
+.tipr_content {
+  font-size: 12px;
+  color: #FFF;
+  background-color: #111;
+  padding: 5px 10px; }
+
+.tipr_container_bottom {
+  display: none;
+  position: absolute;
+  margin-top: 13px;
+  z-index: 1000; }
+
+.tipr_container_top {
+  display: none;
+  position: absolute;
+  margin-top: -77px;
+  z-index: 1000; }
+
+.tipr_point_top,
+.tipr_point_bottom {
+  position: relative;
+  background: #111;
+  border: 1px solid #111; }
+
+.tipr_point_top:after,
+.tipr_point_top:before {
+  position: absolute;
+  pointer-events: none;
+  border: solid transparent;
+  top: 100%;
+  content: "";
+  height: 0;
+  width: 0; }
+
+.tipr_point_top:after {
+  border-top-color: #111;
+  border-width: 8px;
+  left: 50%;
+  margin-left: -8px; }
+
+.tipr_point_top:before {
+  border-top-color: #111;
+  border-width: 9px;
+  left: 50%;
+  margin-left: -9px; }
+
+.tipr_point_bottom:after, .tipr_point_bottom:before {
+  position: absolute;
+  pointer-events: none;
+  border: solid transparent;
+  bottom: 100%;
+  content: "";
+  height: 0;
+  width: 0; }
+
+.tipr_point_bottom:after {
+  border-bottom-color: #111;
+  border-width: 8px;
+  left: 50%;
+  margin-left: -8px; }
+
+.tipr_point_bottom:before {
+  border-bottom-color: #111;
+  border-width: 9px;
+  left: 50%;
+  margin-left: -9px; }
+
 @media (max-width: 992px) {
   #sr-mockup-viewport .sr-mockup-discussion {
     width: 240px; }
