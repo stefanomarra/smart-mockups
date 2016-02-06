@@ -37,17 +37,160 @@ class Smart_Mockups_Setup {
 				'menu_icon'   => 'dashicons-exerpt-view',
 				'supports' 	  => array( 'title' ),
 				'post_meta'	=> array(
-						'mockup_image_id',
-						'feedbacks_enabled',
-						'discussion_enabled',
-						'approval_enabled'
+						'mockup_image_id' 		=> array(
+								'type'        => 'media',
+								'name'        => __('Mockup Image', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'placeholder' => '',
+								'description' => __('Upload or select the mockup image', SMART_MOCKUPS_DOMAIN)
+							),
+						'feedbacks_enabled' 	=> array(
+								'type'        => 'checkbox',
+								'name'        => __('Allow Feedbacks', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'placeholder' => '',
+								'description' => __('Enable the point and click feedback', SMART_MOCKUPS_DOMAIN)
+							),
+						'discussion_enabled' 	=> array(
+								'type'        => 'checkbox',
+								'name'        => __('Allow Discussion', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'placeholder' => '',
+								'description' => __('Enable the discussion panel on the side', SMART_MOCKUPS_DOMAIN)
+							),
+						'approval_enabled' 		=> array(
+								'type'        => 'checkbox',
+								'name'        => __('Enable Approval', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'placeholder' => '',
+								'description' => __('Enable the user to approve the mockup with a digital signature', SMART_MOCKUPS_DOMAIN)
+							),
+						'help_text_enabled' 	=> array(
+								'type'        => 'checkbox',
+								'name'        => __('Enable Help Text', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'placeholder' => '',
+								'description' => ''
+							)
 					)
 			)
 		);
 	}
 
 	/**
+	 * Render form field
+	 *
+	 * @since 1.0.0
+	 */
+	public static function render_form_field( $id, $type, $attr) {
+		switch ( $type ) {
+			case 'media':
+				self::render_form_field_media( $id, $attr );
+				break;
+			case 'checkbox':
+				self::render_form_field_checkbox( $id, $attr );
+				break;
+			case 'text':
+			default:
+				self::render_form_field_text( $id, $attr );
+				break;
+		}
+	}
+
+	/**
+	 * Render form field media
+	 *
+	 * @since 1.0.0
+	 */
+	public static function render_form_field_media( $id, $attr) {
+
+		$value = get_post_meta( get_the_ID(), $id, true );
+		$url = '';
+		if ( $value )
+			$url = wp_get_attachment_url( $value );
+
+		$html = '';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '	<th>';
+		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
+		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
+
+		$html .= '		<div class="field-add-media">';
+		$html .= '			<input type="hidden" name="' . $id . '" class="' . $attr['class'] . '" id="' . $id . '" value="' . $value . '" />';
+		$html .= '			<input type="button" id="button-' . $id . '" class="button load_media" data-target="#' . $id . '" data-preview=".media-src-' . $id . '" value="Select File" />';
+		$html .= '		</div>';
+
+		$html .= '	</th>';
+
+		$html .= '	<td>';
+
+		$html .= '		<div class="field-media-preview">';
+		$html .= '			<img class="media-src-' . $id . ' ' . ((!$value)?'hide':'') . '" src="' . $url . '" />';
+		$html .= '		</div>';
+
+		$html .= '	</td>';
+		$html .= '</tr>';
+
+		echo $html;
+	}
+
+	/**
+	 * Render form field checkbox
+	 *
+	 * @since 1.0.0
+	 */
+	public static function render_form_field_checkbox( $id, $attr) {
+
+		$value = get_post_meta( get_the_ID(), $id, true );
+
+		$html = '';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '	<th>';
+		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
+		$html .= '	</th>';
+
+		$html .= '	<td>';
+		$html .= '		<label>';
+		$html .= '			<input type="checkbox" name="' . $id . '" class="' . $attr['class'] . '" id="' . $id . '" value="1" ' . ($value?'checked':'') . ' /> ' . $attr['description'];
+		$html .= '		</label>';
+
+		$html .= '	</td>';
+		$html .= '</tr>';
+
+		echo $html;
+	}
+
+	/**
+	 * Render form field text
+	 *
+	 * @since 1.0.0
+	 */
+	public static function render_form_field_text( $id, $attr) {
+
+		$value = get_post_meta( get_the_ID(), $id, true );
+
+		$html = '';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '">';
+		$html .= '	<th>';
+		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
+		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
+		$html .= '	</th>';
+
+		$html .= '	<td>';
+		$html .= '		<label>';
+		$html .= '			<input type="text" name="' . $id . '" class="' . $attr['class'] . '" id="' . $id . '" value="' . $value . '" /> ';
+		$html .= '		</label>';
+
+		$html .= '	</td>';
+		$html .= '</tr>';
+
+		echo $html;
+	}
+
+	/**
 	 * Register default settings tab
+	 *
+	 * @since 1.0.0
 	 */
 	private $tabs = array(
 			'general' => 'General'

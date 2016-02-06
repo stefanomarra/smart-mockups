@@ -7,7 +7,9 @@
 		var media_frame;
 
 		// Bind load media buttons
-		$( 'body' ).on('click', '#mockup-add-image-button', function(e){
+		$( 'body' ).on('click', '.load_media', function(e){
+
+			var that = this;
 
 			// Prevents the default action from occuring.
 			e.preventDefault();
@@ -28,12 +30,15 @@
 			// Runs when an image is selected.
 			media_frame.on('select', function(){
 
+				var target = $( that ).attr('data-target');
+				var preview = $( that ).attr('data-preview');
+
 				// Grabs the attachment selection and creates a JSON representation of the model.
 				var attachment = media_frame.state().get( 'selection' ).first().toJSON();
 
 				// Sends the attachment URL to our custom image input field.
-				$( '#mockup_image' ).val( attachment.id );
-				$( '.mockup-image-src' ).attr( 'src', attachment.url ).removeClass('hide');
+				$( target ).val( attachment.id );
+				$( preview ).attr( 'src', attachment.url ).removeClass('hide');
 			});
 
 			// Opens the media library frame.
