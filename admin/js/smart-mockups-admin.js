@@ -3,6 +3,27 @@
 
 	$(document).ready(function() {
 
+		var checkRequire = function() {
+
+			$('.form-table tr[data-require]').each(function() {
+				var require = $(this).data('require');
+				var require_val = null;
+
+				if ( $(require).is(':checkbox') )
+					require_val = $(require).prop('checked');
+				else
+					require_val = $(require).val();
+
+				if ( require_val != '' )
+					$(this).show();
+				else
+					$(this).hide();
+			});
+		}
+
+		checkRequire();
+		$( 'body' ).on('change', 'input, select', checkRequire);
+
 		// Instantiates the variable that holds the media library frame.
 		var media_frame;
 
@@ -44,6 +65,7 @@
 			// Opens the media library frame.
 			media_frame.open();
 		});
+
 	});
 
 })( jQuery );
