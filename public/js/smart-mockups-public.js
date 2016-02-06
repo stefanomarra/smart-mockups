@@ -29,6 +29,8 @@
 			el_discussion_wrapper_submit		: '.discussion-field-wrapper-submit',
 			el_discussion_comment_submit		: '.discussion-field-submit',
 			el_discussion_comment_list_wrapper 	: '.discussion-comment-list',
+			el_approval_signature 				: '.sr-approval-signature-input',
+			el_approval_submit 					: '.sr-approval-signature-submit',
 			el_button_toggle_feedbacks			: '.sr-toggle-feedbacks',
 			el_button_toggle_discussion 		: '.sr-toggle-discussion-panel'
 		},
@@ -262,6 +264,13 @@
 				e.preventDefault();
 
 				that.saveDiscussionComment();
+			});
+
+			// Submit Discussion Click
+			$( 'body' ).on( 'click', that.settings.el_approval_submit, function(e) {
+				e.preventDefault();
+
+				that.saveApproval();
 			});
 
 			// Esc Key
@@ -575,6 +584,37 @@
 		},
 		addDiscussionComment: function(discussion_comment) {
 			$( this.settings.el_discussion_comment_list_wrapper ).append( discussion_comment );
+		},
+		saveApproval: function() {
+			var that = this;
+
+			if ( ! that.settings.approval_enabled )
+				return false;
+
+			if ( $( that.settings.el_approval_signature ).val() == '' )
+				return false;
+
+			console.log( 'Sending Approval...' );
+
+			var request = $.ajax({
+				url: ajax_url,
+				method: 'POST',
+				data: {
+					action 		: 'smart_mockups_save_approval',
+					post_id		: post_id,
+					signature 	: $( that.settings.el_approval_signature ).val()
+				},
+				dataType: 'json'
+			});
+
+			request.done(function( data ) {
+				switch ( data.status ) {
+					case 'approval_saved':
+					default:
+						console.log( data.status );
+						break;
+				}
+			});
 		},
 		updateFeedbackOrientation: function(dot) {
 			var that = this;

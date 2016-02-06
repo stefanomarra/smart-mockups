@@ -105,20 +105,39 @@ body {
 					color: #333;
 					transition: all 0.3s;
 
+					&.sr-mockup-approval {
+						opacity: 0.8;
+
+						color: #FFF;
+						background-color: #34B947;
+					}
 
 					&:hover {
 						opacity: 0.6;
 					}
 
 					&.sr-mockup-approval {
-						opacity: 0.8;
-
-						color: #FFF;
-						background-color: #34B947;
-
 						&:hover {
 							opacity: 1;
 						}
+					}
+				}
+
+				.sr-mockup-approved {
+					display: block;
+
+					font-size: 18px;
+					padding: 8px 20px;
+					opacity: 0.8;
+
+					color: #FFF;
+					background-color: #34B947;
+
+					small {
+						display: block;
+						text-align: right;
+
+						font-size: 12px;
 					}
 				}
 
@@ -141,7 +160,7 @@ body {
 		top: 30px;
 		right: 0;
 		// bottom: 30px;
-		max-height: 90%;
+		max-height: 40%;
 		width: $discussion_panel_width - 20px;
 		margin-right: 20px;
 		z-index: -30;
@@ -256,6 +275,8 @@ body {
 		}
 
 		.sr-mockup-discussion {
+			max-height: 80%;
+
 			box-shadow: 10px 0 40px -10px rgba(0,0,0,.4);
 			right: -$discussion_panel_width;
 		}
@@ -919,7 +940,6 @@ body {
 
 			.sr-mockup-wrapper {
 				margin-right: $discussion_panel_width_tablet;
-				display: block;
 			}
 
 			.sr-mockup-discussion {
