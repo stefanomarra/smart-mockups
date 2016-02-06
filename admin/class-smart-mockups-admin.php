@@ -131,71 +131,35 @@ class Smart_Mockups_Admin {
 	 */
 	public function render_meta_fields() {
 
-		// Get post mockup image
-		$mockup_url = '';
-		$mockup_id = get_post_meta( get_the_ID(), 'mockup_image_id', true );
-		if ( $mockup_id )
-			$mockup_url = wp_get_attachment_url( $mockup_id );
+		do_action( 'smartmockups_before_render_meta_fields', get_the_ID() );
 
-		$html = '';
-		$html .= '<div class="row">';
+		echo '<table class="form-table">';
+		echo '	<tbody>';
 
-		$html .= '	<div class="mockup-add-image">';
-		$html .= '		<input type="hidden" name="mockup_image_id" id="mockup_image" value="' . (($mockup_id)?$mockup_id:'') . '" />';
-		$html .= '		<input type="button" id="mockup-add-image-button" class="button load_media" value="Select File" />';
-		$html .= '	</div>';
+		$post_types = Smart_Mockups_Setup::post_types();
+		foreach ( $post_types[SMART_MOCKUPS_POSTTYPE]['post_meta'] as $id => $attr ) {
+			Smart_Mockups_Setup::render_form_field($id, $attr['type'], $attr);
+		}
 
-		$html .= '	<div class="mockup-image">';
-		$html .= '		<img class="mockup-image-src ' . ((!$mockup_id)?'hide':'') . '" src="' . (($mockup_url)?$mockup_url:'') . '" />';
-		$html .= '	</div>';
+		echo '	</tbody>';
+		echo '</table>';
 
-		$html .= '</div>';
+		do_action( 'smartmockups_after_render_meta_fields', get_the_ID() );
 
+	}
 
+	/**
+	 * Displays the mockup approval status
+	 *
+	 * @since 1.0.0
+	 */
+	public function display_approval_status( $post_id ) {
+		$approval = get_post_meta( $post_id, '_approval', true);
 
-		// Meta Fields
-		$value = get_post_meta( get_the_ID(), 'feedbacks_enabled', true );
+		if ( ! $approval )
+			return false;
 
-		$html .= '<div class="row">';
-
-		$html .= '	<label>';
-		$html .= '		<input type="checkbox" name="feedbacks_enabled" id="feedbacks_enabled" value="1" ' . ($value?'checked':'') . ' />';
-		$html .= '		Enable Feedbacks';
-		$html .= '	</label>';
-
-		$html .= '</div>';
-
-
-
-		// Meta Fields
-		$value = get_post_meta( get_the_ID(), 'discussion_enabled', true );
-
-		$html .= '<div class="row">';
-
-		$html .= '	<label>';
-		$html .= '		<input type="checkbox" name="discussion_enabled" id="discussion_enabled" value="1" ' . ($value?'checked':'') . ' />';
-		$html .= '		Enable Discussion';
-		$html .= '	</label>';
-
-		$html .= '</div>';
-
-
-
-		// Meta Fields
-		$value = get_post_meta( get_the_ID(), 'approval_enabled', true );
-
-		$html .= '<div class="row">';
-
-		$html .= '	<label>';
-		$html .= '		<input type="checkbox" name="approval_enabled" id="approval_enabled" value="1" ' . ($value?'checked':'') . ' />';
-		$html .= '		Enable Approval (with Digital Signature)';
-		$html .= '	</label>';
-
-		$html .= '</div>';
-
-
-
-		echo $html;
+		echo '<div class="mockup-status approved">Mockup Approved by ' . $approval['signature'] . ' - ' . $approval['time'] . '</div>';
 	}
 
 	/**
@@ -227,7 +191,7 @@ class Smart_Mockups_Admin {
 		foreach ( $post_types as $post_type => $type_opt ) {
 
 			// For each post types, loop through each post meta
-			foreach ( $type_opt['post_meta'] as $id ) {
+			foreach ( $type_opt['post_meta'] as $id => $attr) {
 
 				$old = get_post_meta( $post_id, $id, true );
 				$new = isset( $_POST[$id] )?$_POST[$id]:'';

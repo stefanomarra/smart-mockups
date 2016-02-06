@@ -67,14 +67,25 @@ body {
         opacity: 0.4;
         color: #333;
         transition: all 0.3s; }
-        #sr-mockup-viewport header#sr-header .sr-nav li > a:hover {
-          opacity: 0.6; }
         #sr-mockup-viewport header#sr-header .sr-nav li > a.sr-mockup-approval {
           opacity: 0.8;
           color: #FFF;
           background-color: #34B947; }
-          #sr-mockup-viewport header#sr-header .sr-nav li > a.sr-mockup-approval:hover {
-            opacity: 1; }
+        #sr-mockup-viewport header#sr-header .sr-nav li > a:hover {
+          opacity: 0.6; }
+        #sr-mockup-viewport header#sr-header .sr-nav li > a.sr-mockup-approval:hover {
+          opacity: 1; }
+      #sr-mockup-viewport header#sr-header .sr-nav li .sr-mockup-approved {
+        display: block;
+        font-size: 18px;
+        padding: 8px 20px;
+        opacity: 0.8;
+        color: #FFF;
+        background-color: #34B947; }
+        #sr-mockup-viewport header#sr-header .sr-nav li .sr-mockup-approved small {
+          display: block;
+          text-align: right;
+          font-size: 12px; }
       #sr-mockup-viewport header#sr-header .sr-nav li.active {
         box-shadow: inset 0 -4px 0 #34b947; }
         #sr-mockup-viewport header#sr-header .sr-nav li.active a {
@@ -85,7 +96,7 @@ body {
     font-family: Roboto;
     top: 30px;
     right: 0;
-    max-height: 90%;
+    max-height: 40%;
     width: 340px;
     margin-right: 20px;
     z-index: -30;
@@ -154,6 +165,7 @@ body {
   #sr-mockup-viewport.show-discussion .sr-mockup-wrapper {
     margin-right: 360px; }
   #sr-mockup-viewport.show-discussion .sr-mockup-discussion {
+    max-height: 80%;
     box-shadow: 10px 0 40px -10px rgba(0, 0, 0, 0.4);
     right: -360px; }
   #sr-mockup-viewport.show-discussion .invert-horizontal .sr-feedback-content {
@@ -167,6 +179,10 @@ body {
       border-right-color: #FFF !important; }
     #sr-mockup-viewport.show-discussion .invert-horizontal .sr-feedback-content:after {
       border-right-color: rgba(0, 0, 0, 0.1) !important; }
+  #sr-mockup-viewport .sr-mockup-discussion {
+    display: none; }
+  #sr-mockup-viewport.loaded .sr-mockup-discussion {
+    display: block; }
   #sr-mockup-viewport footer#sr-footer {
     font-family: Roboto;
     margin-top: 60px;
@@ -192,6 +208,11 @@ body {
       width: 1px;
       height: 1px;
       z-index: 50; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.preloaded {
+        transform: scale(0, 0);
+        transition: all 0.2s ease-in-out; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.preloaded.loaded {
+          transform: scale(1, 1); }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot {
         position: relative;
         box-sizing: border-box;
@@ -203,7 +224,7 @@ body {
         border-radius: 20px;
         background-color: #FF6160;
         border: 4px solid #FFF;
-        box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4), inset 0 1px 1px 1px rgba(0, 0, 0, 0.15);
         transition: transform 0.15s ease-in; }
         #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot span {
           display: block;
@@ -567,7 +588,6 @@ body {
   #sr-mockup-viewport .sr-mockup-discussion {
     width: 240px; }
   #sr-mockup-viewport.show-discussion .sr-mockup-wrapper {
-    margin-right: 260px;
-    display: block; }
+    margin-right: 260px; }
   #sr-mockup-viewport.show-discussion .sr-mockup-discussion {
     right: -260px; } }
