@@ -19,7 +19,8 @@ $mockup_data = array(
 			'credits'            => get_option('smartmockups_credits', 1),
 			'feedbacks_enabled'  => get_post_meta( $post_id, 'feedbacks_enabled', true ),
 			'discussion_enabled' => get_post_meta( $post_id, 'discussion_enabled', true ),
-			'approval_enabled' 	 => get_post_meta( $post_id, 'approval_enabled', true )
+			'approval_enabled'    => get_post_meta( $post_id, 'approval_enabled', true ),
+            'help_text_enabled'   => get_post_meta( $post_id, 'help_text_enabled', true )
 		),
 	'viewport_classes' => array(),
 	'feedbacks'        => get_post_meta( $post_id, '_feedbacks', true ),
@@ -117,6 +118,7 @@ else {
     				<ul class="sr-navbar sr-navbar-right">
     					<li class="active"><a class="sr-toggle-feedbacks" href="#"><i class="fa fa-eye-slash"></i></a></li>
     					<?php if ( $mockup_data['settings']['discussion_enabled'] ) : ?><li><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
+                        <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li><a class="sr-mockup-help-text" href="#"><i class="fa fa-question"></i></a></li><?php endif; ?>
     					<?php if ( $mockup_data['settings']['approval_enabled'] ) : ?><li><a class="sr-mockup-approval" href="#sr-modal-approval" rel="modal:open"><i class="fa fa-check"></i> Approve</a></li><?php endif; ?>
                         <?php if ( is_array( $mockup_data['approval'] ) ) : ?><li><span class="sr-mockup-approved">Mockup Approved <small>by <?php echo $mockup_data['approval']['signature']; ?></small></span></li><?php endif; ?>
     				</ul>
