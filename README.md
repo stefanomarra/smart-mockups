@@ -2,7 +2,7 @@
 
 ### Welcome to the GitHub Repository ###
 
-Smart Mockups is the perfect solution for sharing your mockup works and get instant point & click feedbacks from you colleagues and clients.
+Smart Mockups is the perfect solution for sharing your mockups to colleagues and clients and get instant feedbacks from them.
 
 Features of the plugin include:
 
@@ -22,7 +22,7 @@ Features of the plugin include:
 
 ### How do I get started? ###
 
-Once the plugin is installed and activated, go to `Smart Mockups > Add New` to add a mockup. Give it a name, upload the mockup image and tweak with the settings. Click 'Publish' and you're done. Share the mockup with your colleagues and clients and getting feedbacks.
+Once the plugin is installed and activated, go to `Smart Mockups > Add New` to add a new mockup. Give it a name, upload the mockup image and tweak with the settings. Click 'Publish' and you're done.
 
 ### How do I get support? ###
 
