@@ -39,4 +39,19 @@
  			max-width: 100%;
  		}
  	}
+
+ 	.mockup-status {
+		display: inline-block;
+ 		text-transform: uppercase;
+
+ 		padding: 10px;
+ 		font-size: 18px;
+
+ 		background-color: #EEE;
+
+ 		&.approved {
+ 			color: #FFF;
+	 		background-color: #34B947;
+	 	}
+ 	}
  }

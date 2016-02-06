@@ -131,7 +131,7 @@ class Smart_Mockups_Admin {
 	 */
 	public function render_meta_fields() {
 
-		do_action('smartmockups_before_render_meta_fields');
+		do_action( 'smartmockups_before_render_meta_fields', get_the_ID() );
 
 		echo '<table class="form-table">';
 		echo '	<tbody>';
@@ -144,8 +144,22 @@ class Smart_Mockups_Admin {
 		echo '	</tbody>';
 		echo '</table>';
 
-		do_action('smartmockups_after_render_meta_fields');
+		do_action( 'smartmockups_after_render_meta_fields', get_the_ID() );
 
+	}
+
+	/**
+	 * Displays the mockup approval status
+	 *
+	 * @since 1.0.0
+	 */
+	public function display_approval_status( $post_id ) {
+		$approval = get_post_meta( $post_id, '_approval', true);
+
+		if ( ! $approval )
+			return false;
+
+		echo '<div class="mockup-status approved">Mockup Approved by ' . $approval['signature'] . ' - ' . $approval['time'] . '</div>';
 	}
 
 	/**

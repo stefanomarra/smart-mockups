@@ -182,6 +182,9 @@ class Smart_Mockups {
 		// Register Metaboxes and related
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'define_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post_meta');
+
+		// Hooks
+		$this->loader->add_action( 'smartmockups_before_render_meta_fields', $plugin_admin, 'display_approval_status' );
 	}
 
 	/**
