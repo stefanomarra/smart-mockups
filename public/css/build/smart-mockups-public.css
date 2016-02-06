@@ -21,9 +21,20 @@ body {
   letter-spacing: 0.4px;
   line-height: 120%; }
 
+.sm-pr {
+  position: relative; }
+
+.sm-pa {
+  position: absolute; }
+
 #sr-mockup-viewport {
   padding: 120px 0 60px;
   text-align: center; }
+  #sr-mockup-viewport ul {
+    margin: 0;
+    padding: 0; }
+    #sr-mockup-viewport ul li {
+      list-style: none; }
   #sr-mockup-viewport header#sr-header {
     position: fixed;
     z-index: 800;
@@ -33,11 +44,6 @@ body {
     width: 100%;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
     background-color: #FFF; }
-    #sr-mockup-viewport header#sr-header ul {
-      margin: 0;
-      padding: 0; }
-      #sr-mockup-viewport header#sr-header ul li {
-        list-style: none; }
     #sr-mockup-viewport header#sr-header .sr-nav .sr-navbar {
       float: left; }
       #sr-mockup-viewport header#sr-header .sr-nav .sr-navbar:before {
@@ -111,6 +117,7 @@ body {
       left: 0;
       width: 18px;
       height: 100%;
+      z-index: 10;
       background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), transparent); }
     #sr-mockup-viewport .sr-mockup-discussion .discussion-title {
       margin-top: 0;

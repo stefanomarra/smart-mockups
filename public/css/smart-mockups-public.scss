@@ -32,10 +32,27 @@ body {
 	line-height: 120%;
 }
 
+.sm-pr {
+	position: relative;
+}
+
+.sm-pa {
+	position: absolute;
+}
+
 #sr-mockup-viewport {
 	padding: 120px 0 60px;
 
 	text-align: center;
+
+	ul {
+		margin: 0;
+		padding: 0;
+
+		li {
+			list-style: none;
+		}
+	}
 
 	header#sr-header {
 		position: fixed;
@@ -49,14 +66,6 @@ body {
 
 		background-color: #FFF;
 
-		ul {
-			margin: 0;
-			padding: 0;
-
-			li {
-				list-style: none;
-			}
-		}
 
 		.sr-nav {
 
@@ -174,10 +183,13 @@ body {
 		&:before {
 			content: "";
 			position: absolute;
+
 			top: 0;
 			left: 0;
 			width: 18px;
 			height: 100%;
+			z-index: 10;
+
 			background-image: linear-gradient(to right, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
 		}
 
