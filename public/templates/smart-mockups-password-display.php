@@ -9,6 +9,14 @@
  * @subpackage Smart_Mockups/public/templates
  */
 
+$post_id = get_the_ID();
+
+$mockup_data = array(
+    'customization'    => array(
+            'background_color'   => get_post_meta( $post_id, 'color_background', true )
+        )
+);
+
 ?>
 
 <!doctype html>
@@ -26,6 +34,10 @@
 
         <!-- Stylesheets -->
         <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ) ?>../css/min/smart-mockups-public.css">
+
+        <style type="text/css">
+            body { background-color: <?php echo $mockup_data['customization']['background_color']; ?>; }
+        </style>
 
         <?php do_action( 'smartmockups_single_after_scripts' ); ?>
 
