@@ -367,6 +367,30 @@ class Smart_Mockups_Setup {
 	}
 
 	/**
+	 * Get custom slug option
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_custom_slug() {
+		$post_types = self::post_types();
+		$custom_slug = get_option('smartmockups_slug', $post_types[SMART_MOCKUPS_POSTTYPE]['rewrite']['slug']);
+
+		return apply_filters( 'smartmockups_custom_slug', $custom_slug );
+	}
+
+	/**
+	 * Get custom permalink
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_custom_permalink( $post_id ) {
+		$post = get_post( $post_id );
+		$custom_permalink = get_site_url() . '/' . self::get_custom_slug() . '/' . $post->post_name . '/';
+
+		return apply_filters( 'smartmockups_custom_permalink', $custom_permalink );
+	}
+
+	/**
 	 * Register default settings tab
 	 *
 	 * @since 1.0.0
