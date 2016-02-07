@@ -23,10 +23,10 @@ $mockup_data = array(
             'help_text_enabled'   => get_post_meta( $post_id, 'help_text_enabled', true )
 		),
 	'viewport_classes' => array(),
-	'feedbacks'        => get_post_meta( $post_id, '_feedbacks', true ),
-	'discussion'       => get_post_meta( $post_id, '_discussion', true ),
-    'approval'         => get_post_meta( $post_id, '_approval', true),
-    'help_text'         => get_post_meta( $post_id, 'help_text_content', true)
+	'feedbacks'        => Smart_Mockups_Setup::get_feedbacks( $post_id ),
+	'discussion'       => Smart_Mockups_Setup::get_discussion( $post_id ),
+    'approval'         => Smart_Mockups_Setup::get_approval_signature( $post_id ),
+    'help_text'        => Smart_Mockups_Setup::get_help_text( $post_id )
 );
 
 if ( $mockup_data['mockup_id'] )

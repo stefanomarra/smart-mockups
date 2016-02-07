@@ -163,6 +163,36 @@ class Smart_Mockups_Admin {
 	}
 
 	/**
+	 * Set plugin custom columns
+	 *
+	 * @since 1.0.0
+	 */
+	public function set_posttype_columns( $columns ) {
+		$columns['approved'] = __( 'Approved', SMART_MOCKUPS_DOMAIN );
+
+		return $columns;
+	}
+
+	/**
+	 * Plugin custom column handler
+	 *
+	 * @since 1.0.0
+	 */
+	public function posttype_column( $column, $post_id ) {
+
+		switch ($column) {
+			case 'approved':
+				$approval_signature =  Smart_Mockups_Setup::get_approval_signature( $post_id );
+
+				if ( is_array( $approval_signature ) )
+					echo 'Approved by ' . $approval_signature['signature'] . '<br />' . '<abbr>' . $approval_signature['time'] . '</abbr>';
+
+				break;
+		}
+
+	}
+
+	/**
 	 * Save plugin custom post meta
 	 *
 	 * @since 1.0.0

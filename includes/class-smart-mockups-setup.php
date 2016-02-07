@@ -241,6 +241,42 @@ class Smart_Mockups_Setup {
 	}
 
 	/**
+	 * Get post feedbacks
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_feedbacks( $post_id ) {
+		return get_post_meta( $post_id, '_feedbacks', true);
+	}
+
+	/**
+	 * Get post discussion
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_discussion( $post_id ) {
+		return get_post_meta( $post_id, '_discussion', true);
+	}
+
+	/**
+	 * Get post approval signature
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_approval_signature( $post_id ) {
+		return get_post_meta( $post_id, '_approval', true);
+	}
+
+	/**
+	 * Get post help text content
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_help_text( $post_id ) {
+		return get_post_meta( $post_id, 'help_text_content', true);
+	}
+
+	/**
 	 * Register default settings tab
 	 *
 	 * @since 1.0.0
