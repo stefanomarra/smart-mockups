@@ -183,7 +183,11 @@ class Smart_Mockups {
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'define_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'save_post_meta');
 
-		// Hooks
+		// Set Post Type Columns
+		$this->loader->add_filter( 'manage_' . SMART_MOCKUPS_POSTTYPE . '_posts_columns', $plugin_admin, 'set_posttype_columns' );
+		$this->loader->add_action( 'manage_' . SMART_MOCKUPS_POSTTYPE . '_posts_custom_column', $plugin_admin, 'posttype_column', 10, 2 );
+
+		// Plugin Hooks
 		$this->loader->add_action( 'smartmockups_before_render_meta_fields', $plugin_admin, 'display_approval_status' );
 	}
 
@@ -228,6 +232,8 @@ class Smart_Mockups {
         $this->loader->add_action( 'wp_ajax_smart_mockups_save_approval', $plugin_public, 'save_approval_signature_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_smart_mockups_save_approval', $plugin_public, 'save_approval_signature_ajax' );
 
+        // Plugin Hooks
+		$this->loader->add_action( 'smartmockups_discussion', $plugin_public, 'get_discussion' );
 	}
 
 	/**

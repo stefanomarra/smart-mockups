@@ -35,3 +35,6 @@
   .smart-mockups-meta-box-wrapper .mockup-status.approved {
     color: #FFF;
     background-color: #34B947; }
+
+.widefat .column-approved {
+  width: 20%; }

@@ -41,6 +41,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'media',
 								'name'        => __('Mockup Image', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
+								'default' 	  => '',
 								'placeholder' => '',
 								'description' => __('Upload or select the mockup image', SMART_MOCKUPS_DOMAIN)
 							),
@@ -48,6 +49,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Feedbacks', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
+								'default' 	  => '',
 								'placeholder' => '',
 								'description' => __('Enable the point and click feedback', SMART_MOCKUPS_DOMAIN)
 							),
@@ -55,6 +57,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Discussion', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
+								'default' 	  => '',
 								'placeholder' => '',
 								'description' => __('Enable the discussion panel on the side', SMART_MOCKUPS_DOMAIN)
 							),
@@ -62,6 +65,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Enable Approval', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
+								'default' 	  => '',
 								'placeholder' => '',
 								'description' => __('Enable the user to approve the mockup with a digital signature', SMART_MOCKUPS_DOMAIN)
 							),
@@ -69,6 +73,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Enable Help Text', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
+								'default' 	  => '',
 								'placeholder' => '',
 								'description' => ''
 							),
@@ -76,9 +81,26 @@ class Smart_Mockups_Setup {
 								'type'        => 'textarea',
 								'name'        => __('Help Text', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
+								'default' 	  => '',
 								'placeholder' => '',
 								'description' => '',
 								'require' 	  => 'help_text_enabled'
+							),
+						'color_background' 	=> array(
+								'type'        => 'colorpicker',
+								'name'        => __('Background Color', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'default' 	  => '#6B7A90',
+								'placeholder' => '',
+								'description' => ''
+							),
+						'color_feedback_dot' 	=> array(
+								'type'        => 'colorpicker',
+								'name'        => __('Dots Color', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'default' 	  => '#FF6160',
+								'placeholder' => '',
+								'description' => ''
 							)
 					)
 			)
@@ -101,6 +123,9 @@ class Smart_Mockups_Setup {
 			case 'textarea':
 				self::render_form_field_textarea( $id, $attr );
 				break;
+			case 'colorpicker':
+				self::render_form_field_colorpicker( $id, $attr );
+				break;
 			case 'text':
 			default:
 				self::render_form_field_text( $id, $attr );
@@ -119,6 +144,8 @@ class Smart_Mockups_Setup {
 		$url = '';
 		if ( $value )
 			$url = wp_get_attachment_url( $value );
+		else
+			$value = $attr['default'];
 
 		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
 
@@ -156,6 +183,8 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		if ( ! $value ) $value = $attr['default'];
+
 		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
 
 		$html = '';
@@ -183,6 +212,8 @@ class Smart_Mockups_Setup {
 	public static function render_form_field_text( $id, $attr) {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
+
+		if ( ! $value ) $value = $attr['default'];
 
 		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
 
@@ -213,6 +244,8 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
+		if ( ! $value ) $value = $attr['default'];
+
 		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
 
 		$html = '';
@@ -238,6 +271,99 @@ class Smart_Mockups_Setup {
 		$html .= '</tr>';
 
 		echo $html;
+	}
+
+	/**
+	 * Render form field colorpicker
+	 *
+	 * @since 1.0.0
+	 */
+	public static function render_form_field_colorpicker( $id, $attr) {
+
+		$value = get_post_meta( get_the_ID(), $id, true );
+
+		if ( ! $value ) $value = $attr['default'];
+
+		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
+
+		$html = '';
+		$html .= '<tr valign"top" class="tr-' . $attr['class'] . '" ' . $require . '>';
+		$html .= '	<th>';
+		$html .= '		<div class="field_th">' . $attr['name'] . '</div>';
+		$html .= '		<div class="field_desc">' . $attr['description'] . '</div>';
+		$html .= '	</th>';
+
+		$html .= '	<td>';
+		$html .= '		<label>';
+		$html .= '			<input type="text" name="' . $id . '" class="wp-color-picker ' . $attr['class'] . '" id="' . $id . '" value="' . $value . '" data-default-color="' . $attr['default'] . '" /> ';
+		$html .= '		</label>';
+
+		$html .= '	</td>';
+		$html .= '</tr>';
+
+		echo $html;
+	}
+
+	/**
+	 * Get post feedbacks
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_mockup( $post_id ) {
+		$mockup = array(
+			'id'  => get_post_meta( $post_id, 'mockup_image_id', true),
+			'url' => ''
+		);
+
+		if ( $mockup['id'] ) {
+			$mockup['url'] = wp_get_attachment_url( $mockup['id'] );
+		}
+
+		return apply_filters( 'smartmockups_mockup', $mockup );
+	}
+
+	/**
+	 * Get post feedbacks
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_feedbacks( $post_id ) {
+		$feedbacks = get_post_meta( $post_id, '_feedbacks', true);
+
+		return apply_filters( 'smartmockups_feedbacks', $feedbacks );
+	}
+
+	/**
+	 * Get post discussion
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_discussion( $post_id ) {
+		$discussion = get_post_meta( $post_id, '_discussion', true);
+
+		return apply_filters( 'smartmockups_discussion', $discussion );
+	}
+
+	/**
+	 * Get post approval signature
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_approval_signature( $post_id ) {
+		$approval_signature = get_post_meta( $post_id, '_approval', true);
+
+		return apply_filters( 'smartmockups_approval_signature', $approval_signature );
+	}
+
+	/**
+	 * Get post help text content
+	 *
+	 * @since 1.0.0
+	 */
+	public static function get_help_text( $post_id ) {
+		$help_text = get_post_meta( $post_id, 'help_text_content', true);
+
+		return apply_filters( 'smartmockups_help_text', $help_text );
 	}
 
 	/**
