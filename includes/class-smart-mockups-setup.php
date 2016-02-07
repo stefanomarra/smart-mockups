@@ -246,7 +246,9 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
 	public static function get_feedbacks( $post_id ) {
-		return get_post_meta( $post_id, '_feedbacks', true);
+		$feedbacks = get_post_meta( $post_id, '_feedbacks', true);
+
+		return apply_filters( 'smartmockups_feedbacks', $feedbacks );
 	}
 
 	/**
@@ -255,7 +257,9 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
 	public static function get_discussion( $post_id ) {
-		return get_post_meta( $post_id, '_discussion', true);
+		$discussion = get_post_meta( $post_id, '_discussion', true);
+
+		return apply_filters( 'smartmockups_discussion', $discussion );
 	}
 
 	/**
@@ -264,7 +268,9 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
 	public static function get_approval_signature( $post_id ) {
-		return get_post_meta( $post_id, '_approval', true);
+		$approval_signature = get_post_meta( $post_id, '_approval', true);
+
+		return apply_filters( 'smartmockups_approval_signature', $approval_signature );
 	}
 
 	/**
@@ -273,7 +279,9 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
 	public static function get_help_text( $post_id ) {
-		return get_post_meta( $post_id, 'help_text_content', true);
+		$help_text = get_post_meta( $post_id, 'help_text_content', true);
+
+		return apply_filters( 'smartmockups_help_text', $help_text );
 	}
 
 	/**
