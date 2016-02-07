@@ -9,7 +9,6 @@
  * @subpackage Smart_Mockups/public/templates
  */
 
-
 $post_id = get_the_ID();
 
 $mockup_data = array(
@@ -25,7 +24,12 @@ $mockup_data = array(
 	'feedbacks'        => Smart_Mockups_Setup::get_feedbacks( $post_id ),
 	'discussion'       => Smart_Mockups_Setup::get_discussion( $post_id ),
     'approval'         => Smart_Mockups_Setup::get_approval_signature( $post_id ),
-    'help_text'        => Smart_Mockups_Setup::get_help_text( $post_id )
+    'help_text'        => Smart_Mockups_Setup::get_help_text( $post_id ),
+
+    'customization'    => array(
+            'feedback_dot_color' => get_post_meta( $post_id, 'color_feedback_dot', true ),
+            'background_color' => get_post_meta( $post_id, 'color_background', true )
+        )
 );
 
 if ( ! $mockup_data['settings']['feedbacks_enabled'] ) {
@@ -74,6 +78,10 @@ else {
         <!-- Stylesheets -->
         <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ) ?>../css/min/smart-mockups-public.css">
 
+        <style type="text/css">
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot { background-color: <?php echo $mockup_data['customization']['feedback_dot_color']; ?>; }
+            body { background-color: <?php echo $mockup_data['customization']['background_color']; ?>; }
+        </style>
 
         <script type="text/javascript">
             var ajax_url = '<?php echo admin_url( "admin-ajax.php" );?>';
