@@ -245,6 +245,24 @@ class Smart_Mockups_Setup {
 	 *
 	 * @since 1.0.0
 	 */
+	public static function get_mockup( $post_id ) {
+		$mockup = array(
+			'id'  => get_post_meta( $post_id, 'mockup_image_id', true),
+			'url' => ''
+		);
+
+		if ( $mockup['id'] ) {
+			$mockup['url'] = wp_get_attachment_url( $mockup['id'] );
+		}
+
+		return apply_filters( 'smartmockups_mockup', $mockup );
+	}
+
+	/**
+	 * Get post feedbacks
+	 *
+	 * @since 1.0.0
+	 */
 	public static function get_feedbacks( $post_id ) {
 		$feedbacks = get_post_meta( $post_id, '_feedbacks', true);
 

@@ -13,8 +13,7 @@
 $post_id = get_the_ID();
 
 $mockup_data = array(
-	'mockup_id'  => get_post_meta( $post_id, 'mockup_image_id', true ),
-	'mockup_url' => '',
+	'mockup'  => Smart_Mockups_Setup::get_mockup( $post_id ),
 	'settings'   => array(
 			'credits'            => get_option('smartmockups_credits', 1),
 			'feedbacks_enabled'  => get_post_meta( $post_id, 'feedbacks_enabled', true ),
@@ -28,17 +27,6 @@ $mockup_data = array(
     'approval'         => Smart_Mockups_Setup::get_approval_signature( $post_id ),
     'help_text'        => Smart_Mockups_Setup::get_help_text( $post_id )
 );
-
-if ( $mockup_data['mockup_id'] )
-	$mockup_data['mockup_url'] = wp_get_attachment_url( $mockup_data['mockup_id'] );
-
-if ( ! is_array( $mockup_data['discussion'] ) ) {
-    $mockup_data['discussion'] = array('comments' => '');
-}
-else {
-    $mockup_data['discussion']['comments'] = join('', $mockup_data['discussion']['comments']);
-}
-
 
 if ( ! $mockup_data['settings']['feedbacks_enabled'] ) {
 	$mockup_data['viewport_classes'][] = 'feedbacks-disabled';
@@ -129,7 +117,7 @@ else {
 
     		<?php /* Mockup */ ?>
     		<main class="sr-mockup-wrapper">
-    			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $mockup_data['mockup_url']; ?>"></div>
+    			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $mockup_data['mockup']['url']; ?>"></div>
     			<div class="sr-mockup-dots"></div>
 	    		<div class="sr-mockup-discussion">
                     <h3 class="discussion-title">Mockup Discussion</h3>
