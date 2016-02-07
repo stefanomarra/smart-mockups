@@ -250,7 +250,7 @@ body {
         min-height: 20px;
         padding-top: 30px;
         background-color: #FFF;
-        box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.4); }
+        box-shadow: 0 2px 10px -1px rgba(0, 0, 0, 0.5); }
         #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content:before, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content:after {
           content: "";
           position: absolute;
