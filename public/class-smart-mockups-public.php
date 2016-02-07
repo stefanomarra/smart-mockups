@@ -447,6 +447,20 @@ class Smart_Mockups_Public {
 	}
 
 	/**
+	 * Filter post discussion
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_discussion( $discussion ) {
+		if ( ! is_array( $discussion ) ) {
+			return array( 'comments' => '' );
+		}
+		else {
+			return array( 'comments' => join( '', $discussion['comments'] ) );
+		}
+	}
+
+	/**
 	 * Register the function that overrides the single template layout
 	 *
 	 * @since    1.0.0
