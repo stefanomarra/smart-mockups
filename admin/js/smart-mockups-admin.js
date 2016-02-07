@@ -24,6 +24,9 @@
 		checkRequire();
 		$( 'body' ).on('change', 'input, select', checkRequire);
 
+		// Initialize wp color picker
+		$( '.wp-color-picker' ).wpColorPicker();
+
 		// Instantiates the variable that holds the media library frame.
 		var media_frame;
 

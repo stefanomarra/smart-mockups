@@ -70,6 +70,7 @@ class Smart_Mockups_Admin {
 		 * class.
 		 */
 
+		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-mockups-admin.css', array(), $this->version, 'all' );
 
 	}
@@ -92,7 +93,7 @@ class Smart_Mockups_Admin {
 		 */
 
 		wp_enqueue_media();
-		wp_enqueue_script( $this->plugin_name . '-admin', plugin_dir_url( __FILE__ ) . 'js/smart-mockups-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . '-admin', plugin_dir_url( __FILE__ ) . 'js/smart-mockups-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
 
 	}
 
