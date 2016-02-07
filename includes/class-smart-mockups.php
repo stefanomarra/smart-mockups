@@ -187,6 +187,9 @@ class Smart_Mockups {
 		$this->loader->add_filter( 'manage_' . SMART_MOCKUPS_POSTTYPE . '_posts_columns', $plugin_admin, 'set_posttype_columns' );
 		$this->loader->add_action( 'manage_' . SMART_MOCKUPS_POSTTYPE . '_posts_custom_column', $plugin_admin, 'posttype_column', 10, 2 );
 
+		// Set Post Type Row Actions
+		$this->loader->add_filter( 'post_row_actions', $plugin_admin, 'set_posttype_row_actions', 10, 2 );
+
 		// Plugin Hooks
 		$this->loader->add_action( 'smartmockups_before_render_meta_fields', $plugin_admin, 'display_approval_status' );
 	}
