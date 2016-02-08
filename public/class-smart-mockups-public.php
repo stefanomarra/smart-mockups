@@ -455,9 +455,25 @@ class Smart_Mockups_Public {
 		if ( ! is_array( $discussion ) ) {
 			return array( 'comments' => '' );
 		}
-		else {
+		else if ( isset( $discussion['comments'] ) ) {
 			return array( 'comments' => join( '', $discussion['comments'] ) );
 		}
+		else {
+			return array( 'comments' => '' );
+		}
+	}
+
+	/**
+	 * Filter post feedbacks
+	 *
+	 * @since 1.0.0
+	 */
+	public function get_feedbacks( $feedbacks ) {
+		if ( ! is_array( $feedbacks ) ) {
+			return array();
+		}
+
+		return $feedbacks;
 	}
 
 	/**
