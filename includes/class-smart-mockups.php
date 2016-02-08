@@ -236,6 +236,7 @@ class Smart_Mockups {
         $this->loader->add_action( 'wp_ajax_nopriv_smart_mockups_save_approval', $plugin_public, 'save_approval_signature_ajax' );
 
         // Plugin Hooks
+		$this->loader->add_action( 'smartmockups_feedbacks', $plugin_public, 'get_feedbacks' );
 		$this->loader->add_action( 'smartmockups_discussion', $plugin_public, 'get_discussion' );
 	}
 
