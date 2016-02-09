@@ -42,8 +42,14 @@ body {
     left: 0;
     right: 0;
     width: 100%;
+    height: 48px;
     box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
     background-color: #FFF; }
+    #sr-mockup-viewport header#sr-header .sm-mockup-title {
+      margin: 16px;
+      font-size: 20px;
+      font-weight: 500;
+      text-transform: uppercase; }
     #sr-mockup-viewport header#sr-header .sr-nav .sr-navbar {
       float: left; }
       #sr-mockup-viewport header#sr-header .sr-nav .sr-navbar:before {
@@ -195,6 +201,11 @@ body {
     font-weight: 100;
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.3); }
+    #sr-mockup-viewport footer#sr-footer .sm-credits a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none; }
+      #sr-mockup-viewport footer#sr-footer .sm-credits a:hover {
+        color: rgba(255, 255, 255, 0.8); }
   #sr-mockup-viewport main.sr-mockup-wrapper {
     position: relative;
     display: inline-block;

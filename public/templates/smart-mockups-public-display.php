@@ -113,7 +113,10 @@ else {
     		<?php /* Header */ ?>
     		<header id="sr-header">
     			<nav class="sr-nav">
-    				<ul class="sr-navbar sr-navbar-right">
+    				<ul class="sr-navbar">
+                        <h1 class="sm-mockup-title"><?php the_title(); ?></h1>
+                    </ul>
+                    <ul class="sr-navbar sr-navbar-right">
     					<li class="active" data-tip="Show/Hide Feedbacks"><a class="sr-toggle-feedbacks" href="#"><i class="fa fa-eye-slash"></i></a></li>
     					<?php if ( $mockup_data['settings']['discussion_enabled'] ) : ?><li data-tip="Show/Hide Discussion Panel"><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
                         <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li data-tip="Need Help?"><a class="sr-mockup-help-text" href="#sr-modal-help-text" rel="modal:open"><i class="fa fa-question"></i></a></li><?php endif; ?>
@@ -141,11 +144,10 @@ else {
                 </div>
     		</main>
 
-
     		<?php /* Footer */ ?>
     		<footer id="sr-footer">
     			<?php if ( $mockup_data['settings']['credits'] ) : ?>
-    				<div>Made with Smart Mockups</div>
+    				<div class="sm-credits">Made with <a href="https://wordpress.org/plugins/smart-mockups/" target="_blank">Smart Mockups</a></div>
     			<?php endif; ?>
     		</footer>
 

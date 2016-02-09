@@ -58,7 +58,6 @@ class Smart_Mockups_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-mockups-public.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -68,7 +67,6 @@ class Smart_Mockups_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smart-mockups-public.js', array( 'jquery' ), $this->version, false );
 	}
 
 	/**
