@@ -13,9 +13,6 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
  * @package    Smart_Mockups
  * @subpackage Smart_Mockups/public
  * @author     Stefano <stefano.marra1987@gmail.com>
@@ -61,20 +58,7 @@ class Smart_Mockups_Public {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Mockups_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Smart_Mockups_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-mockups-public.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -84,25 +68,11 @@ class Smart_Mockups_Public {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Mockups_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Smart_Mockups_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/smart-mockups-public.js', array( 'jquery' ), $this->version, false );
-
 	}
 
 	/**
-	 * Save approval signature
-	 * from the public-facing side of the site
+	 * Save approval signature from the public-facing side of the site
 	 *
 	 * @since 1.0.0
 	 */
@@ -145,8 +115,7 @@ class Smart_Mockups_Public {
 
 
 	/**
-	 * Save a new discussion comment
-	 * from the public-facing side of the site
+	 * Save a new discussion comment from the public-facing side of the site
 	 *
 	 * @since 1.0.0
 	 */
@@ -182,7 +151,7 @@ class Smart_Mockups_Public {
 			);
 		}
 
-		// add new comment
+		// Add new comment
 		$discussion['comments'][] = $comment['comment'];
 
 		// Update post discussion
@@ -192,8 +161,7 @@ class Smart_Mockups_Public {
 	}
 
 	/**
-	 * This function handles ajax requests that saves a new feedback
-	 * from the public-facing side of the site
+	 * This function handles ajax requests that saves a new feedback from the front-end
 	 *
 	 * @since 1.0.0
 	 */

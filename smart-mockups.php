@@ -21,16 +21,13 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-
 define( 'SMART_MOCKUPS_DOMAIN'			, 'smart-mockups' );
 define( 'SMART_MOCKUPS_DIR'				, plugin_dir_path( __FILE__ ) );
 define( 'SMART_MOCKUPS_URL'				, plugin_dir_url( __FILE__ ) );
 define( 'SMART_MOCKUPS_POSTTYPE'		, 'smart_mockup' );
 
-
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-smart-mockups-activator.php
  */
 function activate_smart_mockups() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-smart-mockups-activator.php';
@@ -39,7 +36,6 @@ function activate_smart_mockups() {
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-smart-mockups-deactivator.php
  */
 function deactivate_smart_mockups() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-smart-mockups-deactivator.php';
@@ -50,17 +46,12 @@ register_activation_hook( __FILE__, 'activate_smart_mockups' );
 register_deactivation_hook( __FILE__, 'deactivate_smart_mockups' );
 
 /**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
+ * The core plugin class
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-smart-mockups.php';
 
 /**
  * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks,
- * then kicking off the plugin from this point in the file does
- * not affect the page life cycle.
  *
  * @since    1.0.0
  */
