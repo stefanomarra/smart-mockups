@@ -145,7 +145,7 @@ else {
     		<?php /* Footer */ ?>
     		<footer id="sr-footer">
     			<?php if ( $mockup_data['settings']['credits'] ) : ?>
-    				<div>Made with Smart Mockups</div>
+    				<div class="sm-credits">Made with <a href="https://wordpress.org/plugins/smart-mockups/" target="_blank">Smart Mockups</a></div>
     			<?php endif; ?>
     		</footer>
 

@@ -195,6 +195,11 @@ body {
     font-weight: 100;
     letter-spacing: 0.5px;
     color: rgba(255, 255, 255, 0.3); }
+    #sr-mockup-viewport footer#sr-footer .sm-credits a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none; }
+      #sr-mockup-viewport footer#sr-footer .sm-credits a:hover {
+        color: rgba(255, 255, 255, 0.8); }
   #sr-mockup-viewport main.sr-mockup-wrapper {
     position: relative;
     display: inline-block;
