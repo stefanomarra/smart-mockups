@@ -13,9 +13,6 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the admin-specific stylesheet and JavaScript.
- *
  * @package    Smart_Mockups
  * @subpackage Smart_Mockups/admin
  * @author     Stefano <stefano.marra1987@gmail.com>
@@ -60,19 +57,8 @@ class Smart_Mockups_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Mockups_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Smart_Mockups_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/min/smart-mockups-admin.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -82,19 +68,8 @@ class Smart_Mockups_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * An instance of this class should be passed to the run() function
-		 * defined in Smart_Mockups_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Smart_Mockups_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_media();
 		wp_enqueue_script( $this->plugin_name . '-admin', plugin_dir_url( __FILE__ ) . 'js/smart-mockups-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false );
-
 	}
 
 	/**

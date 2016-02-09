@@ -3,9 +3,6 @@
 /**
  * The file that defines the core plugin class
  *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
- *
  * @link       http://www.stefanomarra.com
  * @since      1.0.0
  *
@@ -15,12 +12,6 @@
 
 /**
  * The core plugin class.
- *
- * This is used to define internationalization, admin-specific hooks, and
- * public-facing site hooks.
- *
- * Also maintains the unique identifier of this plugin as well as the current
- * version of the plugin.
  *
  * @since      1.0.0
  * @package    Smart_Mockups
@@ -60,10 +51,6 @@ class Smart_Mockups {
 	/**
 	 * Define the core functionality of the plugin.
 	 *
-	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
-	 * the public-facing side of the site.
-	 *
 	 * @since    1.0.0
 	 */
 	public function __construct() {
@@ -81,13 +68,6 @@ class Smart_Mockups {
 
 	/**
 	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - Smart_Mockups_Loader. Orchestrates the hooks of the plugin.
-	 * - Smart_Mockups_i18n. Defines internationalization functionality.
-	 * - Smart_Mockups_Admin. Defines all hooks for the admin area.
-	 * - Smart_Mockups_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -133,9 +113,6 @@ class Smart_Mockups {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Smart_Mockups_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
@@ -165,8 +142,7 @@ class Smart_Mockups {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
+	 * Register all of the hooks related to the admin area functionality of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -195,8 +171,7 @@ class Smart_Mockups {
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
+	 * Register all of the hooks related to the public-facing functionality of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private

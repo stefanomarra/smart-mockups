@@ -13,8 +13,6 @@
 /**
  * Fired during plugin activation.
  *
- * This class defines all code necessary to run during the plugin's activation.
- *
  * @since      1.0.0
  * @package    Smart_Mockups
  * @subpackage Smart_Mockups/includes
@@ -23,9 +21,7 @@
 class Smart_Mockups_Activator {
 
 	/**
-	 * Short Description. (use period)
-	 *
-	 * Long Description.
+	 * Activation
 	 *
 	 * @since    1.0.0
 	 */
