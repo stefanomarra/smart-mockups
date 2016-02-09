@@ -12,6 +12,9 @@
 $post_id = get_the_ID();
 
 $mockup_data = array(
+    'settings'   => array(
+            'credits'            => get_option('smartmockups_credits', 1)
+        ),
     'customization'    => array(
             'background_color'   => get_post_meta( $post_id, 'color_background', true )
         )
@@ -43,8 +46,18 @@ $mockup_data = array(
 
     </head>
     <body>
-	    <div id="sr-password-form-wrapper">
-	    	<?php echo get_the_password_form(); ?>
-    	</div>
+        <div id="sr-mockup-viewport">
+            <?php /* Password Form */ ?>
+    	    <div id="sr-password-form-wrapper">
+    	    	<?php echo get_the_password_form(); ?>
+        	</div>
+
+            <?php /* Footer */ ?>
+            <footer id="sr-footer">
+                <?php if ( $mockup_data['settings']['credits'] ) : ?>
+                    <div class="sm-credits">Made with <a href="https://wordpress.org/plugins/smart-mockups/" target="_blank">Smart Mockups</a></div>
+                <?php endif; ?>
+            </footer>
+        </div>
     </body>
 </html>

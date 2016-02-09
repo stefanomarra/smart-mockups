@@ -141,7 +141,6 @@ else {
                 </div>
     		</main>
 
-
     		<?php /* Footer */ ?>
     		<footer id="sr-footer">
     			<?php if ( $mockup_data['settings']['credits'] ) : ?>
