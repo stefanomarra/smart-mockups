@@ -1,123 +1,122 @@
-# Copyright (C) 2016 Stefano Marra
-# This file is distributed under the same license as the Smart Mockups package.
 msgid ""
 msgstr ""
 "Project-Id-Version: Smart Mockups\n"
 "POT-Creation-Date: 2016-02-10 16:26+0100\n"
-"PO-Revision-Date: 2016-02-10 17:20+0100\n"
+"PO-Revision-Date: 2016-02-10 16:47+0100\n"
 "Last-Translator: Stefano Marra <stefano.marra1987@gmail.com>\n"
 "Language-Team: Stefano Marra <stefano.marra1987@gmail.com>\n"
+"Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
+"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language: en_US\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: admin/class-smart-mockups-admin.php:161
 msgid "Approved"
-msgstr ""
+msgstr "﻿Approvato"
 
 #: admin/templates/settings-general.php:16
 msgid "Custom Slug"
-msgstr ""
+msgstr "﻿URL Slug Personalizzato"
 
 #: admin/templates/settings-general.php:26
 msgid "Show Credits"
-msgstr ""
+msgstr "﻿Visualizza Crediti"
 
 #: includes/class-smart-mockups-setup.php:24
 msgid "Smart Mockups"
-msgstr ""
+msgstr "Smart Mockups"
 
 #: includes/class-smart-mockups-setup.php:25
 msgid "Mockup"
-msgstr ""
+msgstr "﻿Mockup"
 
 #: includes/class-smart-mockups-setup.php:26
 msgid "All Mockups"
-msgstr ""
+msgstr "﻿Tutti i Mockup"
 
 #: includes/class-smart-mockups-setup.php:27
 msgid "New Mockup"
-msgstr ""
+msgstr "﻿Nuovo Mockup"
 
 #: includes/class-smart-mockups-setup.php:28
 msgid "Add New"
-msgstr ""
+msgstr "﻿Aggiungi Nuovo"
 
 #: includes/class-smart-mockups-setup.php:29
 msgid "Add New Mockup"
-msgstr ""
+msgstr "﻿Aggiungi Nuovo Mockup"
 
 #: includes/class-smart-mockups-setup.php:30
 msgid "Edit Mockup"
-msgstr ""
+msgstr "Modifica Mockup"
 
 #: includes/class-smart-mockups-setup.php:31
 msgid "View Mockup"
-msgstr ""
+msgstr "﻿Visualizza Mockup"
 
 #: includes/class-smart-mockups-setup.php:32
 msgid "Search Mockups"
-msgstr ""
+msgstr "﻿Cerca Mockup"
 
 #: includes/class-smart-mockups-setup.php:42
 msgid "Mockup Image"
-msgstr ""
+msgstr "Immagine di Mockup"
 
 #: includes/class-smart-mockups-setup.php:46
 msgid "Upload or select the mockup image"
-msgstr ""
+msgstr "﻿Caricare o selezionare l'immagine di mockup"
 
 #: includes/class-smart-mockups-setup.php:50
 msgid "Allow Feedbacks"
-msgstr ""
+msgstr "Abilita Feedbacks"
 
 #: includes/class-smart-mockups-setup.php:54
 msgid "Enable the point and click feedback"
-msgstr ""
+msgstr "Abilita la funziona point and click feedback"
 
 #: includes/class-smart-mockups-setup.php:58
 msgid "Allow Discussion"
-msgstr ""
+msgstr "Abilita Discussione"
 
 #: includes/class-smart-mockups-setup.php:62
 msgid "Enable the discussion panel on the side"
-msgstr ""
+msgstr "Abilita il pannello di discussione laterale"
 
 #: includes/class-smart-mockups-setup.php:66
 msgid "Enable Approval"
-msgstr ""
+msgstr "Abilita Approvazione"
 
 #: includes/class-smart-mockups-setup.php:70
 msgid "Enable the user to approve the mockup with a digital signature"
-msgstr ""
+msgstr "Abilita l'utente di approvare il mockup con una firma digitale"
 
 #: includes/class-smart-mockups-setup.php:74
 msgid "Enable Help Text"
-msgstr ""
+msgstr "Abilita Testo di Aiuto"
 
 #: includes/class-smart-mockups-setup.php:82
 msgid "Help Text"
-msgstr ""
+msgstr "Testo di Aiuto"
 
 #: includes/class-smart-mockups-setup.php:91
 msgid "Background Color"
-msgstr ""
+msgstr "﻿Colore dello Sfondo"
 
 #: includes/class-smart-mockups-setup.php:99
 msgid "Dots Color"
-msgstr ""
+msgstr "Colore dei Punti"
 
 #: public/class-smart-mockups-public.php:407
 msgid "Password:"
-msgstr ""
+msgstr "﻿Password:"
 
 #: public/class-smart-mockups-public.php:409
 msgid "Submit"
-msgstr ""
+msgstr "﻿Invia"
