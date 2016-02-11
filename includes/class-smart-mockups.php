@@ -56,7 +56,7 @@ class Smart_Mockups {
 	public function __construct() {
 
 		$this->plugin_name = 'smart-mockups';
-		$this->version = '1.0.1';
+		$this->version = SMART_MOCKUPS_VERSION;
 
 		$this->load_dependencies();
 		$this->set_locale();
