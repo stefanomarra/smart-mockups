@@ -117,11 +117,11 @@ else {
                         <h1 class="sm-mockup-title"><?php the_title(); ?></h1>
                     </ul>
                     <ul class="sr-navbar sr-navbar-right">
-    					<li class="active" data-tip="Show/Hide Feedbacks"><a class="sr-toggle-feedbacks" href="#"><i class="fa fa-eye-slash"></i></a></li>
-    					<?php if ( $mockup_data['settings']['discussion_enabled'] ) : ?><li data-tip="Show/Hide Discussion Panel"><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
-                        <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li data-tip="Need Help?"><a class="sr-mockup-help-text" href="#sr-modal-help-text" rel="modal:open"><i class="fa fa-question"></i></a></li><?php endif; ?>
-    					<?php if ( $mockup_data['settings']['approval_enabled'] ) : ?><li data-tip="Approve this Mockup"><a class="sr-mockup-approval" href="#sr-modal-approval" rel="modal:open"><i class="fa fa-check"></i> Approve</a></li><?php endif; ?>
-                        <?php if ( is_array( $mockup_data['approval'] ) ) : ?><li><span class="sr-mockup-approved">Mockup Approved <small>by <?php echo $mockup_data['approval']['signature']; ?></small></span></li><?php endif; ?>
+    					<li class="active" data-tip="<?php _e( 'Show/Hide Feedbacks', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-toggle-feedbacks" href="#"><i class="fa fa-eye-slash"></i></a></li>
+    					<?php if ( $mockup_data['settings']['discussion_enabled'] ) : ?><li data-tip="<?php _e( 'Show/Hide Discussion Panel', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
+                        <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li data-tip="<?php _e( 'Need Help?', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-mockup-help-text" href="#sr-modal-help-text" rel="modal:open"><i class="fa fa-question"></i></a></li><?php endif; ?>
+    					<?php if ( $mockup_data['settings']['approval_enabled'] ) : ?><li data-tip="<?php _e( 'Approve this Mockup', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-mockup-approval" href="#sr-modal-approval" rel="modal:open"><i class="fa fa-check"></i> <?php _e( 'Approve', SMART_MOCKUPS_DOMAIN ); ?></a></li><?php endif; ?>
+                        <?php if ( is_array( $mockup_data['approval'] ) ) : ?><li><span class="sr-mockup-approved"><?php _e('Mockup Approved', SMART_MOCKUPS_DOMAIN ); ?> <small><?php _e('by', SMART_MOCKUPS_DOMAIN ); ?> <?php echo $mockup_data['approval']['signature']; ?></small></span></li><?php endif; ?>
     				</ul>
     			</nav>
     		</header>
@@ -131,14 +131,14 @@ else {
     			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $mockup_data['mockup']['url']; ?>"></div>
     			<div class="sr-mockup-dots"></div>
 	    		<div class="sr-mockup-discussion">
-                    <h3 class="discussion-title">Mockup Discussion</h3>
+                    <h3 class="discussion-title"><?php _e('Mockup Discussion', SMART_MOCKUPS_DOMAIN ); ?></h3>
                     <ul class="discussion-comment-list"><?php echo $mockup_data['discussion']['comments']; ?></ul>
                     <form class="discussion-comment-form">
                         <p class="discussion-field-wrapper">
-                            <textarea placeholder="Write a comment..." class="discussion-field-comment" name="discussion"></textarea>
+                            <textarea placeholder="<?php _e('Write a comment...', SMART_MOCKUPS_DOMAIN ); ?>" class="discussion-field-comment" name="discussion"></textarea>
                         </p>
                         <p class="discussion-field-wrapper-submit">
-                            <input type="submit" class="discussion-field-submit" value="Post this Comment">
+                            <input type="submit" class="discussion-field-submit" value="<?php _e( 'Post this Comment', SMART_MOCKUPS_DOMAIN ); ?>">
                         </p>
                     </form>
                 </div>
@@ -173,10 +173,10 @@ else {
     					<ul class="feedback-comment-list"></ul>
     					<form class="feedback-comment-form">
     						<p class="feedback-field-wrapper">
-    							<textarea placeholder="Write a comment..." class="feedback-field-comment" name="feedback"></textarea>
+    							<textarea placeholder="<?php _e('Write a comment...', SMART_MOCKUPS_DOMAIN ); ?>" class="feedback-field-comment" name="feedback"></textarea>
     						</p>
     						<p class="feedback-field-wrapper-submit">
-    							<input type="submit" class="feedback-field-submit" value="Post this Comment">
+    							<input type="submit" class="feedback-field-submit" value="<?php _e( 'Post this Comment', SMART_MOCKUPS_DOMAIN ); ?>">
     						</p>
     					</form>
     				</div>
@@ -185,12 +185,12 @@ else {
 
             <?php /* Approval Modal */ ?>
             <div id="sr-modal-approval" class="sm-modal">
-                <h3 class="sr-approval-title">Approve this mockup</h3>
-                <p class="sr-approval-description">By entering the digital signature below, you approve the underneath mockup.</p>
+                <h3 class="sr-approval-title"><?php _e( 'Approve this mockup', SMART_MOCKUPS_DOMAIN ); ?></h3>
+                <p class="sr-approval-description"><?php _e( 'By entering the digital signature below, you approve the underneath mockup.', SMART_MOCKUPS_DOMAIN ); ?></p>
                 <form class="sr-approval-signature-form">
-                    <input class="sr-approval-signature-input" type="text" value="<?php echo is_array($mockup_data['approval'])?$mockup_data['approval']['signature']:'' ?>" placeholder="Digital Signature" />
-                    <input class="sr-approval-signature-submit" type="submit" name="submit" value="Approve" />
-                    <a class="sr-modal-close" href="#close-modal" rel="modal:close">Cancel</a>
+                    <input class="sr-approval-signature-input" type="text" value="<?php echo is_array($mockup_data['approval'])?$mockup_data['approval']['signature']:'' ?>" placeholder="<?php _e( 'Digital Signature', SMART_MOCKUPS_DOMAIN ); ?>" />
+                    <input class="sr-approval-signature-submit" type="submit" name="submit" value="<?php _e( 'Approve', SMART_MOCKUPS_DOMAIN ); ?>" />
+                    <a class="sr-modal-close" href="#close-modal" rel="modal:close"><?php _e( 'Cancel', SMART_MOCKUPS_DOMAIN ); ?></a>
                 </form>
             </div>
 
@@ -198,7 +198,7 @@ else {
             <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?>
                 <div id="sr-modal-help-text" class="sm-modal">
                     <div class="sr-modal-content"><?php echo $mockup_data['help_text']; ?></div>
-                    <a class="sr-modal-close" href="#close-modal" rel="modal:close">Close</a>
+                    <a class="sr-modal-close" href="#close-modal" rel="modal:close"><?php _e( 'Close', SMART_MOCKUPS_DOMAIN ); ?></a>
                 </div>
             <?php endif; ?>
 

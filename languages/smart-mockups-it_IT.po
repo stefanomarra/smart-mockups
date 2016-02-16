@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Smart Mockups\n"
-"POT-Creation-Date: 2016-02-10 16:26+0100\n"
-"PO-Revision-Date: 2016-02-10 16:47+0100\n"
+"POT-Creation-Date: 2016-02-16 11:39+0100\n"
+"PO-Revision-Date: 2016-02-16 11:43+0100\n"
 "Last-Translator: Stefano Marra <stefano.marra1987@gmail.com>\n"
 "Language-Team: Stefano Marra <stefano.marra1987@gmail.com>\n"
 "Language: it_IT\n"
@@ -12,10 +12,12 @@ msgstr ""
 "X-Generator: Poedit 1.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;"
-"esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
 
 #: admin/class-smart-mockups-admin.php:161
 msgid "Approved"
@@ -120,3 +122,66 @@ msgstr "﻿Password:"
 #: public/class-smart-mockups-public.php:409
 msgid "Submit"
 msgstr "﻿Invia"
+
+#: public/templates/smart-mockups-public-display.php:120
+msgid "Show/Hide Feedbacks"
+msgstr "Mostra/Nascondi Feedbacks"
+
+#: public/templates/smart-mockups-public-display.php:121
+msgid "Show/Hide Discussion Panel"
+msgstr "﻿Mostra/Nascondi Pannello Discussione"
+
+#: public/templates/smart-mockups-public-display.php:122
+msgid "Need Help?"
+msgstr "﻿Hai bisogno di aiuto?"
+
+#: public/templates/smart-mockups-public-display.php:123
+msgid "Approve this Mockup"
+msgstr "﻿Approva questo Mockup"
+
+#: public/templates/smart-mockups-public-display.php:124
+msgid "Mockup Approved"
+msgstr "Mockup ﻿Approvato"
+
+#: public/templates/smart-mockups-public-display.php:124
+msgid "by"
+msgstr "﻿da"
+
+#: public/templates/smart-mockups-public-display.php:134
+msgid "Mockup Discussion"
+msgstr "﻿Discussione Mockup"
+
+#: public/templates/smart-mockups-public-display.php:138
+#: public/templates/smart-mockups-public-display.php:176
+msgid "Write a comment..."
+msgstr "﻿Scrivi un commento..."
+
+#: public/templates/smart-mockups-public-display.php:141
+msgid "Post this Comment"
+msgstr "﻿Pubblica questo commento"
+
+#: public/templates/smart-mockups-public-display.php:188
+msgid "Approve this mockup"
+msgstr "﻿Approva questo mockup"
+
+#: public/templates/smart-mockups-public-display.php:189
+msgid ""
+"By entering the digital signature below, you approve the underneath mockup."
+msgstr ""
+"﻿Inserendo la firma digitale in basso, si approva il mockup sottostante."
+
+#: public/templates/smart-mockups-public-display.php:191
+msgid "Digital Signature"
+msgstr "﻿Firma Digitale"
+
+#: public/templates/smart-mockups-public-display.php:192
+msgid "Approve"
+msgstr "﻿Approva"
+
+#: public/templates/smart-mockups-public-display.php:193
+msgid "Cancel"
+msgstr "Cancella"
+
+#: public/templates/smart-mockups-public-display.php:201
+msgid "Close"
+msgstr "Chiudi"
