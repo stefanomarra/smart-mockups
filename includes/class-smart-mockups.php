@@ -190,6 +190,9 @@ class Smart_Mockups {
 		// Override Custom Post Type Slug
 		$this->loader->add_action( 'init', $plugin_public, 'override_slug' );
 
+		// Set User Color in Cookie
+		$this->loader->add_action( 'init', $plugin_public, 'setcookie_user_color' );
+
 		// Ajax Save/Update Feedback/Comments
 		$this->loader->add_action( 'wp_ajax_save_feedback', $plugin_public, 'save_feedback_ajax' );
         $this->loader->add_action( 'wp_ajax_nopriv_save_feedback', $plugin_public, 'save_feedback_ajax' );
