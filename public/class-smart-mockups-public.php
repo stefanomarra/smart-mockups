@@ -422,7 +422,7 @@ class Smart_Mockups_Public {
 			return array( 'comments' => '' );
 		}
 		else if ( isset( $discussion['comments'] ) ) {
-			return array( 'comments' => join( '', $discussion['comments'] ) );
+			return array( 'comments' => join( '', (array)$discussion['comments'] ) );
 		}
 		else {
 			return array( 'comments' => '' );
