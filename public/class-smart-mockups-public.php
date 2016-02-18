@@ -359,6 +359,33 @@ class Smart_Mockups_Public {
 	}
 
 	/**
+	 * Generate a random RGB color
+	 *
+	 * @since 1.0.3
+	 */
+	public function generate_rgb_color() {
+		$rand_str = md5( time() . rand( 0, 999 ) );
+		$rgb = '#';
+		$rgb .= substr( $rand_str, 0, 2 );
+		$rgb .= substr( $rand_str, 2, 2 );
+		$rgb .= substr( $rand_str, 4, 2 );
+
+		return apply_filters( 'smartmockups_generate_rgb_color', $rgb );
+	}
+
+	/**
+	 * Set random generated user color in cookie
+	 *
+	 * @since 1.0.3
+	 */
+	public function setcookie_user_color() {
+		if ( ! isset( $_COOKIE['sr_usr_col'] ) ) {
+			$color = $this->generate_rgb_color();
+			setcookie( 'sr_usr_col', apply_filters( 'smartmockups_setcookie_user_color', $color ), time() + YEAR_IN_SECONDS );
+		}
+	}
+
+	/**
 	 * Get random generated user color from cookie or generate one and save cookie
 	 *
 	 * @since 1.0.0
@@ -371,15 +398,10 @@ class Smart_Mockups_Public {
 			$rgb = $_COOKIE['sr_usr_col'];
 		}
 		else {
-			$rand_str = md5( time() . rand( 0, 999 ) );
-			$rgb = '#';
-			$rgb .= substr( $rand_str, 0, 2 );
-			$rgb .= substr( $rand_str, 2, 2 );
-			$rgb .= substr( $rand_str, 4, 2 );
-			setcookie('sr_usr_col', $rgb, time() + 3600 * 24 * 365);
+			$rgb = $this->generate_rgb_color();
 		}
 
-		return $rgb;
+		return apply_filters( 'smartmockups_get_user_color', $rgb );
 	}
 
 	/**
