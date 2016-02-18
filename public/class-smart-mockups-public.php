@@ -417,7 +417,7 @@ class Smart_Mockups_Public {
 	 *
 	 * @since 1.0.0
 	 */
-	public function get_discussion( $discussion ) {
+	public function get_discussion( $discussion = null ) {
 		if ( ! is_array( $discussion ) ) {
 			return array( 'comments' => '' );
 		}
@@ -434,7 +434,7 @@ class Smart_Mockups_Public {
 	 *
 	 * @since 1.0.0
 	 */
-	public function get_feedbacks( $feedbacks ) {
+	public function get_feedbacks( $feedbacks = null ) {
 		if ( ! is_array( $feedbacks ) ) {
 			return array();
 		}
