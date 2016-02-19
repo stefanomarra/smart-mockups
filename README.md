@@ -1,4 +1,5 @@
 # Smart Mockups #
+[![Build Status](https://travis-ci.org/stefanomarra/smart-mockups.svg?branch=master)](https://travis-ci.org/stefanomarra/smart-mockups)
 
 ### Welcome to the GitHub Repository ###
 
