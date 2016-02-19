@@ -8,13 +8,13 @@
  * Plugin Name:       Smart Mockups
  * Plugin URI:        http://www.stefanomarra.com
  * Description:       Get instant reviews, comments and feedbacks from your clients.
- * Version:           1.0.2
  * Author:            Stefano Marra
  * Author URI:        http://www.stefanomarra.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       smart-mockups
  * Domain Path:       /languages
+ * Version: 1.0.2
  */
 
 if ( ! defined( 'WPINC' ) ) {
