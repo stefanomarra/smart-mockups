@@ -123,7 +123,7 @@ class Tests_Smart_Mockups_Setup extends WP_UnitTestCase {
 	}
 
 	function test_get_custom_permalink() {
-		$this->assertInternalType( 'string', Smart_Mockups_Setup::get_custom_permalink() );
+		$this->assertFalse( Smart_Mockups_Setup::get_custom_permalink() );
 		$this->assertInternalType( 'string', Smart_Mockups_Setup::get_custom_permalink( $this->_post->ID ) );
 	}
 
