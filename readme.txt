@@ -6,7 +6,7 @@ Donate link: https://www.paypal.me/stefanomarra
 Tags: feedback, feedbacks, review, reviews, mockup, mockups, design, organize, workflow, red pen, client, clients, approval, approve, wireframe, wireframes, stefano, marra, stefano marra
 Requires at least: 3.0.1
 Tested up to: 4.4.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,11 @@ You can use the plugin forum or contact me at `stefano.marra1987[at]gmail.com`
 2. Mockup Approval
 
 == Changelog ==
+
+= 1.0.3: February 19, 2016 =
+
+* Update: Added new translation strings
+* Fix: Minor fixes
 
 = 1.0.2: February 11, 2016 =
 
