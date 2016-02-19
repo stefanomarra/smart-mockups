@@ -1,22 +1,20 @@
 <?php
 
-require_once dirname( dirname( __FILE__ ) ) . '/includes/functions.php';
-
-function _manually_load_environment() {
-
-	// Add your theme …
-	// switch_theme('your-theme-name');
-
-	// Update array with plugins to include ...
-	$plugins_to_active = array(
-		'smart-mockups/smart-mockups.php'
-	);
-
-	update_option( 'active_plugins', $plugins_to_active );
-
+$_tests_dir = getenv( 'WP_TESTS_DIR' );
+if ( ! $_tests_dir ) {
+	$_tests_dir = '/tmp/wordpress-tests-lib';
 }
-tests_add_filter( 'muplugins_loaded', '_manually_load_environment' );
 
-require dirname( dirname( __FILE__ ) ) . '/includes/bootstrap.php';
+require_once $_tests_dir . '/includes/functions.php';
+
+function _manually_load_plugin() {
+	require dirname( __FILE__ ) . '/../smart-mockups.php';
+}
+tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
+
+require $_tests_dir . '/includes/bootstrap.php';
+
+activate_plugin( 'smart-mockups/smart-mockups.php' );
+echo "Installing Smart Mockups...\n";
 
 require_once 'helpers/class-helper-mockup.php';
