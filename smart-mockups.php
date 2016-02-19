@@ -14,7 +14,7 @@
  License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  Text Domain:       smart-mockups
  Domain Path:       /languages
- Version: 		    1.0.2
+ Version: 		    1.0.3
  */
 
 if ( ! defined( 'WPINC' ) ) {
@@ -25,7 +25,7 @@ define( 'SMART_MOCKUPS_DOMAIN'			, 'smart-mockups' );
 define( 'SMART_MOCKUPS_DIR'				, plugin_dir_path( __FILE__ ) );
 define( 'SMART_MOCKUPS_URL'				, plugin_dir_url( __FILE__ ) );
 define( 'SMART_MOCKUPS_POSTTYPE'		, 'smart_mockup' );
-define( 'SMART_MOCKUPS_VERSION'			, '1.0.2' );
+define( 'SMART_MOCKUPS_VERSION'			, '1.0.3' );
 
 /**
  * The code that runs during plugin activation.
