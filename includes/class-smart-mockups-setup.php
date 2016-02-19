@@ -385,7 +385,12 @@ class Smart_Mockups_Setup {
 	 */
 	public static function get_custom_permalink( $post_id = null ) {
 		$post = get_post( $post_id );
-		$custom_permalink = get_site_url() . '/' . self::get_custom_slug() . '/' . $post->post_name . '/';
+		if ( $post ) {
+			$custom_permalink = get_site_url() . '/' . self::get_custom_slug() . '/' . $post->post_name . '/';
+		}
+		else {
+			return false;
+		}
 
 		return apply_filters( 'smartmockups_custom_permalink', $custom_permalink );
 	}
