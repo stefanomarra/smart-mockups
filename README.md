@@ -1,5 +1,5 @@
 # Smart Mockups #
-[![Build Status](https://travis-ci.org/stefanomarra/smart-mockups.svg?branch=master)](https://travis-ci.org/stefanomarra/smart-mockups)
+[![Build Status](https://travis-ci.org/stefanomarra/smart-mockups.svg?branch=master)](https://travis-ci.org/stefanomarra/smart-mockups) [![License](https://img.shields.io/badge/license-GPL--2.0%2B-red.svg)](https://github.com/stefanomarra/smart-mockups/blob/master/LICENSE.txt)
 
 ### Welcome to the GitHub Repository ###
 
