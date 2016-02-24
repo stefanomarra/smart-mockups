@@ -12,11 +12,93 @@
 class Smart_Mockups_Post {
 
 	/**
-	 * Array of known post meta
+	 * The mockup ID
 	 *
-	 * @var Array
+	 * @since 1.1.0
 	 */
-	private $post_meta = array();
+	public $ID = 0;
+
+	/**
+	 * The mockup image ID
+	 *
+	 * @since 1.1.0
+	 */
+	public $mockup_image_id;
+
+	/**
+	 * Are feedbacks enabled?
+	 *
+	 * @since 1.1.0
+	 */
+	public $feedbacks_enabled;
+
+	/**
+	 * Are discussion enabled?
+	 *
+	 * @since 1.1.0
+	 */
+	public $discussion_enabled;
+
+	/**
+	 * Is the mockup approvable?
+	 *
+	 * @since 1.1.0
+	 */
+	public $approval_enabled;
+
+	/**
+	 * Is help text enabled?
+	 *
+	 * @since 1.1.0
+	 */
+	public $help_text_enabled;
+
+	/**
+	 * The mockup help text content
+	 *
+	 * @since 1.1.0
+	 */
+	public $help_text_content;
+
+	/**
+	 * The mockup background color
+	 *
+	 * @since 1.1.0
+	 */
+	public $color_background;
+
+	/**
+	 * The mockup dot color
+	 *
+	 * @since 1.1.0
+	 */
+	public $color_feedback_dot;
+
+	/**
+	 * Declare the default properities in WP_Post as we can't extend it
+	 */
+	public $post_author = 0;
+	public $post_date = '0000-00-00 00:00:00';
+	public $post_date_gmt = '0000-00-00 00:00:00';
+	public $post_content = '';
+	public $post_title = '';
+	public $post_excerpt = '';
+	public $post_status = 'publish';
+	public $comment_status = 'open';
+	public $ping_status = 'open';
+	public $post_password = '';
+	public $post_name = '';
+	public $to_ping = '';
+	public $pinged = '';
+	public $post_modified = '0000-00-00 00:00:00';
+	public $post_modified_gmt = '0000-00-00 00:00:00';
+	public $post_content_filtered = '';
+	public $post_parent = 0;
+	public $guid = '';
+	public $menu_order = 0;
+	public $post_mime_type = '';
+	public $comment_count = 0;
+	public $filter;
 
 	/**
 	 * Constructor.
@@ -25,14 +107,19 @@ class Smart_Mockups_Post {
 	 */
 	public function __construct( $post_id ) {
 		$post = get_post( $post_id );
-		foreach ( get_object_vars( $post ) as $key => $value )
+
+		if ( SMART_MOCKUPS_POSTTYPE != $post->post_type ) {
+			return false;
+		}
+
+		foreach ( get_object_vars( $post ) as $key => $value ) {
 			$this->$key = $value;
+		}
 
 		// Fetch meta data
 		$post_types = Smart_Mockups_Setup::post_types();
 		foreach ( $post_types[$this->post_type]['post_meta'] as $key => $value ) {
 			$this->$key = get_post_meta( $this->ID, $key, true);
-			$this->post_meta[] = $key;
 		}
 	}
 
@@ -160,7 +247,10 @@ class Smart_Mockups_Post {
 	 * @since 1.1.0
 	 */
 	public function get( $post_meta = null ) {
-		if ( in_array( $post_meta, $this->post_meta ) ) {
+		if ( is_null( $post_meta ) ) {
+			return '';
+		}
+		else if ( isset( $this->$post_meta ) ) {
 			return $this->$post_meta;
 		}
 		else {
