@@ -10,55 +10,17 @@
  */
 
 $post_id = get_the_ID();
+$mockup = new Smart_Mockups_Post( $post_id );
 
 $mockup_data = array(
-	'mockup'  => Smart_Mockups_Setup::get_mockup( $post_id ),
+	'mockup'  => $mockup->get_mockup(),
 	'settings'   => array(
-			'credits'            => get_option('smartmockups_credits', 1),
-			'feedbacks_enabled'  => get_post_meta( $post_id, 'feedbacks_enabled', true ),
-			'discussion_enabled' => get_post_meta( $post_id, 'discussion_enabled', true ),
-			'approval_enabled'    => get_post_meta( $post_id, 'approval_enabled', true ),
-            'help_text_enabled'   => get_post_meta( $post_id, 'help_text_enabled', true )
+            'credits'            => get_option('smartmockups_credits', 1)
 		),
-	'viewport_classes' => array(),
-	'feedbacks'        => Smart_Mockups_Setup::get_feedbacks( $post_id ),
-	'discussion'       => Smart_Mockups_Setup::get_discussion( $post_id ),
-    'approval'         => Smart_Mockups_Setup::get_approval_signature( $post_id ),
-    'help_text'        => Smart_Mockups_Setup::get_help_text( $post_id ),
-
-    'customization'    => array(
-            'feedback_dot_color' => get_post_meta( $post_id, 'color_feedback_dot', true ),
-            'background_color' => get_post_meta( $post_id, 'color_background', true )
-        )
+	'feedbacks'        => $mockup->get_feedbacks(),
+	'discussion'       => $mockup->get_discussion(),
+    'approval'         => $mockup->get_approval_signature()
 );
-
-if ( ! $mockup_data['settings']['feedbacks_enabled'] ) {
-	$mockup_data['viewport_classes'][] = 'feedbacks-disabled';
-}
-else {
-	$mockup_data['viewport_classes'][] = 'feedbacks-enabled';
-}
-
-if ( ! $mockup_data['settings']['discussion_enabled'] ) {
-	$mockup_data['viewport_classes'][] = 'discussion-disabled';
-}
-else {
-	$mockup_data['viewport_classes'][] = 'discussion-enabled';
-}
-
-// If approval is set then disable approval
-if ( is_array( $mockup_data['approval'] ) ) {
-    $mockup_data['settings']['approval_enabled'] = false;
-}
-
-if ( ! $mockup_data['settings']['approval_enabled'] ) {
-	$mockup_data['viewport_classes'][] = 'approval-disabled';
-}
-else {
-	$mockup_data['viewport_classes'][] = 'approval-enabled';
-}
-
-
 
 ?>
 
@@ -79,17 +41,17 @@ else {
         <link rel="stylesheet" href="<?php echo plugin_dir_url( __FILE__ ) ?>../css/min/smart-mockups-public.css">
 
         <style type="text/css">
-            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot { background-color: <?php echo $mockup_data['customization']['feedback_dot_color']; ?>; }
-            body { background-color: <?php echo $mockup_data['customization']['background_color']; ?>; }
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-dot { background-color: <?php echo $mockup->get( 'color_feedback_dot' ); ?>; }
+            body { background-color: <?php echo $mockup->get( 'color_background' ); ?>; }
         </style>
 
         <script type="text/javascript">
             var ajax_url = '<?php echo admin_url( "admin-ajax.php" );?>';
             var post_id = <?php echo $post_id; ?>;
             var mockup_options = {
-            	'feedbacks_enabled' 	: <?php echo (int)$mockup_data['settings']['feedbacks_enabled']; ?>,
-            	'discussion_enabled' 	: <?php echo (int)$mockup_data['settings']['discussion_enabled']; ?>,
-            	'approval_enabled' 		: <?php echo (int)$mockup_data['settings']['approval_enabled']; ?>
+            	'feedbacks_enabled' 	: <?php echo (int)$mockup->is_enabled( 'feedbacks' ); ?>,
+            	'discussion_enabled' 	: <?php echo (int)$mockup->is_enabled( 'discussion' ); ?>,
+            	'approval_enabled' 		: <?php echo (int)( $mockup->is_enabled( 'approval' ) && !$mockup->get_approval_signature() ); ?>
             };
         </script>
 
@@ -108,7 +70,7 @@ else {
     <body>
 
     	<?php /* Viewport */ ?>
-    	<div id="sr-mockup-viewport" class="<?php echo join(' ', $mockup_data['viewport_classes']); ?>">
+    	<div id="sr-mockup-viewport" class="<?php echo join( ' ', $mockup->get_wrapper_classes() ); ?>">
 
     		<?php /* Header */ ?>
     		<header id="sr-header">
@@ -118,9 +80,9 @@ else {
                     </ul>
                     <ul class="sr-navbar sr-navbar-right">
     					<li class="active" data-tip="<?php _e( 'Show/Hide Feedbacks', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-toggle-feedbacks" href="#"><i class="fa fa-eye-slash"></i></a></li>
-    					<?php if ( $mockup_data['settings']['discussion_enabled'] ) : ?><li data-tip="<?php _e( 'Show/Hide Discussion Panel', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
-                        <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?><li data-tip="<?php _e( 'Need Help?', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-mockup-help-text" href="#sr-modal-help-text" rel="modal:open"><i class="fa fa-question"></i></a></li><?php endif; ?>
-    					<?php if ( $mockup_data['settings']['approval_enabled'] ) : ?><li data-tip="<?php _e( 'Approve this Mockup', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-mockup-approval" href="#sr-modal-approval" rel="modal:open"><i class="fa fa-check"></i> <?php _e( 'Approve', SMART_MOCKUPS_DOMAIN ); ?></a></li><?php endif; ?>
+    					<?php if ( $mockup->is_enabled( 'discussion' ) ) : ?><li data-tip="<?php _e( 'Show/Hide Discussion Panel', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-toggle-discussion-panel" href="#"><i class="fa fa-comment"></i></a></li><?php endif; ?>
+                        <?php if ( $mockup->is_enabled( 'help_text' ) ) : ?><li data-tip="<?php _e( 'Need Help?', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-mockup-help-text" href="#sr-modal-help-text" rel="modal:open"><i class="fa fa-question"></i></a></li><?php endif; ?>
+    					<?php if ( $mockup->is_enabled( 'approval' ) && !$mockup->get_approval_signature() ) : ?><li data-tip="<?php _e( 'Approve this Mockup', SMART_MOCKUPS_DOMAIN ); ?>"><a class="sr-mockup-approval" href="#sr-modal-approval" rel="modal:open"><i class="fa fa-check"></i> <?php _e( 'Approve', SMART_MOCKUPS_DOMAIN ); ?></a></li><?php endif; ?>
                         <?php if ( is_array( $mockup_data['approval'] ) ) : ?><li><span class="sr-mockup-approved"><?php _e('Mockup Approved', SMART_MOCKUPS_DOMAIN ); ?> <small><?php _e('by', SMART_MOCKUPS_DOMAIN ); ?> <?php echo $mockup_data['approval']['signature']; ?></small></span></li><?php endif; ?>
     				</ul>
     			</nav>
@@ -195,9 +157,9 @@ else {
             </div>
 
             <?php /* Help Text Modal */ ?>
-            <?php if ( $mockup_data['settings']['help_text_enabled'] ) : ?>
+            <?php if ( $mockup->is_enabled( 'help_text' ) ) : ?>
                 <div id="sr-modal-help-text" class="sm-modal">
-                    <div class="sr-modal-content"><?php echo $mockup_data['help_text']; ?></div>
+                    <div class="sr-modal-content"><?php echo $mockup->get_help_text(); ?></div>
                     <a class="sr-modal-close" href="#close-modal" rel="modal:close"><?php _e( 'Close', SMART_MOCKUPS_DOMAIN ); ?></a>
                 </div>
             <?php endif; ?>
