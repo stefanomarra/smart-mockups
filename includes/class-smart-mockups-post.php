@@ -128,7 +128,7 @@ class Smart_Mockups_Post {
 	 *
 	 * @since 1.1.0
 	 */
-	public function get_mockup() {
+	public function get_mockup_image() {
 		$mockup = array(
 			'id'  => $this->get('mockup_image_id'),
 			'url' => ''
@@ -138,7 +138,7 @@ class Smart_Mockups_Post {
 			$mockup['url'] = wp_get_attachment_url( $mockup['id'] );
 		}
 
-		return apply_filters( 'smartmockups_mockup', $mockup );
+		return apply_filters( 'smartmockups_mockup_image', $mockup );
 	}
 
 	/**
@@ -192,7 +192,7 @@ class Smart_Mockups_Post {
 	 */
 	public function get_custom_permalink() {
 		if ( $this->ID ) {
-			$custom_permalink = get_site_url() . '/' . Smart_Mockups_Setup::get_custom_slug() . '/' . $this->post_name . '/';
+			$custom_permalink = get_site_url() . '/' . sm_get_custom_slug() . '/' . $this->post_name . '/';
 		}
 		else {
 			return false;

@@ -13,8 +13,8 @@ $post_id = get_the_ID();
 $mockup = new Smart_Mockups_Post( $post_id );
 
 $mockup_data = array(
-	'mockup'  => $mockup->get_mockup(),
-	'settings'   => array(
+    'mockup_image'     => $mockup->get_mockup_image(),
+    'settings'         => array(
             'credits'            => get_option('smartmockups_credits', 1)
 		),
 	'feedbacks'        => $mockup->get_feedbacks(),
@@ -90,7 +90,7 @@ $mockup_data = array(
 
     		<?php /* Mockup */ ?>
     		<main class="sr-mockup-wrapper">
-    			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $mockup_data['mockup']['url']; ?>"></div>
+    			<div class="sr-mockup-image"><img id="sr-mockup-image-src" src="<?php echo $mockup_data['mockup_image']['url']; ?>"></div>
     			<div class="sr-mockup-dots"></div>
 	    		<div class="sr-mockup-discussion">
                     <h3 class="discussion-title"><?php _e('Mockup Discussion', SMART_MOCKUPS_DOMAIN ); ?></h3>
