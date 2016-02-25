@@ -20,8 +20,8 @@ class Tests_Mockup_Functions extends WP_UnitTestCase {
 	}
 
 	function test_sm_get_mockup() {
-		$this->assertTrue( null == sm_get_mockup()->ID );
-		$this->assertTrue( null == sm_get_mockup( 1 )->ID );
+		$this->assertTrue( null == sm_get_mockup() );
+		$this->assertTrue( null == sm_get_mockup( 1 ) );
 
 		$mockup = sm_get_mockup( $this->_post->ID );
 

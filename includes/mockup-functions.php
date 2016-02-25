@@ -20,7 +20,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return Smart_Mockups_Post
  */
 function sm_get_mockup( $mockup = 0 ) {
-	$mockup = new Smart_Mockups_Post( $mockup );
+	if ( is_numeric( $mockup ) ) {
+		$mockup = new Smart_Mockups_Post( $mockup );
+
+		if ( !$mockup || SMART_MOCKUPS_POSTTYPE !== get_post_type( $mockup ) ) {
+			return null;
+		}
+	}
+	else {
+		$args = array(
+				'post_type' 	=> SMART_MOCKUPS_POSTTYPE,
+				'name' 			=> $mockup,
+				'numberposts'	=> 1
+			);
+		$mockup = get_posts( $args );
+
+		if ( $mockup ) {
+			$mockup = $mockup[0];
+		}
+
+		$mockup = new Smart_Mockups_Post( $mockup->ID );
+	}
 
 	if ( $mockup ) {
 		return $mockup;

@@ -10,7 +10,7 @@
  */
 
 $post_id = get_the_ID();
-$mockup = new Smart_Mockups_Post( $post_id );
+$mockup = sm_get_mockup( $post_id );
 
 $mockup_data = array(
     'mockup_image'     => $mockup->get_mockup_image(),

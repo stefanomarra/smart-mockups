@@ -103,7 +103,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Constructor.
 	 *
-	 * @param WP_Post|object $post Post object.
+	 * @since 1.1.0
 	 */
 	public function __construct( $post_id = 0 ) {
 		$post = get_post( $post_id );
