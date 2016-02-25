@@ -81,7 +81,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'media',
 								'name'        => __('Mockup Image', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Upload or select the mockup image', SMART_MOCKUPS_DOMAIN)
 							),
@@ -89,7 +89,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Feedbacks', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Enable the point and click feedback', SMART_MOCKUPS_DOMAIN)
 							),
@@ -97,7 +97,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Discussion', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Enable the discussion panel on the side', SMART_MOCKUPS_DOMAIN)
 							),
@@ -105,7 +105,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Enable Approval', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Enable the user to approve the mockup with a digital signature', SMART_MOCKUPS_DOMAIN)
 							),
@@ -113,7 +113,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Enable Help Text', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => ''
 							),

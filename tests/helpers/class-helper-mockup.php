@@ -34,6 +34,54 @@ class SM_Helper_Mockup extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Disable mockup feedbacks
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int $mockup_id ID of the mockup
+	 */
+	public static function disable_feedbacks( $mockup_id ) {
+		// approve the post
+		update_post_meta( $mockup_id, 'feedbacks_enabled', 0 );
+	}
+
+	/**
+	 * Disable mockup discussion
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int $mockup_id ID of the mockup
+	 */
+	public static function disable_discussion( $mockup_id ) {
+		// approve the post
+		update_post_meta( $mockup_id, 'discussion_enabled', 0 );
+	}
+
+	/**
+	 * Disable mockup approval
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int $mockup_id ID of the mockup
+	 */
+	public static function disable_approval( $mockup_id ) {
+		// approve the post
+		update_post_meta( $mockup_id, 'approval_enabled', 0 );
+	}
+
+	/**
+	 * Disable mockup help text
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param int $mockup_id ID of the mockup
+	 */
+	public static function disable_help_text( $mockup_id ) {
+		// approve the post
+		update_post_meta( $mockup_id, 'help_text_enabled', 0 );
+	}
+
+	/**
 	 * Create a mockup
 	 *
 	 * @since 1.0.3

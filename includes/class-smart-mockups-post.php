@@ -105,10 +105,10 @@ class Smart_Mockups_Post {
 	 *
 	 * @param WP_Post|object $post Post object.
 	 */
-	public function __construct( $post_id ) {
+	public function __construct( $post_id = 0 ) {
 		$post = get_post( $post_id );
 
-		if ( SMART_MOCKUPS_POSTTYPE != $post->post_type ) {
+		if ( !$post || ( $post && SMART_MOCKUPS_POSTTYPE != $post->post_type ) ) {
 			return false;
 		}
 
@@ -119,7 +119,7 @@ class Smart_Mockups_Post {
 		// Fetch meta data
 		$post_types = Smart_Mockups_Setup::post_types();
 		foreach ( $post_types[$this->post_type]['post_meta'] as $key => $value ) {
-			$this->$key = get_post_meta( $this->ID, $key, true);
+			$this->$key = $this->get( $key );
 		}
 	}
 
@@ -249,9 +249,6 @@ class Smart_Mockups_Post {
 	public function get( $post_meta = null ) {
 		if ( is_null( $post_meta ) ) {
 			return '';
-		}
-		else if ( isset( $this->$post_meta ) ) {
-			return $this->$post_meta;
 		}
 		else {
 			return get_post_meta( $this->ID, $post_meta, true);

@@ -16,9 +16,9 @@ $mockup_data = array(
     'mockup_image'     => $mockup->get_mockup_image(),
     'settings'         => array(
             'credits'            => get_option('smartmockups_credits', 1)
-		),
-	'feedbacks'        => $mockup->get_feedbacks(),
-	'discussion'       => $mockup->get_discussion(),
+        ),
+    'feedbacks'        => $mockup->get_feedbacks(),
+    'discussion'       => $mockup->get_discussion(),
     'approval'         => $mockup->get_approval_signature()
 );
 

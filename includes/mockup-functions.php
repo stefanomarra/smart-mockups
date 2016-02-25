@@ -37,7 +37,7 @@ function sm_get_mockup( $mockup = 0 ) {
  * @return array Mockup Image
  */
 function sm_get_mockup_image( $mockup_id = 0 ) {
-	$attach_id = get_post_meta( $mockup_id, 'mockup_image_id', 0);
+	$attach_id = get_post_meta( $mockup_id, 'mockup_image_id', true);
 
 	$mockup = array(
 		'id'  => $attach_id,
