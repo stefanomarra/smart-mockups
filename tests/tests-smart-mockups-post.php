@@ -21,6 +21,17 @@ class Tests_Smart_Mockups_Post extends WP_UnitTestCase {
 		$this->assertFileExists( SMART_MOCKUPS_DIR . 'includes/class-smart-mockups-post.php' );
 	}
 
+	function test_smart_mockups_post() {
+		$mockup = new Smart_Mockups_Post();
+		$this->assertInternalType( 'string', get_post_type( $mockup ) );
+		$this->assertEquals( 'post', get_post_type( $mockup ) );
+
+		$mockup = new Smart_Mockups_Post( $this->_post->ID );
+		$this->assertInternalType( 'string', get_post_type( $mockup ) );
+		$this->assertEquals( SMART_MOCKUPS_POSTTYPE, get_post_type( $mockup ) );
+		$this->assertEquals( $this->_post->ID, $mockup->ID );
+	}
+
 	function test_get_mockup_image() {
 		$this->assertInternalType( 'array', $this->_obj->get_mockup_image() );
 		$this->assertEquals( sm_get_mockup_image( $this->_post->ID ), $this->_obj->get_mockup_image() );

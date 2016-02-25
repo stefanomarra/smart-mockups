@@ -108,8 +108,8 @@ class Smart_Mockups_Post {
 	public function __construct( $post_id = 0 ) {
 		$post = get_post( $post_id );
 
-		if ( !$post || ( $post && SMART_MOCKUPS_POSTTYPE != $post->post_type ) ) {
-			return false;
+		if ( !$post || SMART_MOCKUPS_POSTTYPE !== $post->post_type ) {
+			return null;
 		}
 
 		foreach ( get_object_vars( $post ) as $key => $value ) {
