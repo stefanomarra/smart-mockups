@@ -624,12 +624,16 @@
 
 			var wrapperW = $(that.settings.el_mockup_wrapper).width();
 			var wrapperH = $(that.settings.el_mockup_wrapper).height();
-			var dotOffsetR = dot.position().left + dot.find( that.settings.el_feedback_content ).width() + 65;
+			var feedbackContentW = dot.find( that.settings.el_feedback_content ).width();
+			var dotOffsetR = dot.position().left + feedbackContentW + 65;
 			var dotOffsetB = dot.position().top + dot.find( that.settings.el_feedback_content ).height() + 65;
 
-			dot.removeClass('invert-horizontal');
-			if ( dotOffsetR > wrapperW ) {
+			dot.removeClass('invert-horizontal orientation-vertical');
+			if ( dotOffsetR > wrapperW && (dot.position().left - feedbackContentW) > 0 ) {
 				dot.addClass('invert-horizontal');
+			}
+			else if ( (wrapperW - dotOffsetR + 35) < 0 ) {
+				dot.addClass('orientation-vertical');
 			}
 		}
 	};
