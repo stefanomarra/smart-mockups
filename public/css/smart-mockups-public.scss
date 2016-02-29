@@ -302,27 +302,27 @@ body {
 			right: -$discussion_panel_width;
 		}
 
-		.invert-horizontal {
+		// .invert-horizontal {
 
-			.sr-feedback-content {
-				top: - $dot_height / 1.8 !important;
-				left: $dot_width / 1.2 !important;
-				right: auto !important;
+		// 	.sr-feedback-content {
+		// 		top: - $dot_height / 1.8 !important;
+		// 		left: $dot_width / 1.2 !important;
+		// 		right: auto !important;
 
-				&:before,
-				&:after {
-					right: auto !important;
-					left: -20px !important;
+		// 		&:before,
+		// 		&:after {
+		// 			right: auto !important;
+		// 			left: -20px !important;
 
-					border-left-color: transparent !important;
-					border-right-color: #FFF !important;
-				}
+		// 			border-left-color: transparent !important;
+		// 			border-right-color: #FFF !important;
+		// 		}
 
-				&:after {
-					border-right-color: rgba(0, 0, 0, 0.1) !important;
-				}
-			}
-		}
+		// 		&:after {
+		// 			border-right-color: rgba(0, 0, 0, 0.1) !important;
+		// 		}
+		// 	}
+		// }
 	}
 
 	.sr-mockup-discussion {
@@ -598,6 +598,31 @@ body {
 
 						&:after {
 							border-left-color: rgba(0, 0, 0, 0.1);
+						}
+					}
+				}
+
+				&.orientation-vertical {
+
+					.sr-feedback-content {
+						top: $dot_height / 1.2 !important;
+						left: -180px !important;
+
+						&:before,
+						&:after {
+							top: -20px;
+							right: -20px;
+							left: 50%;
+							margin-left: -10px;
+
+							border-right-color: transparent;
+							border-left-color: transparent;
+							border-bottom-color: #FFF;
+						}
+
+						&:after {
+							top: -21px !important;
+							border-bottom-color: rgba(0, 0, 0, 0.1);
 						}
 					}
 				}
