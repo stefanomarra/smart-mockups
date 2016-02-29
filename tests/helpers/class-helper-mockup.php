@@ -36,7 +36,7 @@ class SM_Helper_Mockup extends WP_UnitTestCase {
 	/**
 	 * Disable mockup feedbacks
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 *
 	 * @param int $mockup_id ID of the mockup
 	 */
@@ -48,7 +48,7 @@ class SM_Helper_Mockup extends WP_UnitTestCase {
 	/**
 	 * Disable mockup discussion
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 *
 	 * @param int $mockup_id ID of the mockup
 	 */
@@ -60,7 +60,7 @@ class SM_Helper_Mockup extends WP_UnitTestCase {
 	/**
 	 * Disable mockup approval
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 *
 	 * @param int $mockup_id ID of the mockup
 	 */
@@ -72,7 +72,7 @@ class SM_Helper_Mockup extends WP_UnitTestCase {
 	/**
 	 * Disable mockup help text
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 *
 	 * @param int $mockup_id ID of the mockup
 	 */

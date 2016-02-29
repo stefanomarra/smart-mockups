@@ -4,7 +4,7 @@
  * Mockup Functions
  *
  * @link       http://www.stefanomarra.com
- * @since      1.1.0
+ * @since      1.0.5
  * @package    Smart_Mockups
  * @subpackage Smart_Mockups/functions
  * @author     Stefano <stefano.marra1987@gmail.com>
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Retrieves custom slug option
  *
- * @since 1.1.0
+ * @since 1.0.5
  * @return string Custom Slug
  */
 function sm_get_custom_slug() {

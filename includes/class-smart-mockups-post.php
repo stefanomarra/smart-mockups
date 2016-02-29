@@ -4,7 +4,7 @@
  * Mockup API
  *
  * @link       http://www.stefanomarra.com
- * @since      1.1.0
+ * @since      1.0.5
  * @package    Smart_Mockups
  * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
@@ -14,63 +14,63 @@ class Smart_Mockups_Post {
 	/**
 	 * The mockup ID
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $ID = 0;
 
 	/**
 	 * The mockup image ID
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $mockup_image_id;
 
 	/**
 	 * Are feedbacks enabled?
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $feedbacks_enabled;
 
 	/**
 	 * Are discussion enabled?
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $discussion_enabled;
 
 	/**
 	 * Is the mockup approvable?
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $approval_enabled;
 
 	/**
 	 * Is help text enabled?
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $help_text_enabled;
 
 	/**
 	 * The mockup help text content
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $help_text_content;
 
 	/**
 	 * The mockup background color
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $color_background;
 
 	/**
 	 * The mockup dot color
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public $color_feedback_dot;
 
@@ -103,7 +103,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Constructor.
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function __construct( $post_id = 0 ) {
 		$post = get_post( $post_id );
@@ -126,7 +126,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Get post mockup
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get_mockup_image() {
 		$mockup = array(
@@ -144,7 +144,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Get post feedbacks
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get_feedbacks() {
 		$feedbacks = $this->get('_feedbacks');
@@ -155,7 +155,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Get post discussion
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get_discussion() {
 		$discussion = $this->get('_discussion');
@@ -166,7 +166,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Get post approval signature
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get_approval_signature() {
 		$approval_signature = $this->get('_approval');
@@ -177,7 +177,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Get post help text content
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get_help_text() {
 		$help_text = $this->get('help_text_content');
@@ -188,7 +188,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Get custom permalink
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get_custom_permalink() {
 		if ( $this->ID ) {
@@ -235,7 +235,7 @@ class Smart_Mockups_Post {
 	/**
 	 * Checks if the given option is enabled
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function is_enabled( $option = 'feedbacks' ) {
 		return $this->get( $option . '_enabled' );
@@ -244,7 +244,7 @@ class Smart_Mockups_Post {
 	/**
 	 * getter
 	 *
-	 * @since 1.1.0
+	 * @since 1.0.5
 	 */
 	public function get( $post_meta = null ) {
 		if ( is_null( $post_meta ) ) {
