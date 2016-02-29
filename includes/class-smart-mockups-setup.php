@@ -12,6 +12,46 @@
 class Smart_Mockups_Setup {
 
 	/**
+	 * Register default settings tab
+	 *
+	 * @since 1.0.0
+	 */
+	private $tabs = array(
+			'general' => 'General'
+		);
+
+	/**
+	 * The ID of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $plugin_name    The ID of this plugin.
+	 */
+	private $plugin_name;
+
+	/**
+	 * The version of this plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @var      string    $version    The current version of this plugin.
+	 */
+	private $version;
+
+	/**
+	 * Initialize the class and set its properties.
+	 *
+	 * @since    1.0.0
+	 * @param      string    $plugin_name       The name of this plugin.
+	 * @param      string    $version    The version of this plugin.
+	 */
+	public function __construct( $plugin_name, $version ) {
+
+		$this->plugin_name = $plugin_name;
+		$this->version = $version;
+	}
+
+	/**
 	 * Plugin custom post types
 	 *
 	 * @since    1.0.0
@@ -41,7 +81,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'media',
 								'name'        => __('Mockup Image', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Upload or select the mockup image', SMART_MOCKUPS_DOMAIN)
 							),
@@ -49,7 +89,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Feedbacks', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Enable the point and click feedback', SMART_MOCKUPS_DOMAIN)
 							),
@@ -57,7 +97,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Discussion', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Enable the discussion panel on the side', SMART_MOCKUPS_DOMAIN)
 							),
@@ -65,7 +105,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Enable Approval', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Enable the user to approve the mockup with a digital signature', SMART_MOCKUPS_DOMAIN)
 							),
@@ -73,7 +113,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Enable Help Text', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => '',
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => ''
 							),
@@ -302,137 +342,6 @@ class Smart_Mockups_Setup {
 		$html .= '</tr>';
 
 		echo $html;
-	}
-
-	/**
-	 * Get post feedbacks
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_mockup( $post_id = null ) {
-		$mockup = array(
-			'id'  => get_post_meta( $post_id, 'mockup_image_id', true),
-			'url' => ''
-		);
-
-		if ( $mockup['id'] ) {
-			$mockup['url'] = wp_get_attachment_url( $mockup['id'] );
-		}
-
-		return apply_filters( 'smartmockups_mockup', $mockup );
-	}
-
-	/**
-	 * Get post feedbacks
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_feedbacks( $post_id = null ) {
-		$feedbacks = get_post_meta( $post_id, '_feedbacks', true);
-
-		return apply_filters( 'smartmockups_feedbacks', $feedbacks );
-	}
-
-	/**
-	 * Get post discussion
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_discussion( $post_id = null ) {
-		$discussion = get_post_meta( $post_id, '_discussion', true);
-
-		return apply_filters( 'smartmockups_discussion', $discussion );
-	}
-
-	/**
-	 * Get post approval signature
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_approval_signature( $post_id = null ) {
-		$approval_signature = get_post_meta( $post_id, '_approval', true);
-
-		return apply_filters( 'smartmockups_approval_signature', $approval_signature );
-	}
-
-	/**
-	 * Get post help text content
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_help_text( $post_id = null ) {
-		$help_text = get_post_meta( $post_id, 'help_text_content', true);
-
-		return apply_filters( 'smartmockups_help_text', $help_text );
-	}
-
-	/**
-	 * Get custom slug option
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_custom_slug() {
-		$post_types = self::post_types();
-		$custom_slug = get_option('smartmockups_slug', $post_types[SMART_MOCKUPS_POSTTYPE]['rewrite']['slug']);
-
-		return apply_filters( 'smartmockups_custom_slug', $custom_slug );
-	}
-
-	/**
-	 * Get custom permalink
-	 *
-	 * @since 1.0.0
-	 */
-	public static function get_custom_permalink( $post_id = null ) {
-		$post = get_post( $post_id );
-		if ( $post ) {
-			$custom_permalink = get_site_url() . '/' . self::get_custom_slug() . '/' . $post->post_name . '/';
-		}
-		else {
-			return false;
-		}
-
-		return apply_filters( 'smartmockups_custom_permalink', $custom_permalink );
-	}
-
-	/**
-	 * Register default settings tab
-	 *
-	 * @since 1.0.0
-	 */
-	private $tabs = array(
-			'general' => 'General'
-		);
-
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
-
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
-
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
-	public function __construct( $plugin_name, $version ) {
-
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
 	}
 
 	/**

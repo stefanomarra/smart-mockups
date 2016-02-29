@@ -3,7 +3,7 @@
     	$post_types = Smart_Mockups_Setup::post_types();
 
 		$settings = array(
-			'slug' 		=> Smart_Mockups_Setup::get_custom_slug(),
+			'slug' 		=> sm_get_custom_slug(),
 			'credits' 	=> get_option('smartmockups_credits', 1)
 		);
 

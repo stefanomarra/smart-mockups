@@ -85,48 +85,6 @@ class Tests_Smart_Mockups_Setup extends WP_UnitTestCase {
 	 */
 	function test_render_form_field_colorpicker() {}
 
-	function test_get_mockup() {
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_mockup() );
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_mockup( $this->_post->ID ) );
-	}
-
-	function test_get_feedbacks() {
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_feedbacks() );
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_feedbacks( $this->_post->ID ) );
-	}
-
-	function test_get_discussion() {
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_discussion() );
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_discussion( $this->_post->ID ) );
-	}
-
-	function test_get_approval_signature() {
-		$this->assertEquals( false, Smart_Mockups_Setup::get_approval_signature() );
-
-		// Test a not approved mockup
-		$this->assertInternalType( 'string', Smart_Mockups_Setup::get_approval_signature( $this->_post->ID ) );
-
-		// Approve the mockup
-		SM_Helper_Mockup::approve_mockup( $this->_post->ID );
-
-		// Test an approved mockup
-		$this->assertInternalType( 'array', Smart_Mockups_Setup::get_approval_signature( $this->_post->ID ) );
-	}
-
-	function test_get_help_text() {
-		$this->assertEquals( false, Smart_Mockups_Setup::get_help_text() );
-		$this->assertInternalType( 'string', Smart_Mockups_Setup::get_help_text( $this->_post->ID ) );
-	}
-
-	function test_get_custom_slug() {
-		$this->assertInternalType( 'string', Smart_Mockups_Setup::get_custom_slug() );
-	}
-
-	function test_get_custom_permalink() {
-		$this->assertFalse( Smart_Mockups_Setup::get_custom_permalink() );
-		$this->assertInternalType( 'string', Smart_Mockups_Setup::get_custom_permalink( $this->_post->ID ) );
-	}
-
 	/**
 	 * TODO
 	 */
