@@ -146,7 +146,7 @@ class Smart_Mockups_Admin {
 	public function set_posttype_row_actions( $actions, $post ) {
 
 		if ( $post->post_type == SMART_MOCKUPS_POSTTYPE ) {
-			$actions['custom_slug_view'] = '<a target="_blank" href="' . Smart_Mockups_Setup::get_custom_permalink( $post->ID ) . '">View (Custom Slug)</a>';
+			$actions['custom_slug_view'] = '<a target="_blank" href="' . sm_get_mockup_custom_permalink( $post->ID ) . '">View (Custom Slug)</a>';
 		}
 
 		return $actions;
@@ -172,7 +172,7 @@ class Smart_Mockups_Admin {
 
 		switch ($column) {
 			case 'approved':
-				$approval_signature =  Smart_Mockups_Setup::get_approval_signature( $post_id );
+				$approval_signature =  sm_get_mockup_approval_signature( $post_id );
 
 				if ( is_array( $approval_signature ) )
 					echo 'Approved by ' . $approval_signature['signature'] . '<br />' . '<abbr>' . $approval_signature['time'] . '</abbr>';

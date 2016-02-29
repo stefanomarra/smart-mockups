@@ -84,6 +84,21 @@ class Smart_Mockups {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-setup.php';
 
 		/**
+		 * Misc functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/misc-functions.php';
+
+		/**
+		 * Mockup functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/mockup-functions.php';
+
+		/**
+		 * The class responsable for defining the plugin's mockup post type
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-post.php';
+
+		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
