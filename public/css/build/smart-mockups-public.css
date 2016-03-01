@@ -206,6 +206,14 @@ body {
     box-shadow: 0 10px 100px rgba(0, 0, 0, 0.4); }
     #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-image {
       cursor: cell; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-image:after {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-image img#sr-mockup-image-src {
         display: block;
         width: 100%; }

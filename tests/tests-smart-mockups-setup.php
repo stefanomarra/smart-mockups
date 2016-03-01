@@ -60,15 +60,32 @@ class Tests_Smart_Mockups_Setup extends WP_UnitTestCase {
 	 */
 	function test_render_form_field() {}
 
-	/**
-	 * TODO
-	 */
-	function test_render_form_field_media() {}
+	function test_render_form_field_media() {
+		$post_types = Smart_Mockups_Setup::post_types();
+		$id = 'mockup_image_id';
+		$attr = $post_types['smart_mockup']['post_meta'][$id];
+		$value = $attr['default'];
 
-	/**
-	 * TODO
-	 */
-	function test_render_form_field_checkbox() {}
+		ob_start();
+		Smart_Mockups_Setup::render_form_field_media( $id, $attr );
+		$html = ob_get_clean();
+
+		$this->assertContains( '<input type="hidden" name="' . $id . '" class="' . $attr['class'] . '" id="' . $id . '" value="' . $value . '" />', $html );
+		$this->assertContains( '<input type="button" id="button-' . $id . '" class="button load_media" data-target="#' . $id . '" data-preview=".media-src-' . $id . '" value="Select File" />', $html );
+	}
+
+	function test_render_form_field_checkbox() {
+		$post_types = Smart_Mockups_Setup::post_types();
+		$id = 'feedbacks_enabled';
+		$attr = $post_types['smart_mockup']['post_meta'][$id];
+		$value = $attr['default'];
+
+		ob_start();
+		Smart_Mockups_Setup::render_form_field_checkbox( $id, $attr );
+		$html = ob_get_clean();
+
+		$this->assertContains( '<input type="checkbox" name="' . $id . '" class="' . $attr['class'] . '" id="' . $id . '" value="1" ' . ($value?'checked':'') . ' /> ' . $attr['description'], $html );
+	}
 
 	/**
 	 * TODO
@@ -80,10 +97,18 @@ class Tests_Smart_Mockups_Setup extends WP_UnitTestCase {
 	 */
 	function test_render_form_field_textarea() {}
 
-	/**
-	 * TODO
-	 */
-	function test_render_form_field_colorpicker() {}
+	function test_render_form_field_colorpicker() {
+		$post_types = Smart_Mockups_Setup::post_types();
+		$id = 'color_background';
+		$attr = $post_types['smart_mockup']['post_meta'][$id];
+		$value = $attr['default'];
+
+		ob_start();
+		Smart_Mockups_Setup::render_form_field_colorpicker( $id, $attr );
+		$html = ob_get_clean();
+
+		$this->assertContains( '<input type="text" name="' . $id . '" class="wp-color-picker ' . $attr['class'] . '" id="' . $id . '" value="' . $value . '" data-default-color="' . $attr['default'] . '" />', $html );
+	}
 
 	/**
 	 * TODO

@@ -380,6 +380,17 @@ body {
 		.sr-mockup-image {
 			cursor: cell;
 
+			&:after {
+				content: "";
+				position: absolute;
+				display: block;
+
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+			}
+
 			img#sr-mockup-image-src {
 				display: block;
 
