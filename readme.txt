@@ -24,6 +24,8 @@ Features of the plugin include:
 * Password protected mockups
 * Customizable slug
 
+**Vote the features you want to see in the next versions of Smart Mockups [here](http://bit.ly/1Snz49R)**
+
 **Follow this plugin on [GitHub](https://github.com/stefanomarra/smart-mockups)**
 
 == Installation ==
