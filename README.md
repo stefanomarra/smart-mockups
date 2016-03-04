@@ -29,4 +29,6 @@ Once the plugin is installed and activated, go to `Smart Mockups > Add New` to a
 
 You can use the plugin forum or contact me at `stefano.marra1987[at]gmail.com`
 
+## New Features ##
 
+**Vote the features you want to see in the next versions of Smart Mockups [here](http://bit.ly/1Snz49R)**
