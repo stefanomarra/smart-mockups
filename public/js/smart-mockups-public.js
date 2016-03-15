@@ -48,7 +48,7 @@
 
 			// On image load
 			$( that.settings.el_mockup_image_wrapper + ' img' ).one('load', function() {
-				$( that.settings.el_mockup_viewport ).addClass( 'loaded' );
+				$( that.settings.el_mockup_viewport ).addClass( 'loaded discussion-hidden' );
 				that._loadFeedbacks();
 				that._bindElements();
 			}).each(function() {
