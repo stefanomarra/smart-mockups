@@ -189,6 +189,26 @@ body {
     max-height: 80%;
     box-shadow: 10px 0 40px -10px rgba(0, 0, 0, 0.4);
     right: -360px; }
+  @media screen and (max-width: 480px) {
+    #sr-mockup-viewport .sr-mockup-discussion {
+      width: 100% !important;
+      margin-right: 0;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: -110%;
+      max-height: 100% !important;
+      border-radius: 0;
+      z-index: 80 !important; }
+    #sr-mockup-viewport.show-discussion .sr-mockup-wrapper {
+      margin-right: 20px !important; }
+    #sr-mockup-viewport.show-discussion .sr-mockup-discussion {
+      left: 0; }
+      #sr-mockup-viewport.show-discussion .sr-mockup-discussion .discussion-field-submit {
+        border-radius: 0 !important; }
+      #sr-mockup-viewport.show-discussion .sr-mockup-discussion:before {
+        display: none; } }
   #sr-mockup-viewport .sr-mockup-discussion {
     display: none; }
   #sr-mockup-viewport.loaded .sr-mockup-discussion {

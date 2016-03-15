@@ -344,6 +344,39 @@ body {
 		// }
 	}
 
+	@media screen and (max-width: $breakpoint_xs) {
+		.sr-mockup-discussion {
+			width: 100% !important;
+			margin-right: 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: -110%;
+			max-height: 100% !important;
+			border-radius: 0;
+			z-index: 80 !important;
+		}
+
+		&.show-discussion {
+			.sr-mockup-wrapper {
+				margin-right: 20px !important;
+			}
+
+			.sr-mockup-discussion {
+				left: 0;
+
+				.discussion-field-submit {
+					border-radius: 0 !important;
+				}
+
+				&:before {
+					display: none;
+				}
+			}
+		}
+	}
+
 	.sr-mockup-discussion {
 		display: none;
 	}
