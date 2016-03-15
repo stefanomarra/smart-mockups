@@ -81,8 +81,8 @@ phpunit.xml
 .git
 .gitignore
 .gitattributes
-./bin
-./tests" "$SVNPATH/trunk/"
+bin
+tests" "$SVNPATH/trunk/"
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
