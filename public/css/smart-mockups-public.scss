@@ -20,6 +20,10 @@ $dot_width: 40px;
 $dot_height: $dot_width;
 $discussion_panel_width: 360px;
 $discussion_panel_width_tablet: 260px;
+$breakpoint_xs: 480px;
+$breakpoint_sm: 768px;
+$breakpoint_md: 992px;
+$breakpoint_lg: 1200px;
 
 /**
  * Smart Mockups
@@ -62,7 +66,6 @@ body {
 		left: 0;
 		right: 0;
 		width: 100%;
-		height: 48px;
 		box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.4);
 
 		background-color: #FFF;
@@ -101,6 +104,22 @@ body {
 				li {
 					border-right: none;
 					border-left: 1px solid #DCDCDC;
+				}
+
+				@media screen and (max-width: $breakpoint_xs) {
+					border-top: 1px solid #DCDCDC;
+
+					li {
+						display: table-cell;
+						float: none;
+					}
+				}
+			}
+
+			@media screen and (max-width: $breakpoint_xs) {
+				.sr-navbar {
+					display: table;
+					width: 100%;
 				}
 			}
 
@@ -323,6 +342,39 @@ body {
 		// 		}
 		// 	}
 		// }
+	}
+
+	@media screen and (max-width: $breakpoint_xs) {
+		.sr-mockup-discussion {
+			width: 100% !important;
+			margin-right: 0;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: -110%;
+			max-height: 100% !important;
+			border-radius: 0;
+			z-index: 80 !important;
+		}
+
+		&.show-discussion {
+			.sr-mockup-wrapper {
+				margin-right: 20px !important;
+			}
+
+			.sr-mockup-discussion {
+				left: 0;
+
+				.discussion-field-submit {
+					border-radius: 0 !important;
+				}
+
+				&:before {
+					display: none;
+				}
+			}
+		}
 	}
 
 	.sr-mockup-discussion {
@@ -692,7 +744,7 @@ body {
 		.feedback-action {
 			position: absolute;
 
-			top: 1px;
+			top: 5px;
 			right: 10px;
 
 			button {
@@ -1089,7 +1141,7 @@ body {
 	margin-left: -9px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: $breakpoint_md) {
 	#sr-mockup-viewport {
 
 		.sr-mockup-discussion {
