@@ -118,7 +118,8 @@ class Smart_Mockups {
 		/**
 		 * The class responsible for handling the emails that occur during notification
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-emails.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/emails/class-smart-mockups-emails.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/emails/actions.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
