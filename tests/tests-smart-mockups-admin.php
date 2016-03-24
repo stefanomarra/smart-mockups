@@ -5,7 +5,7 @@ class Tests_Smart_Mockups_Admin extends WP_UnitTestCase {
 
 	protected $_post;
 
-	protected $_plugin_public;
+	protected $_plugin_admin;
 
 	public function setUp() {
 		parent::setUp();
@@ -55,12 +55,20 @@ class Tests_Smart_Mockups_Admin extends WP_UnitTestCase {
 
 	function test_set_posttype_row_actions() {
 		$actions = $this->_plugin_admin->set_posttype_row_actions( array(), $this->_post );
+		$this->assertArrayNotHasKey( 'custom_slug_view', $actions );
+
+		// Change Permalink Post Structure
+		update_option( 'permalink_structure', '/%postname%/' );
+
+		// Run the above test again
+		$actions = $this->_plugin_admin->set_posttype_row_actions( array(), $this->_post );
 		$this->assertArrayHasKey( 'custom_slug_view', $actions );
 	}
 
 	function test_set_posttype_columns() {
 		$columns = $this->_plugin_admin->set_posttype_columns( array() );
 		$this->assertArrayHasKey( 'approved', $columns );
+
 	}
 
 	/**
