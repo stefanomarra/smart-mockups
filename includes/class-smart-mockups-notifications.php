@@ -33,7 +33,6 @@ class Smart_Mockups_Notifications {
 	 * @since 1.1.0
 	 */
 	public function __construct() {
-		add_action( 'notification_event', array( $this, 'send_email' ) );
 	}
 
 	public function update_schedule( $old_value, $new_value ) {
@@ -66,6 +65,40 @@ class Smart_Mockups_Notifications {
 		return $this->queue;
 	}
 
+	public function get_queue_info() {
+		$queue = $this->get_queue();
+		$queue_info = array(
+			'new_feedbacks'           => 0,
+			'new_feedbacks_comments'  => 0,
+			'new_discussion_comments' => 0,
+			'new_approvals'           => 0,
+			'total_changes' 		  => 0
+		);
+
+		foreach ( $queue as $notification ) {
+			switch ( $notification['status'] ) {
+				case 'new_feedback_saved':
+					$queue_info['new_feedbacks']++;
+				case 'feedback_updated':
+					$queue_info['new_feedbacks_comments']++;
+					$queue_info['total_changes']++;
+					break;
+
+				case 'new_discussion_comment_saved':
+					$queue_info['new_discussion_comments']++;
+					$queue_info['total_changes']++;
+					break;
+
+				case 'approval_saved':
+					$queue_info['new_approvals']++;
+					$queue_info['total_changes']++;
+					break;
+			}
+		}
+
+		return $queue_info;
+	}
+
 	/**
 	 * Add to Queue
 	 *
@@ -96,8 +129,27 @@ class Smart_Mockups_Notifications {
 	 *
 	 * @since 1.1.0
 	 */
-	public function get_heading() {
-		return count( $queue ) . ' New Feedbacks';
+	public function get_notification_heading() {
+		$queue = $this->get_queue();
+		$queue_info = $this->get_queue_info();
+
+		return $queue_info['total_changes'] . ' New Feedbacks';
+	}
+
+	/**
+	 * Get body based on queue
+	 *
+	 * @since 1.1.0
+	 */
+	public function get_notification_body() {
+		$queue = $this->get_queue();
+		$queue_info = $this->get_queue_info();
+
+		return 'You have ' . $queue_info['total_changes'] . ' new feedbacks:
+' . $queue_info['new_feedbacks'] . ' New Feedbacks
+' . $queue_info['new_feedbacks_comments'] . ' New Feedback Comments
+' . $queue_info['new_discussion_comments'] . ' New Discussion Comments
+' . $queue_info['new_approvals'] . ' Approvals';
 	}
 
 	/**
@@ -112,8 +164,8 @@ class Smart_Mockups_Notifications {
 			$email = new Smart_Mockups_Emails();
 
 			$to = get_option( 'admin_email' );
-			$subject = $this->get_heading();
-			$message = 'You have ' . count( $queue ) . ' new mockup feedbacks';
+			$subject = $this->get_notification_heading();
+			$message = $this->get_notification_body();
 
 			if ( $email->send( $to, $subject, $message ) ) {
 				$this->erase_queue();
