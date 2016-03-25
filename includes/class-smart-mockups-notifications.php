@@ -141,7 +141,7 @@ class Smart_Mockups_Notifications {
 		$queue = $this->get_queue();
 		$queue_info = $this->get_queue_info();
 
-		return $queue_info['total_changes'] . ' New Feedbacks';
+		return $queue_info['total_changes'] . ' New Interactions';
 	}
 
 	/**
