@@ -596,8 +596,6 @@
 			if ( $( that.settings.el_approval_signature ).val() == '' )
 				return false;
 
-			console.log( 'Sending Approval...' );
-
 			var request = $.ajax({
 				url: ajax_url,
 				method: 'POST',

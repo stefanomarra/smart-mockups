@@ -17,7 +17,8 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
 	private $tabs = array(
-			'general' => 'General'
+			'general'       => 'General',
+			'notifications' => 'Notifications'
 		);
 
 	/**
@@ -412,6 +413,10 @@ class Smart_Mockups_Setup {
         echo '</h2>';
 
     	switch ( $curr ) {
+    		case 'notifications':
+    			include( SMART_MOCKUPS_DIR . 'admin/templates/settings-notifications.php');
+    			break;
+
     		case 'general':
     		default:
     			include( SMART_MOCKUPS_DIR . 'admin/templates/settings-general.php');
@@ -425,8 +430,10 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
     public function register_plugin_options() {
-    	register_setting( 'smartmockups_settings', 'smartmockups_slug', array(&$this, 'sanitize_slug') );
-    	register_setting( 'smartmockups_settings', 'smartmockups_credits', 'intval' );
+    	register_setting( 'smartmockups_settings_general', 'smartmockups_slug', array(&$this, 'sanitize_slug') );
+    	register_setting( 'smartmockups_settings_general', 'smartmockups_credits', 'intval' );
+
+    	register_setting( 'smartmockups_settings_notifications', 'smartmockups_notifications', 'intval' );
     }
 
     /**

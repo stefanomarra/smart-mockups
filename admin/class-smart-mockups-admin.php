@@ -145,7 +145,7 @@ class Smart_Mockups_Admin {
 	 */
 	public function set_posttype_row_actions( $actions, $post ) {
 
-		if ( $post->post_type == SMART_MOCKUPS_POSTTYPE ) {
+		if ( get_option('permalink_structure') && $post->post_type == SMART_MOCKUPS_POSTTYPE ) {
 			$actions['custom_slug_view'] = '<a target="_blank" href="' . sm_get_mockup_custom_permalink( $post->ID ) . '">View (Custom Slug)</a>';
 		}
 

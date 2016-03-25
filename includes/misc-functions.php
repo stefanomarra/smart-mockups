@@ -25,4 +25,14 @@ function sm_get_custom_slug() {
 	return apply_filters( 'smartmockups_custom_slug', $custom_slug );
 }
 
+/**
+ * Retrieves notification option
+ *
+ * @since 1.1.0
+ * @return bool
+ */
+function sm_is_notification_enabled() {
+	return get_option('smartmockups_notifications', 0);
+}
+
 
