@@ -1,5 +1,8 @@
 <?php
-class Tests_Smart_Mockups_Public extends WP_UnitTestCase {
+/**
+ * @group ajax
+ */
+class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 
 	protected $_feedback_id;
 
@@ -26,7 +29,43 @@ class Tests_Smart_Mockups_Public extends WP_UnitTestCase {
 	/**
 	 * TODO
 	 */
-	function test_save_approval_signature_ajax() {}
+	function test_save_approval_signature_ajax() {
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['signature'] = 'Stefano Marra';
+
+		// Test as logged in user (administrator)
+		$this->_setRole( 'administrator' );
+		try {
+			$this->_handleAjax( 'smart_mockups_save_approval' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'approval_saved', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+		// Test as logged out user
+		$this->logout();
+		try {
+			$this->_handleAjax( 'smart_mockups_save_approval' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'approval_exists', $response['status'] );
+	}
 
 	function test_save_approval_signature() {
 		$args = array(

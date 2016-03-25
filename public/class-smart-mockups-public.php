@@ -88,7 +88,7 @@ class Smart_Mockups_Public {
 		do_action( 'smartmockups_after_save_approval_signature', $approval );
 
 		echo json_encode( $approval );
-		die();
+		wp_die();
 	}
 
 	/**
