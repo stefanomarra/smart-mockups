@@ -8,7 +8,7 @@
  * @link       http://www.stefanomarra.com
  * @since      1.1.0
  * @package    Smart_Mockups
- * @subpackage Smart_Mockups/includes/emails
+ * @subpackage Smart_Mockups/includes
  * @author     Stefano <stefano.marra1987@gmail.com>
  */
 class Smart_Mockups_Emails {
