@@ -92,6 +92,15 @@ class Smart_Mockups_Notifications {
 	}
 
 	/**
+	 * Get heading based on queue
+	 *
+	 * @since 1.1.0
+	 */
+	public function get_heading() {
+		return count( $queue ) . ' New Feedbacks';
+	}
+
+	/**
 	 * Send Email
 	 *
 	 * @since 1.1.0
@@ -103,7 +112,7 @@ class Smart_Mockups_Notifications {
 			$email = new Smart_Mockups_Emails();
 
 			$to = get_option( 'admin_email' );
-			$subject = count( $queue ) . ' New Feedbacks';
+			$subject = $this->get_heading();
 			$message = 'You have ' . count( $queue ) . ' new mockup feedbacks';
 
 			if ( $email->send( $to, $subject, $message ) ) {
