@@ -102,11 +102,11 @@ class Smart_Mockups_Notifications {
 		if ( count( $queue ) ) {
 			$email = new Smart_Mockups_Emails();
 
-			$from = get_option( 'admin_email' );
+			$to = get_option( 'admin_email' );
 			$subject = count( $queue ) . ' New Feedbacks';
 			$message = 'You have ' . count( $queue ) . ' new mockup feedbacks';
 
-			if ( $email->send( $from, $subject, $message ) ) {
+			if ( $email->send( $to, $subject, $message ) ) {
 				$this->erase_queue();
 
 				return true;

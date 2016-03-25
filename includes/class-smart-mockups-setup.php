@@ -430,10 +430,10 @@ class Smart_Mockups_Setup {
 	 * @since 1.0.0
 	 */
     public function register_plugin_options() {
-    	register_setting( 'smartmockups_settings', 'smartmockups_slug', array(&$this, 'sanitize_slug') );
-    	register_setting( 'smartmockups_settings', 'smartmockups_credits', 'intval' );
+    	register_setting( 'smartmockups_settings_general', 'smartmockups_slug', array(&$this, 'sanitize_slug') );
+    	register_setting( 'smartmockups_settings_general', 'smartmockups_credits', 'intval' );
 
-    	register_setting( 'smartmockups_settings', 'smartmockups_notifications', 'intval' );
+    	register_setting( 'smartmockups_settings_notifications', 'smartmockups_notifications', 'intval' );
     }
 
     /**

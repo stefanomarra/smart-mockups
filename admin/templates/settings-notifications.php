@@ -1,12 +1,11 @@
 <form method="post" action="options.php">
     <?php
-    	$post_types = Smart_Mockups_Setup::post_types();
-
 		$settings = array(
 			'notifications' 	=> sm_is_notification_enabled()
 		);
 
-    	settings_fields('smartmockups_settings');
+    	settings_fields('smartmockups_settings_notifications');
+
     ?>
     <table class="form-table">
         <tbody>
