@@ -84,6 +84,11 @@ class Smart_Mockups {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-setup.php';
 
 		/**
+		 * Template functions
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/template-functions.php';
+
+		/**
 		 * Misc functions
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/misc-functions.php';
@@ -109,6 +114,16 @@ class Smart_Mockups {
 		 * of the plugin.
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-i18n.php';
+
+		/**
+		 * The class responsible for handling the emails that occur during notification
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-emails.php';
+
+		/**
+		 * The class responsible for handling notifications
+		 */
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-smart-mockups-notifications.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -154,6 +169,15 @@ class Smart_Mockups {
 		// Register Settings Page
 		$this->loader->add_action( 'admin_init', $plugin_setup, 'register_plugin_options' );
 		$this->loader->add_action( 'admin_menu', $plugin_setup, 'register_plugin_settings_page' );
+
+		$notifications = new Smart_Mockups_Notifications();
+
+		// Register Notifications
+		$this->loader->add_action( 'update_option_smartmockups_notifications', $notifications, 'update_schedule', 10, 2);
+		$this->loader->add_action( 'smartmockups_after_save_feedback', $notifications, 'add_to_queue', 999, 1 );
+		$this->loader->add_action( 'smartmockups_after_save_discussion_comment', $notifications, 'add_to_queue', 999, 1 );
+		$this->loader->add_action( 'smartmockups_after_save_approval_signature', $notifications, 'add_to_queue', 999, 1 );
+		$this->loader->add_action( 'notification_event', $notifications, 'send_email' );
 	}
 
 	/**

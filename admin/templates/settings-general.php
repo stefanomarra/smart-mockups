@@ -7,7 +7,7 @@
 			'credits' 	=> get_option('smartmockups_credits', 1)
 		);
 
-    	settings_fields('smartmockups_settings');
+    	settings_fields('smartmockups_settings_general');
     ?>
     <table class="form-table">
         <tbody>

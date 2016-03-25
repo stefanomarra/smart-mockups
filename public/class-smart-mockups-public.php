@@ -81,7 +81,11 @@ class Smart_Mockups_Public {
 				'signature'  	=> sanitize_text_field( $_POST['signature'] )
 			);
 
+		do_action( 'smartmockups_before_save_approval_signature', $approval );
+
 		$approval['status'] = $this->save_approval_signature( $approval );
+
+		do_action( 'smartmockups_after_save_approval_signature', $approval );
 
 		echo json_encode( $approval );
 		die();
@@ -125,7 +129,11 @@ class Smart_Mockups_Public {
 			'action'		=> 'save_discussion_comment'
 		);
 
+		do_action( 'smartmockups_before_save_discussion_comment', $comment );
+
 		$comment['status'] = $this->save_discussion_comment( $comment );
+
+		do_action( 'smartmockups_after_save_discussion_comment', $comment );
 
 		echo json_encode( $comment );
 		die();
@@ -178,7 +186,11 @@ class Smart_Mockups_Public {
 			$feedback['feedback_id'] = $this->generate_feedback_id();
 		}
 
+		do_action( 'smartmockups_before_save_feedback', $feedback );
+
 		$feedback['status'] = $this->save_feedback( $feedback );
+
+		do_action( 'smartmockups_after_save_feedback', $feedback );
 
 		echo json_encode( $feedback );
 		die();
@@ -198,7 +210,11 @@ class Smart_Mockups_Public {
 			'action'		=> 'update_feedback_position'
 		);
 
+		do_action( 'smartmockups_before_update_feedback_position', $feedback );
+
 		$feedback['status'] = $this->save_feedback( $feedback );
+
+		do_action( 'smartmockups_after_update_feedback_position', $feedback );
 
 		echo json_encode( $feedback );
 		die();
@@ -216,7 +232,11 @@ class Smart_Mockups_Public {
 			'action'		=> 'delete_feedback'
 		);
 
+		do_action( 'smartmockups_before_delete_feedback', $feedback );
+
 		$feedback['status'] = $this->delete_feedback( $feedback );
+
+		do_action( 'smartmockups_after_delete_feedback', $feedback );
 
 		echo json_encode( $feedback );
 		die();
