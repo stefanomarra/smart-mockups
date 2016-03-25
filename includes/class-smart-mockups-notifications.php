@@ -72,7 +72,8 @@ class Smart_Mockups_Notifications {
 			'new_feedbacks_comments'  => 0,
 			'new_discussion_comments' => 0,
 			'new_approvals'           => 0,
-			'total_changes' 		  => 0
+			'total_changes' 		  => 0,
+			'mockups' 				  => array()
 		);
 
 		foreach ( $queue as $notification ) {
@@ -93,6 +94,13 @@ class Smart_Mockups_Notifications {
 					$queue_info['new_approvals']++;
 					$queue_info['total_changes']++;
 					break;
+			}
+
+			if ( ! array_key_exists( $notification['post_id'], $queue_info['mockups'] ) ) {
+				$queue_info['mockups'][ $notification['post_id'] ] = array(
+						'name' => get_the_title( $notification['post_id'] ),
+						'url'  => get_permalink( $notification['post_id'] )
+					);
 			}
 		}
 
@@ -145,11 +153,34 @@ class Smart_Mockups_Notifications {
 		$queue = $this->get_queue();
 		$queue_info = $this->get_queue_info();
 
-		return 'You have ' . $queue_info['total_changes'] . ' new feedbacks:
-' . $queue_info['new_feedbacks'] . ' New Feedbacks
-' . $queue_info['new_feedbacks_comments'] . ' New Feedback Comments
-' . $queue_info['new_discussion_comments'] . ' New Discussion Comments
-' . $queue_info['new_approvals'] . ' Approvals';
+		$body  = '<p>';
+		$body .= 'You have ' . $queue_info['total_changes'] . ' new interactions:';
+		$body .= '<ul>';
+		if ( $queue_info['new_feedbacks'] )
+			$body .= '<li>' . $queue_info['new_feedbacks'] . ' New Feedbacks' . '</li>';
+
+		if ( $queue_info['new_feedbacks_comments'] )
+			$body .= '<li>' . $queue_info['new_feedbacks_comments'] . ' New Feedback Comments' . '</li>';
+
+		if ( $queue_info['new_discussion_comments'] )
+			$body .= '<li>' . $queue_info['new_discussion_comments'] . ' New Discussion Comments' . '</li>';
+
+		if ( $queue_info['new_approvals'] )
+			$body .= '<li>' . $queue_info['new_approvals'] . ' Approvals' . '</li>';
+
+		$body .= '</ul>';
+		$body .= '</p>';
+
+		$body .= '<p>';
+		$body .= 'From ' . count( $queue_info['mockups'] ) . ' Mockups:';
+		$body .= '<ul>';
+		foreach ( $queue_info['mockups'] as $mockup ) {
+			$body .= '<li><a href="' . $mockup['url'] . '" target="blank">' . $mockup['name'] . '</a></li>';
+		}
+		$body .= '</ul>';
+		$body .= '</p>';
+
+		return $body;
 	}
 
 	/**
