@@ -81,7 +81,43 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 	/**
 	 * TODO
 	 */
-	function test_save_discussion_comment_ajax() {}
+	function test_save_discussion_comment_ajax() {
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['comment'] = 'This is a test comment';
+
+		// Test as logged in user (administrator)
+		$this->_setRole( 'administrator' );
+		try {
+			$this->_handleAjax( 'save_discussion_comment' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'new_discussion_comment_saved', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+		// Test as logged out user
+		$this->logout();
+		try {
+			$this->_handleAjax( 'save_discussion_comment' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'new_discussion_comment_saved', $response['status'] );
+	}
 
 	function test_save_discussion_comment() {
 		$args = array(
@@ -97,7 +133,31 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 	/**
 	 * TODO
 	 */
-	function test_save_feedback_ajax() {}
+	function test_save_feedback_ajax() {
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['x'] = '20%';
+		$_POST['y'] = '25%';
+		$_POST['feedback_id'] = $this->_feedback_id;
+		$_POST['comment'] = 'This is a test feedback';
+
+		// Test as logged in user (administrator)
+		$this->_setRole( 'administrator' );
+		try {
+			$this->_handleAjax( 'save_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'new_feedback_saved', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+	}
 
 	/**
 	 * TODO
