@@ -174,6 +174,8 @@ class Smart_Mockups {
 
 		// Register Notifications
 		$this->loader->add_action( 'update_option_smartmockups_notifications', $notifications, 'update_schedule', 10, 2);
+		$this->loader->add_action( 'update_option_smartmockups_notifications_recurrence', $notifications, 'update_schedule', 10, 2);
+
 		$this->loader->add_action( 'smartmockups_after_save_feedback', $notifications, 'add_to_queue', 999, 1 );
 		$this->loader->add_action( 'smartmockups_after_save_discussion_comment', $notifications, 'add_to_queue', 999, 1 );
 		$this->loader->add_action( 'smartmockups_after_save_approval_signature', $notifications, 'add_to_queue', 999, 1 );

@@ -39,7 +39,8 @@ class Smart_Mockups_Notifications {
 
 		// Schedule notifications event if notifications is active
 		if ( $new_value ) {
-			wp_schedule_event( time(), 'hourly', 'notification_event' );
+			wp_clear_scheduled_hook('notification_event');
+			wp_schedule_event( time(), sm_get_notification_recurrence(), 'notification_event' );
 		}
 
 		// Clear scheduled notifications event is not active
