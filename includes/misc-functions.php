@@ -35,4 +35,13 @@ function sm_is_notification_enabled() {
 	return get_option('smartmockups_notifications', 0);
 }
 
+/**
+ * Retrieves notification recurrence (frequency) option
+ *
+ * @since 1.1.0
+ * @return string
+ */
+function sm_get_notification_recurrence( $default = 'hourly' ) {
+	return get_option( 'smartmockups_notifications_recurrence', $default );
+}
 
