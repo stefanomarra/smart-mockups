@@ -35,10 +35,13 @@ class Smart_Mockups_Notifications {
 	public function __construct() {
 	}
 
-	public function update_schedule( $old_value, $new_value ) {
+	public function update_schedule( $old, $new ) {
+
+		if ( $old == $new )
+			return;
 
 		// Schedule notifications event if notifications is active
-		if ( $new_value ) {
+		if ( sm_is_notification_enabled() ) {
 			wp_clear_scheduled_hook('notification_event');
 			wp_schedule_event( time(), sm_get_notification_recurrence(), 'notification_event' );
 		}
