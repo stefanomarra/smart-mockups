@@ -26,10 +26,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		SM_Helper_Mockup::delete_mockup( $this->_post->ID );
 	}
 
-	/**
-	 * TODO
-	 */
-	function test_save_approval_signature_ajax() {
+	function test_save_approval_signature_ajax_as_admin() {
 		$_POST['post_id'] = $this->_post->ID;
 		$_POST['signature'] = 'Stefano Marra';
 
@@ -51,8 +48,44 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		// Clear last_response
 		$this->_last_response = '';
 
+		// Test again
+		try {
+			$this->_handleAjax( 'smart_mockups_save_approval' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'approval_exists', $response['status'] );
+	}
+
+	function test_save_approval_signature_ajax_as_logout() {
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['signature'] = 'Stefano Marra';
+
 		// Test as logged out user
 		$this->logout();
+		try {
+			$this->_handleAjax( 'smart_mockups_save_approval' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'approval_saved', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+		// Test again
 		try {
 			$this->_handleAjax( 'smart_mockups_save_approval' );
 		} catch ( WPAjaxDieContinueException $e ) {
@@ -78,9 +111,6 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$this->assertEquals( 'approval_exists', $this->_plugin_public->save_approval_signature( $args ) );
 	}
 
-	/**
-	 * TODO
-	 */
 	function test_save_discussion_comment_ajax() {
 		$_POST['post_id'] = $this->_post->ID;
 		$_POST['comment'] = 'This is a test comment';
@@ -102,6 +132,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 
 		// Clear last_response
 		$this->_last_response = '';
+
 
 		// Test as logged out user
 		$this->logout();
@@ -130,10 +161,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$this->assertEquals( 'new_discussion_comment_saved', $this->_plugin_public->save_discussion_comment( $args ) );
 	}
 
-	/**
-	 * TODO
-	 */
-	function test_save_feedback_ajax() {
+	function test_save_feedback_ajax_as_admin() {
 		$_POST['post_id'] = $this->_post->ID;
 		$_POST['x'] = '20%';
 		$_POST['y'] = '25%';
@@ -157,17 +185,329 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 
 		// Clear last_response
 		$this->_last_response = '';
+
+
+		// Test update feedback comment as logged in user (administrator)
+		$_POST['comment'] = 'This is the same test feedback as before but updated';
+		try {
+			$this->_handleAjax( 'save_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_updated', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		// Test new feedback comment as logged in user (administrator) with different feedback_id
+		$_POST['comment'] = 'This is a test feedback';
+		$_POST['feedback_id'] = $this->_feedback_id . 'test';
+		try {
+			$this->_handleAjax( 'save_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'new_feedback_saved', $response['status'] );
+	}
+
+	function test_save_feedback_ajax_as_logout() {
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['x'] = '20%';
+		$_POST['y'] = '25%';
+		$_POST['feedback_id'] = $this->_feedback_id;
+		$_POST['comment'] = 'This is a test feedback';
+
+		// Test as logged out user
+		$this->logout();
+		try {
+			$this->_handleAjax( 'save_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'new_feedback_saved', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		// Test update feedback comment as logged in user (administrator)
+		$_POST['comment'] = 'This is the same test feedback as before but updated';
+		try {
+			$this->_handleAjax( 'save_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_updated', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		// Test new feedback comment as logged in user (administrator) with different feedback_id
+		$_POST['comment'] = 'This is a test feedback';
+		$_POST['feedback_id'] = $this->_feedback_id . 'test';
+		try {
+			$this->_handleAjax( 'save_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'new_feedback_saved', $response['status'] );
 	}
 
 	/**
 	 * TODO
 	 */
-	function test_update_feedback_position_ajax() {}
+	function test_update_feedback_position_ajax() {
 
-	/**
-	 * TODO
-	 */
-	function test_delete_feedback_ajax() {}
+		// Save a new feedback for testing
+		$args = array(
+				'post_id' 		=> $this->_post->ID,
+				'time'			=> current_time( get_option( 'date_format' ) ),
+				'x'				=> '39.6875%',
+				'y'				=> '17.65625%',
+				'feedback_id'  	=> $this->_feedback_id,
+				'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->_plugin_public->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: #888">' . $this->_plugin_public->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">Test Feedback Comment</span></div></li>',
+				'action'		=> 'save_feedback'
+			);
+		$this->_plugin_public->save_feedback( $args );
+
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['x'] = '20%';
+		$_POST['y'] = '25%';
+		$_POST['feedback_id'] = $this->_feedback_id;
+
+		// Test as logged in user (administrator)
+		$this->_setRole( 'administrator' );
+		try {
+			$this->_handleAjax( 'update_feedback_position' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_position_updated', $response['status'] );
+		$this->assertEquals( '20%', $response['x'] );
+		$this->assertEquals( '25%', $response['y'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+
+		// Test as logged out user and new feedback position
+		$_POST['x'] = '22%';
+		$_POST['y'] = '23%';
+		$this->logout();
+		try {
+			$this->_handleAjax( 'update_feedback_position' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_position_updated', $response['status'] );
+		$this->assertEquals( '22%', $response['x'] );
+		$this->assertEquals( '23%', $response['y'] );
+	}
+
+	function test_delete_feedback_ajax_as_admin() {
+
+		// Test as logged in user (administrator)
+		$this->_setRole( 'administrator' );
+
+		// Try deleting a post with no feedbacks
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['feedback_id'] = $this->_feedback_id;
+
+		try {
+			$this->_handleAjax( 'delete_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'no_feedbacks', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		// Save a new feedback for testing
+		$args = array(
+				'post_id' 		=> $this->_post->ID,
+				'time'			=> current_time( get_option( 'date_format' ) ),
+				'x'				=> '39.6875%',
+				'y'				=> '17.65625%',
+				'feedback_id'  	=> $this->_feedback_id,
+				'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->_plugin_public->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: #888">' . $this->_plugin_public->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">Test Feedback Comment</span></div></li>',
+				'action'		=> 'save_feedback'
+			);
+		$this->_plugin_public->save_feedback( $args );
+
+
+		// Try deleting a post feedback that does not exist
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['feedback_id'] = $this->_feedback_id . 'test';
+
+		try {
+			$this->_handleAjax( 'delete_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_not_found', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['feedback_id'] = $this->_feedback_id;
+
+		try {
+			$this->_handleAjax( 'delete_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_deleted', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+	}
+
+	function test_delete_feedback_ajax_as_logout() {
+
+		// Test as logged out user
+		$this->logout();
+
+		// Try deleting a post with no feedbacks
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['feedback_id'] = $this->_feedback_id;
+
+		try {
+			$this->_handleAjax( 'delete_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'no_feedbacks', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		// Save a new feedback for testing
+		$args = array(
+				'post_id' 		=> $this->_post->ID,
+				'time'			=> current_time( get_option( 'date_format' ) ),
+				'x'				=> '39.6875%',
+				'y'				=> '17.65625%',
+				'feedback_id'  	=> $this->_feedback_id,
+				'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->_plugin_public->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: #888">' . $this->_plugin_public->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">Test Feedback Comment</span></div></li>',
+				'action'		=> 'save_feedback'
+			);
+		$this->_plugin_public->save_feedback( $args );
+
+
+		// Try deleting a post feedback that does not exist
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['feedback_id'] = $this->_feedback_id . 'test';
+
+		try {
+			$this->_handleAjax( 'delete_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_not_found', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+
+
+		$_POST['post_id'] = $this->_post->ID;
+		$_POST['feedback_id'] = $this->_feedback_id;
+
+		try {
+			$this->_handleAjax( 'delete_feedback' );
+		} catch ( WPAjaxDieContinueException $e ) {
+			// We expected this, do nothing.
+		}
+		$response = json_decode( $this->_last_response, true );
+
+		// Check if return status of ajax request is set
+		$this->assertArrayHasKey( 'status', $response );
+
+		// Check that the approval signature has been saved
+		$this->assertEquals( 'feedback_deleted', $response['status'] );
+
+		// Clear last_response
+		$this->_last_response = '';
+	}
 
 	function test_save_feedback() {
 		$args = array(
