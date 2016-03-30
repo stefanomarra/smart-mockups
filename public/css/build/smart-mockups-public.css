@@ -391,11 +391,19 @@ body {
           background-color: #FF6160; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-draft {
         display: block; }
-      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-close {
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-action button {
         display: none; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft .feedback-action button.feedback-delete {
+          display: initial; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.draft.saved .feedback-close {
         display: initial; }
-      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.empty .feedback-close {
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.empty .feedback-action button {
+        display: none; }
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.empty .feedback-action button.feedback-delete {
+          display: initial; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback:last-of-type .feedback-next {
+        display: none; }
+      #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback:first-of-type .feedback-prev {
         display: none; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.ui-draggable-dragging .sr-feedback-content {
         display: none; }
