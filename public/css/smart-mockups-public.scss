@@ -715,8 +715,16 @@ body {
 						display: block;
 					}
 
-					.feedback-close {
-						display: none;
+					.feedback-action {
+
+						button {
+
+							display: none;
+
+							&.feedback-delete {
+								display: initial;
+							}
+						}
 					}
 				}
 
@@ -728,7 +736,27 @@ body {
 
 				&.empty {
 
-					.feedback-close {
+					.feedback-action {
+
+						button {
+
+							display: none;
+
+							&.feedback-delete {
+								display: initial;
+							}
+						}
+					}
+				}
+
+				&:last-of-type {
+					.feedback-next {
+						display: none;
+					}
+				}
+
+				&:first-of-type {
+					.feedback-prev {
 						display: none;
 					}
 				}
