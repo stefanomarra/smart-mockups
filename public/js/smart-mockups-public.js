@@ -162,9 +162,16 @@
 				var feedback = $( this ).parents( that.settings.el_feedback_wrapper );
 
 				if ( $( this ).hasClass( that.settings.el_feedback_action_prev.replace( '.','' ) ) )
-					that.openFeedback( feedback.prev() );
+					var target_feedback = feedback.prev();
 				else
-					that.openFeedback( feedback.next() );
+					var target_feedback = feedback.next();
+
+				$('html, body').animate({
+					scrollTop: target_feedback.offset().top - $( that.settings.el_mockup_header ).height() - 40
+				}, 250, function () {
+					that.openFeedback( target_feedback );
+				});
+
 			});
 
 			// Close Feedback
@@ -263,17 +270,28 @@
 
 						switch ( e.keyCode ) {
 							case arrow.left:
-								if ( !feedback.is(':first-of-type') )
-									that.openFeedback( feedback.prev() );
+								if ( !feedback.is(':first-of-type') ) {
+									var target_feedback = feedback.prev();
+								}
 								break;
 
 							case arrow.right:
-								if ( !feedback.is(':last-of-type') )
-									that.openFeedback( feedback.next() );
+								if ( !feedback.is(':last-of-type') ) {
+									var target_feedback = feedback.next();
+								}
 								break;
 
 							default:
+									var target_feedback = null;
 								break;
+						}
+
+						if ( target_feedback ) {
+							$('html, body').animate({
+								scrollTop: target_feedback.offset().top - $( that.settings.el_mockup_header ).height() - 40
+							}, 250, function () {
+								that.openFeedback( target_feedback );
+							});
 						}
 					}
 				}
