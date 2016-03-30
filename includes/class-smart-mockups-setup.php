@@ -434,6 +434,7 @@ class Smart_Mockups_Setup {
     	register_setting( 'smartmockups_settings_general', 'smartmockups_credits', 'intval' );
 
     	register_setting( 'smartmockups_settings_notifications', 'smartmockups_notifications', 'intval' );
+    	register_setting( 'smartmockups_settings_notifications', 'smartmockups_notifications_recurrence' );
     }
 
     /**

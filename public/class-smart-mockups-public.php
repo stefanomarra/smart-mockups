@@ -88,7 +88,7 @@ class Smart_Mockups_Public {
 		do_action( 'smartmockups_after_save_approval_signature', $approval );
 
 		echo json_encode( $approval );
-		die();
+		wp_die();
 	}
 
 	/**
@@ -136,7 +136,7 @@ class Smart_Mockups_Public {
 		do_action( 'smartmockups_after_save_discussion_comment', $comment );
 
 		echo json_encode( $comment );
-		die();
+		wp_die();
 	}
 
 	/**
@@ -193,7 +193,7 @@ class Smart_Mockups_Public {
 		do_action( 'smartmockups_after_save_feedback', $feedback );
 
 		echo json_encode( $feedback );
-		die();
+		wp_die();
 	}
 
 	/**
@@ -217,7 +217,7 @@ class Smart_Mockups_Public {
 		do_action( 'smartmockups_after_update_feedback_position', $feedback );
 
 		echo json_encode( $feedback );
-		die();
+		wp_die();
 	}
 
 	/**
@@ -239,7 +239,7 @@ class Smart_Mockups_Public {
 		do_action( 'smartmockups_after_delete_feedback', $feedback );
 
 		echo json_encode( $feedback );
-		die();
+		wp_die();
 	}
 
 	/**
