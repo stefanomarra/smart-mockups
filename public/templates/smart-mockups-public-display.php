@@ -128,6 +128,8 @@ $mockup_data = array(
     					<div class="feedback-draft">DRAFT</div>
     				</div>
     				<div class="feedback-action">
+                        <button class="feedback-prev"><i class="fa fa-caret-left"></i></button>
+                        <button class="feedback-next"><i class="fa fa-caret-right"></i></button>
     					<button class="feedback-delete"><i class="fa fa-trash-o"></i></button>
     					<button class="feedback-close"><i class="fa fa-close"></i></button>
     				</div>
