@@ -102,6 +102,15 @@ class Smart_Mockups_Setup {
 								'placeholder' => '',
 								'description' => __('Enable the discussion panel on the side', SMART_MOCKUPS_DOMAIN)
 							),
+						'guest_enabled' 		=> array(
+								'type'        => 'checkbox',
+								'name'        => __('Allow Anonymous Feedbacks', SMART_MOCKUPS_DOMAIN),
+								'class'       => '',
+								'default' 	  => 1,
+								'placeholder' => '',
+								'description' => __('Allow guests to anonymously post a feedback (Marked as "Guest")', SMART_MOCKUPS_DOMAIN),
+								'require' 	  => 'feedbacks_enabled'
+							),
 						'approval_enabled' 		=> array(
 								'type'        => 'checkbox',
 								'name'        => __('Enable Approval', SMART_MOCKUPS_DOMAIN),
@@ -224,7 +233,7 @@ class Smart_Mockups_Setup {
 
 		$value = get_post_meta( get_the_ID(), $id, true );
 
-		if ( ! $value ) $value = $attr['default'];
+		if ( $value === null ) $value = $attr['default'];
 
 		$require = isset( $attr['require'] )?('data-require="#' . $attr['require'] . '"'):'';
 

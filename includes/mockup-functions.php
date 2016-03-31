@@ -141,4 +141,3 @@ function sm_get_mockup_custom_permalink( $mockup_id = 0 ) {
 
 	return apply_filters( 'smartmockups_custom_permalink', $custom_permalink );
 }
-

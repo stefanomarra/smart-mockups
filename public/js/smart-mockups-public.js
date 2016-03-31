@@ -19,6 +19,7 @@
 			el_feedback_action_next				: '.feedback-next',
 			el_feedback_comment_form			: '.feedback-comment-form',
 			el_feedback_comment_textarea		: '.feedback-field-comment',
+			el_feedback_guest_display_name 	 	: '.feedback-field-guest-display-name',
 			el_feedback_comment_submit			: '.feedback-field-submit',
 			el_feedback_wrapper_field			: '.feedback-field-wrapper',
 			el_feedback_wrapper_submit			: '.feedback-field-wrapper-submit',
@@ -435,6 +436,12 @@
 		hasSavedFeedback: function() {
 			return $( this.settings.el_feedback_wrapper + '.saved:not(.template)' ).length;
 		},
+		isGuestDisplayNameRequired: function() {
+			if ( this.settings.guest_enabled )
+				return false;
+
+			return $( this.settings.el_feedback_template ).find( this.settings.el_feedback_guest_display_name ).length;
+		},
 		addFeedback: function(feedback) {
 			var that = this;
 
@@ -541,22 +548,33 @@
 			if ( dot.find( that.settings.el_feedback_comment_textarea ).val() == '' )
 				return false;
 
+			if ( that.isGuestDisplayNameRequired() && dot.find( that.settings.el_feedback_guest_display_name ).val() == '' ) {
+				dot.find( that.settings.el_feedback_guest_display_name ).focus();
+				return false;
+			}
+
 			var feedback_id = null;
 			if ( dot.attr('id') ) {
 				feedback_id = dot.attr('id');
 			}
 
+			var data_params = {
+				action 		: 'save_feedback',
+				post_id		: post_id,
+				x 			: dot.attr('data-x'),
+				y 			: dot.attr('data-y'),
+				feedback_id : feedback_id,
+				comment 	: dot.find( that.settings.el_feedback_comment_textarea ).val()
+			};
+
+			if ( that.isGuestDisplayNameRequired() ) {
+				data_params.guest_display_name = dot.find( that.settings.el_feedback_guest_display_name ).val();
+			}
+
 			var request = $.ajax({
 				url: ajax_url,
 				method: 'POST',
-				data: {
-					action 		: 'save_feedback',
-					post_id		: post_id,
-					x 			: dot.attr('data-x'),
-					y 			: dot.attr('data-y'),
-					feedback_id : feedback_id,
-					comment 	: dot.find( that.settings.el_feedback_comment_textarea ).val()
-				},
+				data: data_params,
 				dataType: 'json'
 			});
 
@@ -570,6 +588,11 @@
 						that.addFeedbackComment(data.feedback_id, data.comment);
 						dot.addClass( 'saved' ).removeClass( 'draft' );
 						break;
+				}
+
+				if ( that.isGuestDisplayNameRequired() && dot.find( that.settings.el_feedback_guest_display_name ).is('[type="text"]') ) {
+					$( that.settings.el_feedback_guest_display_name + '[type="text"]' ).attr( { type: 'hidden', value: data_params.guest_display_name } );
+					$( '.sm-guest-display-name').text( data_params.guest_display_name );
 				}
 
 				var dot_textarea = dot.find( that.settings.el_feedback_comment_textarea );
@@ -700,6 +723,7 @@
 	};
 
 	$(document).ready(function() {
+		console.log( window.mockup_options );
 		SmartMockups.init( window.mockup_options );
 	});
 
