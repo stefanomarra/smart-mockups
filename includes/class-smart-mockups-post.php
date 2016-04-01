@@ -47,6 +47,13 @@ class Smart_Mockups_Post {
 	public $approval_enabled;
 
 	/**
+	 * Can a guest post a feedback?
+	 *
+	 * @since 1.1.0
+	 */
+	public $guest_enabled;
+
+	/**
 	 * Is help text enabled?
 	 *
 	 * @since 1.0.5

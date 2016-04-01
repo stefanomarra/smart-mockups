@@ -800,7 +800,8 @@ body {
 				margin-bottom: 10px;
 
 				.discussion-field-comment,
-				.feedback-field-comment {
+				.feedback-field-comment,
+				.feedback-field-guest-display-name {
 					font-family: Roboto;
 					border: none;
 					outline: none;
@@ -817,9 +818,41 @@ body {
 					border: 2px dashed #E0E0E0;
 					background-color: #F5F5F5;
 
+
 					&:focus {
 						border-color: transparent;
+
+						&.error {
+							border-color: red;
+							border-style: solid;
+						}
 					}
+				}
+
+				.feedback-field-guest-display-name {
+					margin-bottom: 10px;
+
+
+					&+.sm-guest-display-name {
+						display: none;
+						text-transform: uppercase;
+
+						padding: 4px 5px 2px;
+						font-size: 10px;
+
+						color: #666;
+						background-color: #F5F5F5;
+					}
+
+					&[type="hidden"]+.sm-guest-display-name {
+						display: inline-block;
+
+						&:before {
+							content: "posting as: ";
+							opacity: 0.5;
+						}
+					}
+
 				}
 			}
 

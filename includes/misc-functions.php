@@ -45,3 +45,26 @@ function sm_get_notification_recurrence( $default = 'hourly' ) {
 	return get_option( 'smartmockups_notifications_recurrence', $default );
 }
 
+/**
+ * Checks if Guest Display Name is required or not
+ *
+ * @since 1.1.0
+ * @return bool
+ */
+function sm_is_guest_display_name_required( $mockup_id = 0 ) {
+	if ( $mockup_id === 0 ) {
+		$mockup_id = get_the_ID();
+	}
+
+	$mockup = sm_get_mockup( $mockup_id );
+
+	if ( is_user_logged_in() )
+		return false;
+
+	if ( ! $mockup->is_enabled( 'guest' ) )
+		return true;
+
+	$post_types = Smart_Mockups_Setup::post_types();
+
+	return $post_types[SMART_MOCKUPS_POSTTYPE]['post_meta']['guest_enabled']['default']?false:true;
+}

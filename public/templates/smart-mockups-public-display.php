@@ -51,7 +51,8 @@ $mockup_data = array(
             var mockup_options = {
             	'feedbacks_enabled' 	: <?php echo (int)$mockup->is_enabled( 'feedbacks' ); ?>,
             	'discussion_enabled' 	: <?php echo (int)$mockup->is_enabled( 'discussion' ); ?>,
-            	'approval_enabled' 		: <?php echo (int)( $mockup->is_enabled( 'approval' ) && !$mockup->get_approval_signature() ); ?>
+            	'approval_enabled'      : <?php echo (int)( $mockup->is_enabled( 'approval' ) && !$mockup->get_approval_signature() ); ?>,
+                'guest_enabled'         : <?php echo (int)$mockup->is_enabled( 'guest' ); ?>
             };
         </script>
 
@@ -136,8 +137,18 @@ $mockup_data = array(
     				<div class="feedback-comments">
     					<ul class="feedback-comment-list"></ul>
     					<form class="feedback-comment-form">
-    						<p class="feedback-field-wrapper">
-    							<textarea placeholder="<?php _e('Write a comment...', SMART_MOCKUPS_DOMAIN ); ?>" class="feedback-field-comment" name="feedback"></textarea>
+                            <p class="feedback-field-wrapper">
+
+                                <?php if ( sm_is_guest_display_name_required() ) : ?>
+                                    <?php if ( isset( $_COOKIE['sm_gst_dsp_n'] ) ) : ?>
+                                        <input placeholder="<?php _e('Name', SMART_MOCKUPS_DOMAIN ); ?>" type="hidden" class="feedback-field-guest-display-name" name="guest_display_name" value="<?php echo (isset( $_COOKIE['sm_gst_dsp_n'] )?$_COOKIE['sm_gst_dsp_n']:''); ?>"></input>
+                                    <?php else: ?>
+                                        <input placeholder="<?php _e('Name', SMART_MOCKUPS_DOMAIN ); ?>" type="text" class="feedback-field-guest-display-name" name="guest_display_name" value="<?php echo (isset( $_COOKIE['sm_gst_dsp_n'] )?$_COOKIE['sm_gst_dsp_n']:''); ?>"></input>
+                                    <?php endif; ?>
+                                    <span class="sm-guest-display-name"><?php echo (isset( $_COOKIE['sm_gst_dsp_n'] )?$_COOKIE['sm_gst_dsp_n']:''); ?></span>
+                                <?php endif; ?>
+
+                                <textarea placeholder="<?php _e('Write a comment...', SMART_MOCKUPS_DOMAIN ); ?>" class="feedback-field-comment" name="feedback"></textarea>
     						</p>
     						<p class="feedback-field-wrapper-submit">
     							<input type="submit" class="feedback-field-submit" value="<?php _e( 'Post this Comment', SMART_MOCKUPS_DOMAIN ); ?>">

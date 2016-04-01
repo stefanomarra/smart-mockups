@@ -352,6 +352,39 @@ class Smart_Mockups_Public {
 	}
 
 	/**
+	 * This function handles guest display name
+	 *
+	 * @since 1.0.0
+	 * @return string The guest display name
+	 */
+	public function get_guest_display_name() {
+
+		if ( sm_is_guest_display_name_required() ) {
+
+			if ( isset( $_POST['guest_display_name'] ) ) {
+				$name = sanitize_user( $_POST['guest_display_name'] );
+
+				if ( ! isset( $_COOKIE['sm_gst_dsp_n'] ) || ( isset( $_COOKIE['sm_gst_dsp_n'] ) && $_COOKIE['sm_gst_dsp_n'] != $name ) ) {
+					$this->setcookie_guest_display_name( $name );
+				}
+				$display_name = $name;
+			}
+			else if ( isset( $_COOKIE['sm_gst_dsp_n'] ) ) {
+				$display_name = $_COOKIE['sm_gst_dsp_n'];
+			}
+			else {
+				$display_name = 'Guest';
+			}
+
+		}
+		else {
+			$display_name = 'Guest';
+		}
+
+		return apply_filters( 'smartmockups_guest_display_name', $display_name );
+	}
+
+	/**
 	 * This function handles user display name
 	 *
 	 * @since 1.0.0
@@ -361,7 +394,7 @@ class Smart_Mockups_Public {
 		$current_user = wp_get_current_user();
 
 		if ( $current_user->ID == 0 )
-			return 'Guest';
+			return $this->get_guest_display_name();
 		else
 			return $current_user->display_name;
 	}
@@ -403,6 +436,15 @@ class Smart_Mockups_Public {
 			$color = $this->generate_rgb_color();
 			setcookie( 'sr_usr_col', apply_filters( 'smartmockups_setcookie_user_color', $color ), time() + YEAR_IN_SECONDS );
 		}
+	}
+
+	/**
+	 * Set guest display name in cookie
+	 *
+	 * @since 1.1.0
+	 */
+	public function setcookie_guest_display_name( $name ) {
+		setcookie( 'sm_gst_dsp_n', $name, time() + MONTH_IN_SECONDS, '/', $_SERVER['SERVER_NAME'], 0, 0 );
 	}
 
 	/**
