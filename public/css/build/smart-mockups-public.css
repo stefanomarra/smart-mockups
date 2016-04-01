@@ -464,6 +464,20 @@ body {
         #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-comment:focus,
         #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-guest-display-name:focus {
           border-color: transparent; }
+          #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .discussion-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .feedback-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .feedback-field-guest-display-name:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .discussion-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-guest-display-name:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .discussion-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-guest-display-name:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .discussion-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-comment:focus.error,
+          #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-guest-display-name:focus.error {
+            border-color: red;
+            border-style: solid; }
       #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper .feedback-field-guest-display-name,
       #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-guest-display-name,
       #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-guest-display-name,
@@ -488,7 +502,7 @@ body {
           #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper .feedback-field-guest-display-name[type="hidden"] + .sm-guest-display-name:before,
           #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .discussion-field-wrapper .feedback-field-guest-display-name[type="hidden"] + .sm-guest-display-name:before,
           #sr-mockup-viewport main.sr-mockup-wrapper .feedback-comment-form .feedback-field-wrapper .feedback-field-guest-display-name[type="hidden"] + .sm-guest-display-name:before {
-            content: "posting as ";
+            content: "posting as: ";
             opacity: 0.5; }
     #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .discussion-field-wrapper-submit,
     #sr-mockup-viewport main.sr-mockup-wrapper .discussion-comment-form .feedback-field-wrapper-submit,

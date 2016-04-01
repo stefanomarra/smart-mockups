@@ -818,13 +818,20 @@ body {
 					border: 2px dashed #E0E0E0;
 					background-color: #F5F5F5;
 
+
 					&:focus {
 						border-color: transparent;
+
+						&.error {
+							border-color: red;
+							border-style: solid;
+						}
 					}
 				}
 
 				.feedback-field-guest-display-name {
 					margin-bottom: 10px;
+
 
 					&+.sm-guest-display-name {
 						display: none;
@@ -841,7 +848,7 @@ body {
 						display: inline-block;
 
 						&:before {
-							content: "posting as ";
+							content: "posting as: ";
 							opacity: 0.5;
 						}
 					}

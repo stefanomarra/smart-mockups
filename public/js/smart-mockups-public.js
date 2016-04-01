@@ -549,7 +549,11 @@
 				return false;
 
 			if ( that.isGuestDisplayNameRequired() && dot.find( that.settings.el_feedback_guest_display_name ).val() == '' ) {
-				dot.find( that.settings.el_feedback_guest_display_name ).focus();
+				dot.find( that.settings.el_feedback_guest_display_name ).addClass('error').focus();
+
+				setTimeout(function() {
+					dot.find( that.settings.el_feedback_guest_display_name ).removeClass('error');
+				}, 3000);
 				return false;
 			}
 
