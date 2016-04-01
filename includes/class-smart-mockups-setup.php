@@ -106,7 +106,7 @@ class Smart_Mockups_Setup {
 								'type'        => 'checkbox',
 								'name'        => __('Allow Anonymous Feedbacks', SMART_MOCKUPS_DOMAIN),
 								'class'       => '',
-								'default' 	  => 1,
+								'default' 	  => 0,
 								'placeholder' => '',
 								'description' => __('Allow guests to anonymously post a feedback (Marked as "Guest")', SMART_MOCKUPS_DOMAIN),
 								'require' 	  => 'feedbacks_enabled'
