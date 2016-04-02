@@ -96,7 +96,7 @@
 
 				dot.removeClass('empty').removeClass('new').addClass('saved');
 
-				dot.find( that.settings.el_feedback_comment_list_wrapper ).append( $( this ).find( '.comments' ).html() );
+				dot.find( that.settings.el_feedback_comment_list_wrapper + ' ul' ).append( $( this ).find( '.comments' ).html() );
 
 			}).promise().done(function() {
 
@@ -655,7 +655,7 @@
 			});
 		},
 		addFeedbackComment: function(feedback_id, feedback_comment) {
-			$( '#' + feedback_id ).find( this.settings.el_feedback_comment_list_wrapper ).append( feedback_comment );
+			$( '#' + feedback_id ).find( this.settings.el_feedback_comment_list_wrapper + ' ul' ).append( feedback_comment );
 		},
 		saveDiscussionComment: function() {
 			var that = this;
@@ -692,7 +692,7 @@
 			});
 		},
 		addDiscussionComment: function(discussion_comment) {
-			$( this.settings.el_discussion_comment_list_wrapper ).append( discussion_comment );
+			$( this.settings.el_discussion_comment_list_wrapper + ' ul' ).append( discussion_comment );
 		},
 		saveApproval: function() {
 			var that = this;

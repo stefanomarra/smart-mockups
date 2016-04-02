@@ -95,7 +95,7 @@ $mockup_data = array(
     			<div class="sr-mockup-dots"></div>
 	    		<div class="sr-mockup-discussion">
                     <h3 class="discussion-title"><?php _e('Mockup Discussion', SMART_MOCKUPS_DOMAIN ); ?></h3>
-                    <ul class="discussion-comment-list"><?php echo $mockup_data['discussion']['comments']; ?></ul>
+                    <div class="discussion-comment-list"><ul><?php echo $mockup_data['discussion']['comments']; ?></ul></div>
                     <form class="discussion-comment-form">
                         <p class="discussion-field-wrapper">
                             <textarea placeholder="<?php _e('Write a comment...', SMART_MOCKUPS_DOMAIN ); ?>" class="discussion-field-comment" name="discussion"></textarea>
@@ -135,7 +135,7 @@ $mockup_data = array(
     					<button class="feedback-close"><i class="fa fa-close"></i></button>
     				</div>
     				<div class="feedback-comments">
-    					<ul class="feedback-comment-list"></ul>
+    					<div class="feedback-comment-list"><ul></ul></div>
     					<form class="feedback-comment-form">
                             <p class="feedback-field-wrapper">
 

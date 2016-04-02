@@ -226,7 +226,7 @@ body {
 			padding: 0 15px;
 		}
 
-		ul.discussion-comment-list {
+		.discussion-comment-list {
 			overflow: scroll;
 
 			max-height: 480px;
@@ -545,7 +545,7 @@ body {
 
 					.feedback-comments {
 
-						ul.feedback-comment-list {
+						.feedback-comment-list {
 
 							max-height: 340px;
 							box-shadow: inset 0 0 15px -5px rgba(0, 0, 0, 0.3);
