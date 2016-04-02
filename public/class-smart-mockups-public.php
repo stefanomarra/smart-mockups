@@ -125,7 +125,7 @@ class Smart_Mockups_Public {
 		$comment = array(
 			'post_id' 		=> strip_tags( trim( $_POST['post_id'] ) ),
 			'time'			=> current_time( get_option( 'date_format' ) ),
-			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . stripslashes( $_POST['comment'] ) . '</span></div></li>',
+			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . make_clickable( stripslashes( $_POST['comment'] ) ) . '</span></div></li>',
 			'action'		=> 'save_discussion_comment'
 		);
 
@@ -178,7 +178,7 @@ class Smart_Mockups_Public {
 			'x'				=> $_POST['x'],
 			'y'				=> $_POST['y'],
 			'feedback_id'  	=> $_POST['feedback_id'],
-			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . stripslashes( $_POST['comment'] ) . '</span></div></li>',
+			'comment'  		=> '<li><div class="sr-avatar"><img src="' . $this->get_user_avatar() . '" /></div><div class="sr-comment-content"><span class="sr-user-display" style="background-color: ' . $this->get_user_color() . '">' . $this->get_user_display_name() . '</span> <span class="sr-comment-time">' . current_time( get_option( 'date_format' ) ) . '</span> <span class="sr-comment-text">' . make_clickable( stripslashes( $_POST['comment'] ) ) . '</span></div></li>',
 			'action'		=> 'save_feedback'
 		);
 
