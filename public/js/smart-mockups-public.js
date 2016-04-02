@@ -60,6 +60,15 @@
 
 			$('[data-tip]').tipr({mode: 'bottom'});
 		},
+		_scrollToBottom: function( dot, el ) {
+			var that = this;
+			setTimeout(function() {
+				var height = 200 + ( dot.find( el + ' li' ).length * 100 );
+				dot.find( el ).animate({
+					scrollTop: height
+				}, 300);
+			}, 150);
+		},
 		_getXPercentagePosition: function(x) {
 			var that = this;
 			var wrapperWidth = $( that.settings.el_mockup_wrapper ).width();
@@ -417,6 +426,11 @@
 				}, 100);
 			});
 
+			$( 'body' ).on('click', that.settings.el_feedback_comment_list_wrapper + ' li a, ' + that.settings.el_discussion_comment_list_wrapper + ' li a', function(e) {
+				e.preventDefault();
+				window.open( $(this).attr('href'), '_blank' );
+			});
+
 		},
 		hasEmptyFeedback: function() {
 			return $( this.settings.el_feedback_wrapper + '.empty:not(.template)' ).length;
@@ -491,6 +505,8 @@
 			dot.removeClass('new');
 
 			that.updateFeedbackOrientation(dot);
+
+			that._scrollToBottom( dot, that.settings.el_feedback_comment_list_wrapper );
 		},
 		closeFeedback: function(dot) {
 			var that = this;
@@ -602,6 +618,7 @@
 				var dot_textarea = dot.find( that.settings.el_feedback_comment_textarea );
 				dot_textarea.val('');
 				autosize.update( dot_textarea );
+				that._scrollToBottom( dot, that.settings.el_feedback_comment_list_wrapper );
 			});
 		},
 		updateFeedbackPosition: function(dot) {
@@ -727,7 +744,6 @@
 	};
 
 	$(document).ready(function() {
-		console.log( window.mockup_options );
 		SmartMockups.init( window.mockup_options );
 	});
 
