@@ -426,6 +426,11 @@
 				}, 100);
 			});
 
+			$( 'body' ).on('click', that.settings.el_feedback_comment_list_wrapper + ' li a, ' + that.settings.el_discussion_comment_list_wrapper + ' li a', function(e) {
+				e.preventDefault();
+				window.open( $(this).attr('href'), '_blank' );
+			});
+
 		},
 		hasEmptyFeedback: function() {
 			return $( this.settings.el_feedback_wrapper + '.empty:not(.template)' ).length;
