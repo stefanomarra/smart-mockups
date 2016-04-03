@@ -61,6 +61,7 @@ $mockup_data = array(
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ) ?>../js/autosize.js"></script>
         <script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ) ?>../js/jquery.modal.min.js"></script>
+        <script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ) ?>../js/perfect-scrollbar.jquery.min.js"></script>
         <script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ) ?>../js/tipr.min.js"></script>
         <script type="text/javascript" src="<?php echo plugin_dir_url( __FILE__ ) ?>../js/smart-mockups-public.js"></script>
 

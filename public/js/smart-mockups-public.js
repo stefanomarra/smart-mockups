@@ -414,6 +414,7 @@
 						$( that.settings.el_mockup_discussion ).css({ 'z-index': '30'});
 						autosize( $( that.settings.el_discussion_comment_textarea ) );
 						$( that.settings.el_discussion_comment_textarea ).focus();
+						$( that.settings.el_discussion_comment_list_wrapper ).perfectScrollbar();
 						that._scrollToBottom( $(that.settings.el_mockup_discussion), that.settings.el_discussion_comment_list_wrapper );
 					}, 400);
 				}
@@ -506,6 +507,8 @@
 			dot.removeClass('new');
 
 			that.updateFeedbackOrientation(dot);
+
+			dot.find( that.settings.el_feedback_comment_list_wrapper ).perfectScrollbar();
 
 			that._scrollToBottom( dot, that.settings.el_feedback_comment_list_wrapper );
 		},
