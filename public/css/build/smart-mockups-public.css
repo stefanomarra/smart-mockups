@@ -137,30 +137,31 @@ body {
     #sr-mockup-viewport .sr-mockup-discussion .discussion-title {
       margin-top: 0;
       padding: 0 15px; }
-    #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list {
+    #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list {
+      position: relative;
       overflow: scroll;
       max-height: 480px;
       box-shadow: inset 0 0 15px -5px rgba(0, 0, 0, 0.3);
       background-color: #F9F9F9; }
-      #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li {
+      #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li {
         padding: 10px 15px;
         border-bottom: 1px solid #EFEFEF; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-avatar {
+        #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li .sr-avatar {
           float: left;
           width: 50px; }
-          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-avatar img {
+          #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li .sr-avatar img {
             max-width: 100%;
             border-radius: 50%; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content {
+        #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li .sr-comment-content {
           position: relative;
           overflow: hidden;
           padding-left: 10px;
           font-size: 13px; }
-          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-comment-text {
+          #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li .sr-comment-content .sr-comment-text {
             display: block;
             margin-top: 5px;
             color: #666666; }
-          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-comment-time {
+          #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li .sr-comment-content .sr-comment-time {
             display: none;
             position: absolute;
             top: 0;
@@ -168,20 +169,20 @@ body {
             font-size: 12px;
             font-weight: 100;
             color: #CECECE; }
-          #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li .sr-comment-content .sr-user-display {
+          #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li .sr-comment-content .sr-user-display {
             position: relative;
             text-transform: uppercase;
             padding: 2px 5px;
             font-size: 10px;
             background-color: #3F98E6;
             color: #FFF; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:after {
+        #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li:after {
           content: "";
           display: block;
           clear: both; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:last-of-type {
+        #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li:last-of-type {
           border-bottom: none; }
-        #sr-mockup-viewport .sr-mockup-discussion ul.discussion-comment-list li:hover .sr-comment-time {
+        #sr-mockup-viewport .sr-mockup-discussion .discussion-comment-list li:hover .sr-comment-time {
           display: block; }
   #sr-mockup-viewport.show-discussion .sr-mockup-wrapper {
     margin-right: 360px; }
@@ -305,30 +306,31 @@ body {
           top: 15px;
           border-right-color: rgba(0, 0, 0, 0.1);
           z-index: 10; }
-        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list {
+        #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list {
           max-height: 340px;
           box-shadow: inset 0 0 15px -5px rgba(0, 0, 0, 0.3);
           background-color: #F9F9F9;
+          position: relative;
           overflow-x: scroll; }
-          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li {
+          #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li {
             padding: 10px 15px;
             border-bottom: 1px solid #EFEFEF; }
-            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-avatar {
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li .sr-avatar {
               float: left;
               width: 50px; }
-              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-avatar img {
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li .sr-avatar img {
                 max-width: 100%;
                 border-radius: 50%; }
-            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content {
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li .sr-comment-content {
               position: relative;
               overflow: hidden;
               padding-left: 10px;
               font-size: 13px; }
-              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content .sr-comment-text {
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li .sr-comment-content .sr-comment-text {
                 display: block;
                 margin-top: 5px;
                 color: #666666; }
-              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content .sr-comment-time {
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li .sr-comment-content .sr-comment-time {
                 display: none;
                 position: absolute;
                 top: 0;
@@ -336,18 +338,18 @@ body {
                 font-size: 12px;
                 font-weight: 100;
                 color: #CECECE; }
-              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li .sr-comment-content .sr-user-display {
+              #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li .sr-comment-content .sr-user-display {
                 position: relative;
                 text-transform: uppercase;
                 padding: 2px 5px;
                 font-size: 10px;
                 background-color: #3F98E6;
                 color: #FFF; }
-            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:after {
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li:after {
               content: "";
               display: block;
               clear: both; }
-            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments ul.feedback-comment-list li:hover .sr-comment-time {
+            #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback .sr-feedback-content .feedback-comments .feedback-comment-list li:hover .sr-comment-time {
               display: block; }
       #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.open, #sr-mockup-viewport main.sr-mockup-wrapper .sr-mockup-dots .sr-feedback.hover {
         z-index: 200; }
@@ -714,6 +716,7 @@ body {
   -ms-border-radius: 8px;
   border-radius: 8px; }
 
+/* tipr plugin */
 .tipr_content {
   font-size: 12px;
   color: #FFF;
@@ -781,6 +784,131 @@ body {
   left: 50%;
   margin-left: -9px; }
 
+/* perfect-scrollbar plugin */
+.ps-container {
+  -ms-touch-action: none;
+  touch-action: none;
+  overflow: hidden !important;
+  -ms-overflow-style: none; }
+
+@supports (-ms-overflow-style: none) {
+  .ps-container {
+    overflow: auto !important; } }
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .ps-container {
+    overflow: auto !important; } }
+
+.ps-container.ps-active-x > .ps-scrollbar-x-rail, .ps-container.ps-active-y > .ps-scrollbar-y-rail {
+  display: block;
+  background-color: transparent; }
+
+.ps-container.ps-in-scrolling {
+  pointer-events: none; }
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
+  background-color: #eee;
+  opacity: 0.9; }
+
+.ps-container.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  background-color: #999; }
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  background-color: #eee;
+  opacity: 0.9; }
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #999; }
+
+.ps-container > .ps-scrollbar-x-rail {
+  display: none;
+  position: absolute;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  -moz-transition: background-color .2s linear, opacity .2s linear;
+  -o-transition: background-color .2s linear, opacity .2s linear;
+  transition: background-color .2s linear, opacity .2s linear;
+  bottom: 3px;
+  height: 8px; }
+
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  position: absolute;
+  background-color: #aaa;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color .2s linear;
+  -moz-transition: background-color .2s linear;
+  -o-transition: background-color .2s linear;
+  transition: background-color .2s linear;
+  bottom: 0;
+  height: 8px; }
+
+.ps-container > .ps-scrollbar-y-rail {
+  display: none;
+  position: absolute;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0;
+  -webkit-transition: background-color .2s linear, opacity .2s linear;
+  -moz-transition: background-color .2s linear, opacity .2s linear;
+  -o-transition: background-color .2s linear, opacity .2s linear;
+  transition: background-color .2s linear, opacity .2s linear;
+  right: 3px;
+  width: 8px; }
+
+.ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  position: absolute;
+  background-color: #aaa;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color .2s linear;
+  -moz-transition: background-color .2s linear;
+  -o-transition: background-color .2s linear;
+  transition: background-color .2s linear;
+  right: 0;
+  width: 8px; }
+
+.ps-container:hover.ps-in-scrolling {
+  pointer-events: none; }
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail {
+  background-color: #eee;
+  opacity: 0.9; }
+
+.ps-container:hover.ps-in-scrolling.ps-x > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  background-color: #999; }
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
+  background-color: #eee;
+  opacity: 0.9; }
+
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail > .ps-scrollbar-y {
+  background-color: #999; }
+
+.ps-container:hover > .ps-scrollbar-x-rail, .ps-container:hover > .ps-scrollbar-y-rail {
+  opacity: 0.6; }
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover {
+  background-color: #eee;
+  opacity: 0.9; }
+
+.ps-container:hover > .ps-scrollbar-x-rail:hover > .ps-scrollbar-x {
+  background-color: #999; }
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover {
+  background-color: #eee;
+  opacity: 0.9; }
+
+.ps-container:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
+  background-color: #999; }
+
+/* responsive */
 @media (max-width: 992px) {
   #sr-mockup-viewport .sr-mockup-discussion {
     width: 240px; }
