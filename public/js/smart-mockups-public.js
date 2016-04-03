@@ -60,11 +60,11 @@
 
 			$('[data-tip]').tipr({mode: 'bottom'});
 		},
-		_scrollToBottom: function( dot, el ) {
+		_scrollToBottom: function( $context, el ) {
 			var that = this;
 			setTimeout(function() {
-				var height = 200 + ( dot.find( el + ' li' ).length * 100 );
-				dot.find( el ).animate({
+				var height = 200 + ( $context.find( el + ' li' ).length * 100 );
+				$context.find( el ).animate({
 					scrollTop: height
 				}, 300);
 			}, 150);
@@ -414,6 +414,7 @@
 						$( that.settings.el_mockup_discussion ).css({ 'z-index': '30'});
 						autosize( $( that.settings.el_discussion_comment_textarea ) );
 						$( that.settings.el_discussion_comment_textarea ).focus();
+						that._scrollToBottom( $(that.settings.el_mockup_discussion), that.settings.el_discussion_comment_list_wrapper );
 					}, 400);
 				}
 				// Close Discussion Panel
@@ -689,6 +690,7 @@
 				var textarea = $( that.settings.el_discussion_comment_textarea );
 				textarea.val('');
 				autosize.update( textarea );
+				that._scrollToBottom( $(that.settings.el_mockup_discussion), that.settings.el_discussion_comment_list_wrapper );
 			});
 		},
 		addDiscussionComment: function(discussion_comment) {
