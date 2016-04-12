@@ -6,7 +6,7 @@ Donate link: https://www.paypal.me/stefanomarra
 Tags: feedback, feedbacks, review, reviews, mockup, mockups, design, organize, workflow, red pen, client, clients, approval, approve, wireframe, wireframes, stefano, marra, stefano marra
 Requires at least: 3.0.1
 Tested up to: 4.4.2
-Stable tag: 1.0.6
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,6 +23,7 @@ Features of the plugin include:
 * Mockup approval
 * Password protected mockups
 * Customizable slug
+* Email Notifications
 
 **Vote the features you want to see in the next versions of Smart Mockups [here](http://bit.ly/1Snz49R)**
 
@@ -50,6 +51,14 @@ You can use the plugin forum or contact me at `stefano.marra1987[at]gmail.com`
 2. Mockup Approval
 
 == Changelog ==
+
+= 1.1.0: April 13, 2016 =
+
+* New: Implemented periodic email notification on new feedbacks/comments if available
+* New: Next/Prev feedback actions with ctrl/cmd + left/right hotkey binding
+* New: Guests can now provide a username if enabled from settings
+* Fix: Custom permalink not showing if permalink structure is disabled
+* Fix: Minor fixes
 
 = 1.0.6: March 15, 2016 =
 

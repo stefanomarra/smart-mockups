@@ -12,6 +12,7 @@ Features of the plugin include:
 * Mockup approval
 * Password protected mockups
 * Customizable slug
+* Email Notifications
 
 ## Installation ##
 
