@@ -132,7 +132,7 @@ $mockup_data = array(
     				<div class="feedback-action">
                         <button class="feedback-prev"><i class="fa fa-caret-left"></i></button>
                         <button class="feedback-next"><i class="fa fa-caret-right"></i></button>
-    					<button class="feedback-delete"><i class="fa fa-trash-o"></i></button>
+    					<?php if ( sm_can_user_delete_feedbacks() ) : ?><button class="feedback-delete"><i class="fa fa-trash-o"></i></button><?php endif; ?>
     					<button class="feedback-close"><i class="fa fa-close"></i></button>
     				</div>
     				<div class="feedback-comments">
