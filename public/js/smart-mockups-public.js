@@ -537,7 +537,7 @@
 				url: ajax_url,
 				method: 'POST',
 				data: {
-					action 		: 'delete_feedback',
+					action 		: 'delete_feedback_post',
 					post_id		: post_id,
 					feedback_id : feedback_id
 				},

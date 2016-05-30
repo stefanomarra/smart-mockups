@@ -243,8 +243,8 @@ class Smart_Mockups {
         $this->loader->add_action( 'wp_ajax_nopriv_update_feedback_position', $plugin_public, 'update_feedback_position_ajax' );
 
         // Ajax Delete Feedback
-        $this->loader->add_action( 'wp_ajax_delete_feedback', $plugin_public, 'delete_feedback_ajax' );
-        $this->loader->add_action( 'wp_ajax_nopriv_delete_feedback', $plugin_public, 'delete_feedback_ajax' );
+        $this->loader->add_action( 'wp_ajax_delete_feedback_post', $plugin_public, 'delete_feedback_ajax' );
+        $this->loader->add_action( 'wp_ajax_nopriv_delete_feedback_post', $plugin_public, 'delete_feedback_ajax' );
 
         // Ajax Save Discussion Comment
         $this->loader->add_action( 'wp_ajax_save_discussion_comment', $plugin_public, 'save_discussion_comment_ajax' );
