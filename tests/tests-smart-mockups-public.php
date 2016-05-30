@@ -359,7 +359,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$_POST['feedback_id'] = $this->_feedback_id;
 
 		try {
-			$this->_handleAjax( 'delete_feedback' );
+			$this->_handleAjax( 'delete_feedback_post' );
 		} catch ( WPAjaxDieContinueException $e ) {
 			// We expected this, do nothing.
 		}
@@ -393,7 +393,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$_POST['feedback_id'] = $this->_feedback_id . 'test';
 
 		try {
-			$this->_handleAjax( 'delete_feedback' );
+			$this->_handleAjax( 'delete_feedback_post' );
 		} catch ( WPAjaxDieContinueException $e ) {
 			// We expected this, do nothing.
 		}
@@ -413,7 +413,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$_POST['feedback_id'] = $this->_feedback_id;
 
 		try {
-			$this->_handleAjax( 'delete_feedback' );
+			$this->_handleAjax( 'delete_feedback_post' );
 		} catch ( WPAjaxDieContinueException $e ) {
 			// We expected this, do nothing.
 		}
@@ -439,7 +439,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$_POST['feedback_id'] = $this->_feedback_id;
 
 		try {
-			$this->_handleAjax( 'delete_feedback' );
+			$this->_handleAjax( 'delete_feedback_post' );
 		} catch ( WPAjaxDieContinueException $e ) {
 			// We expected this, do nothing.
 		}
@@ -473,7 +473,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$_POST['feedback_id'] = $this->_feedback_id . 'test';
 
 		try {
-			$this->_handleAjax( 'delete_feedback' );
+			$this->_handleAjax( 'delete_feedback_post' );
 		} catch ( WPAjaxDieContinueException $e ) {
 			// We expected this, do nothing.
 		}
@@ -493,7 +493,7 @@ class Tests_Smart_Mockups_Public extends WP_Ajax_UnitTestCase {
 		$_POST['feedback_id'] = $this->_feedback_id;
 
 		try {
-			$this->_handleAjax( 'delete_feedback' );
+			$this->_handleAjax( 'delete_feedback_post' );
 		} catch ( WPAjaxDieContinueException $e ) {
 			// We expected this, do nothing.
 		}
