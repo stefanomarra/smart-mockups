@@ -68,3 +68,62 @@ function sm_is_guest_display_name_required( $mockup_id = 0 ) {
 
 	return $post_types[SMART_MOCKUPS_POSTTYPE]['post_meta']['guest_enabled']['default']?false:true;
 }
+
+/**
+ * Check if user can delete feedbacks
+ *
+ * @since 1.2.0
+ * @return bool
+ */
+function sm_can_user_delete_feedback($user_id = null, $feedback_id = null) {
+	// If no user_id is passed try to get current user from session
+	if ( $user_id == null) {
+		$user = wp_get_current_user();
+
+		// If user is not logged in return false
+		if ( $user->ID == 0 ) {
+
+			// Check if the user is the owner of feedback_id
+			if ( !is_null($feedback_id) && in_array( $feedback_id, sm_get_user_feedbacks() ) ) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			$user_id = $user->ID;
+		}
+	}
+
+	// Allow only the admin to be able to delete a feedback
+	if ( is_super_admin( $user_id ) ) {
+		return true;
+	}
+	else {
+		// Check if the user is the owner of feedback_id
+		if ( !is_null($feedback_id) && in_array( $feedback_id, sm_get_user_feedbacks() ) ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+/**
+ * Get user feedback IDs from cookie
+ *
+ * @since 1.2.0
+ * @return array of feedback IDs
+ */
+function sm_get_user_feedbacks() {
+	if ( isset( $_COOKIE['sm_my_fdbks'] ) ) {
+		$feedbacks = json_decode( base64_decode( $_COOKIE['sm_my_fdbks']), true );
+	}
+	else {
+		$feedbacks = array();
+	}
+
+	return apply_filters( 'smartmockups_get_user_feedbacks', $feedbacks );
+}

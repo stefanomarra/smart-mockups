@@ -164,7 +164,7 @@ class Smart_Mockups_Notifications {
 			$body .= '<li>' . $queue_info['new_feedbacks'] . ' New Feedbacks' . '</li>';
 
 		if ( $queue_info['new_feedbacks_comments'] )
-			$body .= '<li>' . $queue_info['new_feedbacks_comments'] . ' New Feedback Comments' . '</li>';
+			$body .= '<li>' . $queue_info['new_feedbacks_comments'] . ' New Feedback Replies' . '</li>';
 
 		if ( $queue_info['new_discussion_comments'] )
 			$body .= '<li>' . $queue_info['new_discussion_comments'] . ' New Discussion Comments' . '</li>';

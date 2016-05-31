@@ -180,6 +180,11 @@ class Smart_Mockups {
 		$this->loader->add_action( 'smartmockups_after_save_discussion_comment', $notifications, 'add_to_queue', 999, 1 );
 		$this->loader->add_action( 'smartmockups_after_save_approval_signature', $notifications, 'add_to_queue', 999, 1 );
 		$this->loader->add_action( 'notification_event', $notifications, 'send_email' );
+
+		$plugin_public = new Smart_Mockups_Public($this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'smartmockups_after_save_feedback', $plugin_public, 'update_user_feedbacks' );
+		$this->loader->add_action( 'smartmockups_after_delete_feedback', $plugin_public, 'update_user_feedbacks' );
 	}
 
 	/**
