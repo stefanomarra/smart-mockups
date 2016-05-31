@@ -54,6 +54,8 @@ $mockup_data = array(
             	'approval_enabled'      : <?php echo (int)( $mockup->is_enabled( 'approval' ) && !$mockup->get_approval_signature() ); ?>,
                 'guest_enabled'         : <?php echo (int)$mockup->is_enabled( 'guest' ); ?>
             };
+
+            var user_feedbacks = [<?php echo "'" . implode("','", sm_get_user_feedbacks()) . "'" ?>];
         </script>
 
         <!-- JavaScripts -->
@@ -118,7 +120,7 @@ $mockup_data = array(
     		<?php /* Pre Load Feedbacks */ ?>
             <div id="sr-feedback-loader">
                 <?php foreach ( $mockup_data['feedbacks'] as $id => $feedback ) : ?>
-                    <div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>"><div class="comments"><?php echo join('', $feedback['comments']); ?></div></div>
+                    <div class="sr-feedback-preload" data-id="<?php echo $id; ?>" data-x="<?php echo $feedback['x']; ?>" data-y="<?php echo $feedback['y']; ?>" data-is-owner="<?php echo in_array($id, sm_get_user_feedbacks()) ? '1' : '0'; ?>" data-user-can-delete="<?php echo sm_can_user_delete_feedback(null, $id) ? '1' : '0'; ?>"><div class="comments"><?php echo join('', $feedback['comments']); ?></div></div>
                 <?php endforeach; ?>
             </div>
 
@@ -132,7 +134,7 @@ $mockup_data = array(
     				<div class="feedback-action">
                         <button class="feedback-prev"><i class="fa fa-caret-left"></i></button>
                         <button class="feedback-next"><i class="fa fa-caret-right"></i></button>
-    					<?php if ( sm_can_user_delete_feedbacks() ) : ?><button class="feedback-delete"><i class="fa fa-trash-o"></i></button><?php endif; ?>
+    					<button class="feedback-delete"><i class="fa fa-trash-o"></i></button>
     					<button class="feedback-close"><i class="fa fa-close"></i></button>
     				</div>
     				<div class="feedback-comments">

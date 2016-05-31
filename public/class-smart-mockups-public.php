@@ -468,7 +468,7 @@ class Smart_Mockups_Public {
 	 * @since 1.2.0
 	 */
 	public function setcookie_user_feedback($feedback_id) {
-		$user_feedbacks = $this->get_user_feedbacks();
+		$user_feedbacks = sm_get_user_feedbacks();
 
 		if ( ! $user_feedbacks ) {
 			$user_feedbacks = array();
@@ -484,7 +484,7 @@ class Smart_Mockups_Public {
 	 * @since 1.2.0
 	 */
 	public function setcookie_remove_user_feedback($feedback_id) {
-		$user_feedbacks = $this->get_user_feedbacks();
+		$user_feedbacks = sm_get_user_feedbacks();
 
 		if ( ! $user_feedbacks ) {
 			$user_feedbacks = array();
@@ -495,23 +495,6 @@ class Smart_Mockups_Public {
 		}
 
 		setcookie( 'sm_my_fdbks', base64_encode( json_encode( $user_feedbacks ) ), time() + WEEK_IN_SECONDS, '/', $_SERVER['SERVER_NAME'], 0, 0 );
-	}
-
-	/**
-	 * Get user feedback IDs from cookie
-	 *
-	 * @since 1.2.0
-	 * @return array of feedback IDs
-	 */
-	public function get_user_feedbacks() {
-		if ( isset( $_COOKIE['sm_my_fdbks'] ) ) {
-			$feedbacks = json_decode( base64_decode( $_COOKIE['sm_my_fdbks']), true );
-		}
-		else {
-			$feedbacks = array();
-		}
-
-		return apply_filters( 'smartmockups_get_user_feedbacks', $feedbacks );
 	}
 
 	/**

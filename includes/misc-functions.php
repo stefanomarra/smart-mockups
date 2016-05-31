@@ -75,19 +75,21 @@ function sm_is_guest_display_name_required( $mockup_id = 0 ) {
  * @since 1.2.0
  * @return bool
  */
-function sm_can_user_delete_feedbacks($user_id = null) {
+function sm_can_user_delete_feedback($user_id = null, $feedback_id = null) {
 	// If no user_id is passed try to get current user from session
 	if ( $user_id == null) {
 		$user = wp_get_current_user();
 
 		// If user is not logged in return false
 		if ( $user->ID == 0 ) {
-			return false;
 
-			/**
-			 * TODO - Save all user post feedback IDs in localstore and
-			 * allow not logged in users to delete their feedback
-			 */
+			// Check if the user is the owner of feedback_id
+			if ( !is_null($feedback_id) && in_array( $feedback_id, sm_get_user_feedbacks() ) ) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		else {
 			$user_id = $user->ID;
@@ -99,7 +101,29 @@ function sm_can_user_delete_feedbacks($user_id = null) {
 		return true;
 	}
 	else {
-		return false;
+		// Check if the user is the owner of feedback_id
+		if ( !is_null($feedback_id) && in_array( $feedback_id, sm_get_user_feedbacks() ) ) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}
+
+/**
+ * Get user feedback IDs from cookie
+ *
+ * @since 1.2.0
+ * @return array of feedback IDs
+ */
+function sm_get_user_feedbacks() {
+	if ( isset( $_COOKIE['sm_my_fdbks'] ) ) {
+		$feedbacks = json_decode( base64_decode( $_COOKIE['sm_my_fdbks']), true );
+	}
+	else {
+		$feedbacks = array();
 	}
 
+	return apply_filters( 'smartmockups_get_user_feedbacks', $feedbacks );
 }
