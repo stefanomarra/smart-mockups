@@ -352,6 +352,21 @@ class Smart_Mockups_Public {
 	}
 
 	/**
+	 * Update user feedbacks cookie
+	 *
+	 * @since 1.2.0
+	 */
+	public function update_user_feedbacks($feedback) {
+		if ( $feedback['status'] == 'new_feedback_saved' ) {
+			$this->setcookie_user_feedback($feedback['feedback_id']);
+		}
+
+		if ( $feedback['status'] == 'feedback_deleted' ) {
+			$this->setcookie_remove_user_feedback($feedback['feedback_id']);
+		}
+	}
+
+	/**
 	 * This function handles guest display name
 	 *
 	 * @since 1.0.0
@@ -445,6 +460,41 @@ class Smart_Mockups_Public {
 	 */
 	public function setcookie_guest_display_name( $name ) {
 		setcookie( 'sm_gst_dsp_n', $name, time() + MONTH_IN_SECONDS, '/', $_SERVER['SERVER_NAME'], 0, 0 );
+	}
+
+	/**
+	 * Set user feedback ID in cookie
+	 *
+	 * @since 1.2.0
+	 */
+	public function setcookie_user_feedback($feedback_id) {
+		$user_feedbacks = sm_get_user_feedbacks();
+
+		if ( ! $user_feedbacks ) {
+			$user_feedbacks = array();
+		}
+
+		$user_feedbacks[] = $feedback_id;
+		setcookie( 'sm_my_fdbks', base64_encode( json_encode( $user_feedbacks ) ), time() + WEEK_IN_SECONDS, '/', $_SERVER['SERVER_NAME'], 0, 0 );
+	}
+
+	/**
+	 * Remove a user feedback ID previously added in cookie
+	 *
+	 * @since 1.2.0
+	 */
+	public function setcookie_remove_user_feedback($feedback_id) {
+		$user_feedbacks = sm_get_user_feedbacks();
+
+		if ( ! $user_feedbacks ) {
+			$user_feedbacks = array();
+		}
+
+		if ( ( $key = array_search( $feedback_id, $user_feedbacks ) ) !== false ) {
+			unset($user_feedbacks[$key]);
+		}
+
+		setcookie( 'sm_my_fdbks', base64_encode( json_encode( $user_feedbacks ) ), time() + WEEK_IN_SECONDS, '/', $_SERVER['SERVER_NAME'], 0, 0 );
 	}
 
 	/**

@@ -38,11 +38,14 @@
 			el_button_toggle_discussion 		: '.sr-toggle-discussion-panel'
 		},
 		settings: {},
+		user_feedbacks: [],
 		state: {
 			dots: 0
 		},
-		init: function(options) {
+		init: function(options, user_feedbacks) {
 			$.extend(this.settings, this.defaults, options);
+
+			this.user_feedbacks = user_feedbacks;
 
 			this.setup();
 		},
@@ -89,6 +92,8 @@
 					x 			: $(this).attr('data-x'),
 					y 			: $(this).attr('data-y'),
 					feedback_id : $(this).attr('data-id'),
+					is_owner 	: parseInt( $(this).attr('data-is-owner') ),
+					can_delete 	: parseInt( $(this).attr('data-user-can-delete') ),
 					class 		: 'preloaded'
 				};
 
@@ -131,6 +136,8 @@
 				var feedback = {
 					x 			: that._getXPercentagePosition(X) + '%',
 					y 			: that._getYPercentagePosition(Y) + '%',
+					is_owner 	: 1,
+					can_delete 	: 1,
 					feedback_id : null
 				};
 
@@ -489,6 +496,11 @@
 
 			autosize( dot.find( that.settings.el_feedback_comment_textarea ) );
 
+			// Check if this feedback can be deleted by the user
+			if ( !feedback.can_delete ) {
+				dot.find( that.settings.el_feedback_action_delete ).remove();
+			}
+
 			return dot;
 		},
 		openFeedback: function(dot) {
@@ -606,6 +618,9 @@
 				switch ( data.status ) {
 					case 'new_feedback_saved':
 						dot.attr( 'id', data.feedback_id );
+
+						// Add feedback id to user_feedbacks
+						that.user_feedbacks.push(data.feedback_id);
 
 					case 'feedback_updated':
 					default:
@@ -749,7 +764,7 @@
 	};
 
 	$(document).ready(function() {
-		SmartMockups.init( window.mockup_options );
+		SmartMockups.init( window.mockup_options, window.user_feedbacks );
 	});
 
 })( jQuery );
