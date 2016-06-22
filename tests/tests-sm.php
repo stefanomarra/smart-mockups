@@ -22,7 +22,7 @@ class Tests_SM extends WP_UnitTestCase {
 		$this->assertEquals( 'smart_mockup', SMART_MOCKUPS_POSTTYPE );
 
 		$this->assertTrue( defined( 'SMART_MOCKUPS_VERSION' ) );
-		$this->assertEquals( '1.1.1', SMART_MOCKUPS_VERSION );
+		$this->assertEquals( '1.2.0', SMART_MOCKUPS_VERSION );
 	}
 
 	function test_includes() {
