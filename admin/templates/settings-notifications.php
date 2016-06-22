@@ -12,11 +12,11 @@
         <tbody>
             <tr valign="top">
                 <th scope="row" valign="top">
-                    <label class="notifications" for="smartmockups_notifications"><?php _e('Notifications'); ?></label>
+                    <label class="notifications" for="smartmockups_notifications"><?php _e('Notifications', SMART_MOCKUPS_DOMAIN); ?></label>
                 </th>
                 <td>
                     <input id="smartmockups_notifications" name="smartmockups_notifications" type="checkbox" value="1" <?php echo ( $settings['notifications'] )?'checked':''; ?> />
-                    <label for="smartmockups_notifications">Check this to enable hourly scheduled notifications</label>
+                    <label for="smartmockups_notifications"><?php _e('Check this to enable scheduled notifications', SMART_MOCKUPS_DOMAIN); ?></label>
                 </td>
             </tr>
             <tr valign="top">

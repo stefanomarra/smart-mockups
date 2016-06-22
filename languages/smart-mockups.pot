@@ -3,8 +3,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Smart Mockups\n"
-"POT-Creation-Date: 2016-02-16 11:38+0100\n"
-"PO-Revision-Date: 2016-02-16 11:38+0100\n"
+"POT-Creation-Date: 2016-06-23 00:20+0100\n"
+"PO-Revision-Date: 2016-06-23 00:21+0100\n"
 "Last-Translator: Stefano Marra <stefano.marra1987@gmail.com>\n"
 "Language-Team: Stefano Marra <stefano.marra1987@gmail.com>\n"
 "Language: en_US\n"
@@ -33,156 +33,205 @@ msgstr ""
 msgid "Show Credits"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:24
+#: admin/templates/settings-notifications.php:15
+msgid "Notifications"
+msgstr ""
+
+#: admin/templates/settings-notifications.php:19
+msgid "Check this to enable scheduled notifications"
+msgstr ""
+
+#: admin/templates/settings-notifications.php:24
+msgid "Recurrence"
+msgstr ""
+
+#: admin/templates/settings-notifications.php:28
+msgid "Hourly"
+msgstr ""
+
+#: admin/templates/settings-notifications.php:29
+msgid "Twice Daily"
+msgstr ""
+
+#: admin/templates/settings-notifications.php:30
+msgid "Daily"
+msgstr ""
+
+#: includes/class-smart-mockups-emails.php:166
+#, php-format
+msgid ""
+"Email from Smart Mockups failed to send.\n"
+"Send time: %s\n"
+"To: %s\n"
+"Subject: %s\n"
+"\n"
+msgstr ""
+
+#: includes/class-smart-mockups-setup.php:65
 msgid "Smart Mockups"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:25
+#: includes/class-smart-mockups-setup.php:66
 msgid "Mockup"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:26
+#: includes/class-smart-mockups-setup.php:67
 msgid "All Mockups"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:27
+#: includes/class-smart-mockups-setup.php:68
 msgid "New Mockup"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:28
+#: includes/class-smart-mockups-setup.php:69
 msgid "Add New"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:29
+#: includes/class-smart-mockups-setup.php:70
 msgid "Add New Mockup"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:30
+#: includes/class-smart-mockups-setup.php:71
 msgid "Edit Mockup"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:31
+#: includes/class-smart-mockups-setup.php:72
 msgid "View Mockup"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:32
+#: includes/class-smart-mockups-setup.php:73
 msgid "Search Mockups"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:42
+#: includes/class-smart-mockups-setup.php:83
 msgid "Mockup Image"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:46
+#: includes/class-smart-mockups-setup.php:87
 msgid "Upload or select the mockup image"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:50
+#: includes/class-smart-mockups-setup.php:91
 msgid "Allow Feedbacks"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:54
+#: includes/class-smart-mockups-setup.php:95
 msgid "Enable the point and click feedback"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:58
+#: includes/class-smart-mockups-setup.php:99
 msgid "Allow Discussion"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:62
+#: includes/class-smart-mockups-setup.php:103
 msgid "Enable the discussion panel on the side"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:66
+#: includes/class-smart-mockups-setup.php:107
+msgid "Allow Anonymous Feedbacks"
+msgstr ""
+
+#: includes/class-smart-mockups-setup.php:111
+msgid "Allow guests to anonymously post a feedback (Marked as \"Guest\")"
+msgstr ""
+
+#: includes/class-smart-mockups-setup.php:116
 msgid "Enable Approval"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:70
+#: includes/class-smart-mockups-setup.php:120
 msgid "Enable the user to approve the mockup with a digital signature"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:74
+#: includes/class-smart-mockups-setup.php:124
 msgid "Enable Help Text"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:82
+#: includes/class-smart-mockups-setup.php:132
 msgid "Help Text"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:91
+#: includes/class-smart-mockups-setup.php:141
 msgid "Background Color"
 msgstr ""
 
-#: includes/class-smart-mockups-setup.php:99
+#: includes/class-smart-mockups-setup.php:149
 msgid "Dots Color"
 msgstr ""
 
-#: public/class-smart-mockups-public.php:407
+#: public/class-smart-mockups-public.php:541
 msgid "Password:"
 msgstr ""
 
-#: public/class-smart-mockups-public.php:409
+#: public/class-smart-mockups-public.php:543
 msgid "Submit"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:120
+#: public/templates/smart-mockups-public-display.php:86
 msgid "Show/Hide Feedbacks"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:121
+#: public/templates/smart-mockups-public-display.php:87
 msgid "Show/Hide Discussion Panel"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:122
+#: public/templates/smart-mockups-public-display.php:88
 msgid "Need Help?"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:123
+#: public/templates/smart-mockups-public-display.php:89
 msgid "Approve this Mockup"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:124
+#: public/templates/smart-mockups-public-display.php:89
+#: public/templates/smart-mockups-public-display.php:170
+msgid "Approve"
+msgstr ""
+
+#: public/templates/smart-mockups-public-display.php:90
 msgid "Mockup Approved"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:124
+#: public/templates/smart-mockups-public-display.php:90
 msgid "by"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:134
+#: public/templates/smart-mockups-public-display.php:100
 msgid "Mockup Discussion"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:138
-#: public/templates/smart-mockups-public-display.php:176
+#: public/templates/smart-mockups-public-display.php:104
+#: public/templates/smart-mockups-public-display.php:154
 msgid "Write a comment..."
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:141
+#: public/templates/smart-mockups-public-display.php:107
+#: public/templates/smart-mockups-public-display.php:157
 msgid "Post this Comment"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:188
+#: public/templates/smart-mockups-public-display.php:147
+#: public/templates/smart-mockups-public-display.php:149
+msgid "Name"
+msgstr ""
+
+#: public/templates/smart-mockups-public-display.php:166
 msgid "Approve this mockup"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:189
+#: public/templates/smart-mockups-public-display.php:167
 msgid ""
 "By entering the digital signature below, you approve the underneath mockup."
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:191
+#: public/templates/smart-mockups-public-display.php:169
 msgid "Digital Signature"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:192
-msgid "Approve"
-msgstr ""
-
-#: public/templates/smart-mockups-public-display.php:193
+#: public/templates/smart-mockups-public-display.php:171
 msgid "Cancel"
 msgstr ""
 
-#: public/templates/smart-mockups-public-display.php:201
+#: public/templates/smart-mockups-public-display.php:179
 msgid "Close"
 msgstr ""
